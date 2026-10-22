@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import EnquireSection from "@/components/EnquireSection";
 import Gallery from "@/components/Gallery";
 import Odometer from "@/components/Odometer";
-import RegisterInterest from "@/components/RegisterInterest";
 import { company, contact, developments } from "@/content/site";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -84,7 +83,9 @@ export default async function DevelopmentPage({ params }: Props) {
               <p className="type-lead mt-2 max-w-[38ch] text-white/85">{dev.summary}</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <RegisterInterest project={dev.name} className="btn btn-gold" />
+              <Link href="#enquire" className="btn btn-gold">
+                Enquire now
+              </Link>
               <Link href="#visit" className="btn btn-ghost-light">
                 Location
               </Link>

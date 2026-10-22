@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import DevelopmentCard from "@/components/DevelopmentCard";
+import { RegisterInterestButton } from "@/components/RegisterInterest";
 import EnquireSection from "@/components/EnquireSection";
 import { developments, developmentsPage } from "@/content/site";
 
@@ -36,9 +36,12 @@ export default function DevelopmentsPage() {
               <p className="type-eyebrow text-moss">Next launch</p>
               <h2 className="type-h3 mt-4">{comingSoon.title}</h2>
               <p className="mt-4 max-w-[38ch] text-green/85">{comingSoon.text}</p>
-              <Link href="#enquire" className="btn btn-ghost-dark mt-8 self-start">
-                Register your interest
-              </Link>
+              <RegisterInterestButton
+                label="Register your interest"
+                project="Next development"
+                source="next launch card"
+                className="btn btn-ghost-dark mt-8 self-start"
+              />
             </div>
           )}
         </div>

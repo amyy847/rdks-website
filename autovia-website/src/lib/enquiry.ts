@@ -7,6 +7,10 @@ export const ENQUIRY_NAME_KEY = "rdk:enquiry-name";
 export const FIELD_CLASS =
   "w-full rounded-xl border border-white/20 bg-white/[0.06] px-4 py-3.5 text-white placeholder:text-white/40 transition-colors duration-300 hover:border-white/40 focus:border-gold focus:outline-none";
 
+/** Form field on a cream background (the Register interest window) */
+export const FIELD_LIGHT_CLASS =
+  "w-full rounded-xl border border-moss/25 bg-white px-4 py-3.5 text-green placeholder:text-green/35 transition-colors duration-300 hover:border-moss/50 focus:border-moss focus:outline-none";
+
 /** Sends an enquiry to /api/enquire. Throws an Error with a message to show the visitor if it fails. */
 export async function submitEnquiry(data: Record<string, unknown>) {
   const res = await fetch("/api/enquire", {

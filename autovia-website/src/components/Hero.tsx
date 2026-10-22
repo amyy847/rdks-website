@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Odometer from "./Odometer";
-import RegisterInterest from "./RegisterInterest";
 import { company, developments, hero } from "@/content/site";
 
 const SLIDE_MS = 6500;
@@ -70,7 +69,9 @@ export default function Hero() {
         <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <p className="type-lead max-w-[34ch] text-white/85">{hero.subline}</p>
           <div className="flex flex-wrap gap-3">
-            <RegisterInterest project={autovia.name} className="btn btn-gold" />
+            <Link href="#enquire" className="btn btn-gold">
+              Enquire now
+            </Link>
             <Link href={`/developments/${autovia.slug}`} className="btn btn-ghost-light">
               Explore Autovia
             </Link>

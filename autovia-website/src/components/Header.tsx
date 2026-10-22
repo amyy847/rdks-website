@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
+import { RegisterInterestButton } from "./RegisterInterest";
 import { company, nav } from "@/content/site";
 
 export default function Header() {
@@ -68,9 +69,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/#enquire" className="btn btn-gold hidden !h-11 !px-6 sm:inline-flex">
-            Enquire now
-          </Link>
+          <RegisterInterestButton source="header" className="btn btn-gold hidden !h-11 !px-6 sm:inline-flex" />
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
@@ -116,9 +115,7 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <Link href="/#enquire" onClick={() => setOpen(false)} className="btn btn-gold mt-8 self-start">
-            Enquire now
-          </Link>
+          <RegisterInterestButton source="mobile menu" onClick={() => setOpen(false)} className="btn btn-gold mt-8 self-start" />
         </nav>
       </div>
     </header>
