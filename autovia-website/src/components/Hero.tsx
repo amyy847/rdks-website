@@ -24,7 +24,7 @@ export default function Hero() {
     <section
       aria-roledescription="carousel"
       aria-label="Autovia"
-      className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-asphalt text-white"
+      className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-green text-white"
     >
       {/* Photos: crossfade with a slow push-in on the active one */}
       <div className="absolute inset-0 -z-10">
@@ -47,19 +47,19 @@ export default function Hero() {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/45 to-asphalt/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-green via-green/45 to-green/10" />
       </div>
 
       <div className="container-site pt-32 md:pt-40">
-        <p className="mb-5 flex items-center gap-3 text-[0.95rem] font-medium text-white/85">
-          <span className="size-2 rounded-full bg-signal" aria-hidden="true" />
+        <p className="mb-5 flex items-center gap-3 type-eyebrow text-white/85">
+          <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
           {company.byline} · {autovia.status} in {autovia.location}
         </p>
         <h1 className="type-display">{hero.headline}</h1>
         <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <p className="type-lead max-w-[34ch] text-white/85">{hero.subline}</p>
           <div className="flex flex-wrap gap-3">
-            <Link href="#enquire" className="btn btn-signal">
+            <Link href="#enquire" className="btn btn-gold">
               Enquire now
             </Link>
             <Link href={`/developments/${autovia.slug}`} className="btn btn-ghost-light">
@@ -78,7 +78,7 @@ export default function Hero() {
                 value={s.value}
                 suffix={s.suffix}
                 delay={500 + i * 150}
-                className="text-[2.25rem] font-bold [font-stretch:118%] md:text-[3rem]"
+                className="text-[2.25rem] font-semibold md:text-[3rem]"
               />
               <p className="mt-2 text-sm text-white/70">{s.label}</p>
             </div>
@@ -98,7 +98,7 @@ export default function Hero() {
                   {i === active && (
                     <span
                       key={`${active}-${paused}`}
-                      className="absolute inset-0 origin-left bg-signal"
+                      className="absolute inset-0 origin-left bg-gold"
                       style={{
                         animation: paused ? "none" : `lane-fill ${SLIDE_MS}ms linear both`,
                         transform: paused ? "scaleX(1)" : undefined,

@@ -5,17 +5,19 @@
  */
 
 /*
- * RDK is the company; Autovia is one of its developments.
- * `company` and `contact` are RDK's own details (head office). Each development
+ * RD.K is the company; Autovia is one of its developments.
+ * `company` and `contact` are RD.K's own details (head office). Each development
  * has its own `showroom` details further down.
+ * Wording marked "brand guide" comes from the RD.K brand guidelines (October 2026).
  */
 export const company = {
-  name: "RDK",
-  legalName: "RDK Developments", // PLACEHOLDER: legal name (used in footer + privacy policy)
-  tagline: "Developments built around the way people live and drive.", // PLACEHOLDER
+  name: "RD.K",
+  fullName: "RD.K Developments",
+  legalName: "RD.K Developments", // PLACEHOLDER: legal name, if different (used in footer + privacy policy)
+  tagline: "An expression of excellence and integrity", // brand guide
   intro:
-    "We're a young development company building places people actually want to spend time in. Autovia, our first launch, brings car buying under one roof.", // PLACEHOLDER
-  byline: "An RDK development", // shown above each development's name
+    "RD.K Developments creates exceptional places to live, connect and thrive, transforming land, waterfronts and visionary concepts into enduring destinations.", // brand guide
+  byline: "An RD.K development", // shown above each development's name
 };
 
 export const contact = {
@@ -131,13 +133,29 @@ export const developmentsPage = {
 };
 
 export const aboutPage = {
-  // PLACEHOLDER: 1–2 paragraphs from the client
+  // brand guide: brand essence and brand personality
   story: [
-    "RDK started with a simple idea: the places people visit every week should be easy to reach, pleasant to spend time in and run by people who care about the details.",
-    "Autovia is the first of those places. We'll keep building the same way, one development at a time, and only when we're sure it's worth the visit.",
+    "RD.K creates environments where people build their lives, memories, businesses and futures. We develop commercial spaces, residential communities, villas, luxury apartments, mixed-use projects, hospitality assets and marine residential experiences.",
+    "We believe exceptional development goes beyond vision. Through engineering expertise, precision execution, premium construction and refined finishes, every concept becomes an enduring destination, built to last.",
   ],
-  vision: "To build the places people choose first, because they work better than anywhere else.", // PLACEHOLDER
-  mission: "To plan, build and run developments that save people time and treat them well from the first visit.", // PLACEHOLDER
+  // brand guide
+  vision:
+    "To become one of the region's most trusted creators of exceptional living environments on land and water, shaping communities, residences, waterfront destinations and landmark developments that inspire generations.",
+  mission:
+    "To deliver world-class developments that combine engineering excellence, thoughtful design, timeless architecture and long-term value, creating exceptional places to live, work, invest and belong.",
+  values: [
+    "Innovation",
+    "Distinctive quality",
+    "Tailored solutions",
+    "Creative leadership",
+    "Excellence in execution",
+    "Multidisciplinary expertise",
+  ], // brand guide: core values
+  images: {
+    intro: { image: "/images/about-intro.jpg", alt: "The reception at RD.K Developments" },
+    building: { image: "/images/about-building.jpg", alt: "An RD.K building at golden hour" },
+    masterplan: { image: "/images/about-masterplan.jpg", alt: "Reviewing a masterplan" },
+  },
   // PLACEHOLDER: optional numbers about the company. An empty list hides the row.
   stats: [
     { value: 15, suffix: "+", label: "Years of team experience" },

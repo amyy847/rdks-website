@@ -6,7 +6,7 @@ import { contact, developments, enquiry } from "@/content/site";
 type Status = "idle" | "sending" | "sent" | "error";
 
 const field =
-  "w-full rounded-xl border border-white/20 bg-white/[0.06] px-4 py-3.5 text-white placeholder:text-white/40 transition-colors duration-300 hover:border-white/40 focus:border-signal focus:outline-none";
+  "w-full rounded-xl border border-white/20 bg-white/[0.06] px-4 py-3.5 text-white placeholder:text-white/40 transition-colors duration-300 hover:border-white/40 focus:border-gold focus:outline-none";
 
 export default function EnquireSection({ project = developments[0].name }: { project?: string }) {
   const dev = developments.find((d) => d.name === project) ?? developments[0];
@@ -38,7 +38,7 @@ export default function EnquireSection({ project = developments[0].name }: { pro
   }
 
   return (
-    <section id="enquire" className="scroll-mt-20 bg-asphalt py-20 text-white md:py-32">
+    <section id="enquire" className="scroll-mt-20 bg-green py-20 text-white md:py-32">
       <div className="container-site grid gap-14 md:grid-cols-12">
         <div className="md:col-span-5">
           <h2 className="type-h2">{enquiry.heading}</h2>
@@ -47,7 +47,7 @@ export default function EnquireSection({ project = developments[0].name }: { pro
             <div>
               <dt className="text-sm text-white/50">Rather talk now?</dt>
               <dd className="mt-1 text-xl font-semibold">
-                <a href={contact.phoneHref} className="hover:text-signal">
+                <a href={contact.phoneHref} className="hover:text-gold">
                   {contact.phone}
                 </a>
               </dd>
@@ -61,7 +61,7 @@ export default function EnquireSection({ project = developments[0].name }: { pro
 
         <div className="md:col-span-6 md:col-start-7">
           {status === "sent" ? (
-            <div role="status" className="rounded-[1.75rem] border border-white/15 p-8 md:p-12">
+            <div role="status" className="rounded-sm border border-white/15 p-8 md:p-12">
               <p className="type-h3">Thanks{name ? `, ${name}` : ""}. Your enquiry is in.</p>
               <p className="mt-4 text-white/75">
                 Check your inbox for Autovia&apos;s details. Our sales team will call you within one working day.
@@ -98,11 +98,11 @@ export default function EnquireSection({ project = developments[0].name }: { pro
                 <span className="mb-2 block text-sm font-medium text-white/80">What are you interested in?</span>
                 <span className="relative block">
                   <select name="interest" required defaultValue="" className={`${field} appearance-none pr-12`}>
-                    <option value="" disabled className="text-asphalt">
+                    <option value="" disabled className="text-green">
                       Choose one
                     </option>
                     {enquiry.interests.map((i) => (
-                      <option key={i} value={i} className="text-asphalt">
+                      <option key={i} value={i} className="text-green">
                         {i}
                       </option>
                     ))}
@@ -127,12 +127,12 @@ export default function EnquireSection({ project = developments[0].name }: { pro
                   </a>
                   .
                 </p>
-                <button type="submit" disabled={status === "sending"} className="btn btn-signal shrink-0 disabled:opacity-60">
+                <button type="submit" disabled={status === "sending"} className="btn btn-gold shrink-0 disabled:opacity-60">
                   {status === "sending" ? "Sending…" : "Send enquiry"}
                 </button>
               </div>
               {status === "error" && (
-                <p role="alert" className="text-sm font-medium text-signal sm:col-span-2">
+                <p role="alert" className="text-sm font-medium text-gold sm:col-span-2">
                   {error}
                 </p>
               )}

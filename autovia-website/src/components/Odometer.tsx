@@ -59,7 +59,7 @@ export default function Odometer({
         {chars.map((c, i) => {
           if (!/\d/.test(c)) {
             return (
-              <span key={i} className="inline-block h-[1em] leading-none">
+              <span key={i} className="inline-block h-[1.2em] leading-[1.2]">
                 {c}
               </span>
             );
@@ -67,7 +67,7 @@ export default function Odometer({
           const d = Number(c);
           const order = digitIndex++;
           return (
-            <span key={i} className="relative inline-block h-[1em] overflow-hidden leading-none">
+            <span key={i} className="relative inline-block h-[1.2em] overflow-hidden leading-[1.2]">
               <span
                 className="flex flex-col transition-transform ease-in-out-drive"
                 style={{
@@ -77,7 +77,7 @@ export default function Odometer({
                 }}
               >
                 {Array.from({ length: 10 }, (_, n) => (
-                  <span key={n} className="block h-[1em] leading-none">
+                  <span key={n} className="block h-[1.2em] leading-[1.2]">
                     {n}
                   </span>
                 ))}
@@ -87,7 +87,7 @@ export default function Odometer({
         })}
       </span>
       {suffix && (
-        <span aria-hidden="true" className="mb-[0.06em] ml-1 text-[0.45em] font-semibold [font-stretch:100%]">
+        <span aria-hidden="true" className="mb-[0.16em] ml-1 text-[0.45em] font-semibold">
           {suffix}
         </span>
       )}

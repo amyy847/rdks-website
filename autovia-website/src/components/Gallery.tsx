@@ -36,7 +36,7 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
             <button
               type="button"
               onClick={() => setIndex(i)}
-              className="group relative block size-full overflow-hidden rounded-2xl bg-concrete"
+              className="group relative block size-full overflow-hidden rounded-sm bg-laurel"
             >
               <Image
                 src={photo.image}
@@ -63,7 +63,7 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
           const dx = e.changedTouches[0].clientX - touchX.current;
           if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
         }}
-        className="m-0 size-full max-h-none max-w-none border-0 bg-asphalt p-0 text-white backdrop:bg-asphalt"
+        className="m-0 size-full max-h-none max-w-none border-0 bg-green p-0 text-white backdrop:bg-green"
       >
         {current && (
           <div className="flex h-full flex-col">
@@ -89,7 +89,7 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
 
             <div className="container-site flex shrink-0 items-center justify-between gap-4 py-5">
               {count > 1 && (
-                <button type="button" onClick={() => step(-1)} aria-label="Previous photo" className="grid size-11 shrink-0 place-items-center rounded-full border border-white/25 hover:bg-white hover:text-asphalt">
+                <button type="button" onClick={() => step(-1)} aria-label="Previous photo" className="grid size-11 shrink-0 place-items-center rounded-full border border-white/25 hover:bg-white hover:text-green">
                   <svg viewBox="0 0 16 16" className="size-4" fill="currentColor" aria-hidden="true">
                     <path d="M10 3L5 8l5 5z" />
                   </svg>
@@ -97,7 +97,7 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
               )}
               <p className="text-center text-sm text-white/75">{current.alt}</p>
               {count > 1 && (
-                <button type="button" onClick={() => step(1)} aria-label="Next photo" className="grid size-11 shrink-0 place-items-center rounded-full border border-white/25 hover:bg-white hover:text-asphalt">
+                <button type="button" onClick={() => step(1)} aria-label="Next photo" className="grid size-11 shrink-0 place-items-center rounded-full border border-white/25 hover:bg-white hover:text-green">
                   <svg viewBox="0 0 16 16" className="size-4" fill="currentColor" aria-hidden="true">
                     <path d="M6 3l5 5-5 5z" />
                   </svg>

@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef } from "react";
-import { company } from "@/content/site";
+import Logo from "./Logo";
 
 /**
  * Page transition, after misritaliaproperties.com.
@@ -30,7 +30,7 @@ export default function PageTransition() {
   const root = useRef<HTMLDivElement>(null);
   const dark = useRef<HTMLDivElement>(null);
   const light = useRef<HTMLDivElement>(null);
-  const logo = useRef<HTMLParagraphElement>(null);
+  const logo = useRef<HTMLDivElement>(null);
   const state = useRef<"idle" | "covering" | "covered" | "revealing">("idle");
   const fallback = useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -98,11 +98,11 @@ export default function PageTransition() {
 
   return (
     <div ref={root} aria-hidden="true" className="pointer-events-none invisible fixed inset-0 z-[200]">
-      <div ref={dark} className="absolute inset-0 origin-top bg-asphalt" style={{ transform: "scaleY(0)" }} />
-      <div ref={light} className="absolute inset-0 origin-top bg-chalk" style={{ transform: "scaleY(0)" }} />
-      <p ref={logo} className="absolute inset-0 grid place-items-center text-5xl font-extrabold tracking-tight opacity-0 [font-stretch:125%] md:text-6xl">
-        {company.name}
-      </p>
+      <div ref={dark} className="absolute inset-0 origin-top bg-green" style={{ transform: "scaleY(0)" }} />
+      <div ref={light} className="absolute inset-0 origin-top bg-cream" style={{ transform: "scaleY(0)" }} />
+      <div ref={logo} className="absolute inset-0 grid place-items-center text-green opacity-0">
+        <Logo className="w-44 md:w-56" />
+      </div>
     </div>
   );
 }

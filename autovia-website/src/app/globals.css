@@ -1,20 +1,21 @@
 @import "tailwindcss";
-@import "@fontsource-variable/archivo/wdth.css";
+@import "@fontsource-variable/montserrat/wght.css";
 
 /*
- * Design tokens. Swap these for the client's brand colours once they send them.
- * asphalt: dark sections and text · tarmac: secondary text · concrete: lines and soft fills
- * chalk: page background · signal: the one accent (buttons, odometer, focus)
+ * Brand tokens, from the RD.K brand guidelines (October 2026).
+ * green: Deep Bluish Green, dark sections and text · moss: Moderate Green, secondary text
+ * laurel: Laurel Green, lines and soft fills · cream: Light Cream, page background
+ * gold: Tuscan Gold, the one accent (buttons, dots, focus) · gold-deep: its hover shade (not in the guide)
  */
 @theme {
-  --color-asphalt: #202428;
-  --color-tarmac: #5b6168;
-  --color-concrete: #e3e5e7;
-  --color-chalk: #f7f8f8;
-  --color-signal: #f2a900;
-  --color-signal-deep: #d99400;
+  --color-green: #0a3b25;
+  --color-moss: #2a6151;
+  --color-laurel: #b2b7aa;
+  --color-cream: #fcf7f0;
+  --color-gold: #d8c2a4;
+  --color-gold-deep: #c6a983;
 
-  --font-sans: "Archivo Variable", system-ui, sans-serif;
+  --font-sans: "Montserrat Variable", system-ui, sans-serif;
 
   --ease-out-quint: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-in-out-drive: cubic-bezier(0.65, 0.05, 0.36, 1);
@@ -25,58 +26,70 @@
     scroll-behavior: smooth;
   }
   body {
-    background: var(--color-chalk);
-    color: var(--color-asphalt);
+    background: var(--color-cream);
+    color: var(--color-green);
     font-family: var(--font-sans);
-    font-size: 1.0625rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
+  /* Two-tone ring so focus shows on both cream and green backgrounds */
   :focus-visible {
-    outline: 3px solid var(--color-signal);
+    outline: 3px solid var(--color-gold);
     outline-offset: 3px;
-    border-radius: 4px;
+    box-shadow: 0 0 0 3px var(--color-green);
+    border-radius: 2px;
   }
   ::selection {
-    background: var(--color-signal);
-    color: var(--color-asphalt);
+    background: var(--color-gold);
+    color: var(--color-green);
   }
 }
 
 @layer components {
-  /* Expanded width is the brand's type signature: badge-like, automotive */
+  /* Montserrat in tracked capitals is the brand's type signature (guide p. 21–22) */
   .type-display {
-    font-stretch: 125%;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 0.88;
-    font-size: clamp(3.75rem, 16.5vw, 10.5rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 0.95;
+    font-size: clamp(2.75rem, 11vw, 8rem);
     overflow-wrap: anywhere;
   }
-  /* Page titles on inner pages; narrower than .type-display so long words fit on phones */
+  /* Page titles on inner pages */
   .type-h1 {
-    font-stretch: 122%;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 0.95;
-    font-size: clamp(2.25rem, 8vw, 6.5rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.05;
+    font-size: clamp(2rem, 6vw, 4.5rem);
   }
   .type-h2 {
-    font-stretch: 118%;
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    line-height: 1;
-    font-size: clamp(2.125rem, 5vw, 3.75rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.15;
+    font-size: clamp(1.5rem, 3.2vw, 2.5rem);
   }
   .type-h3 {
-    font-stretch: 112%;
-    font-weight: 700;
-    line-height: 1.1;
-    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
   }
   .type-lead {
-    font-size: clamp(1.125rem, 1.6vw, 1.3125rem);
-    line-height: 1.5;
+    font-weight: 300;
+    font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+    line-height: 1.6;
+  }
+  /* Small labels above titles ("SUBTITLE" in the guide) */
+  .type-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    line-height: 1.4;
   }
 
   .btn {
@@ -86,20 +99,22 @@
     gap: 0.5rem;
     height: 3.25rem;
     padding: 0 1.75rem;
-    border-radius: 999px;
+    border-radius: 2px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
     transition:
       background-color 0.4s var(--ease-out-quint),
       color 0.4s var(--ease-out-quint),
       border-color 0.4s var(--ease-out-quint);
   }
-  .btn-signal {
-    background: var(--color-signal);
-    color: var(--color-asphalt);
+  .btn-gold {
+    background: var(--color-gold);
+    color: var(--color-green);
   }
-  .btn-signal:hover {
-    background: var(--color-signal-deep);
+  .btn-gold:hover {
+    background: var(--color-gold-deep);
   }
   .btn-ghost-light {
     border: 1px solid rgb(255 255 255 / 0.5);
@@ -107,16 +122,16 @@
   }
   .btn-ghost-light:hover {
     background: white;
-    color: var(--color-asphalt);
+    color: var(--color-green);
     border-color: white;
   }
   .btn-ghost-dark {
-    border: 1px solid var(--color-asphalt);
-    color: var(--color-asphalt);
+    border: 1px solid var(--color-green);
+    color: var(--color-green);
   }
   .btn-ghost-dark:hover {
-    background: var(--color-asphalt);
-    color: white;
+    background: var(--color-green);
+    color: var(--color-cream);
   }
 
   .container-site {

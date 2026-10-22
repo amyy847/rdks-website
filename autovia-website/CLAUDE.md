@@ -24,11 +24,13 @@ Send email with Nodemailer through the client's own email account (Gmail or Goog
 
 ## Stack and conventions
 - Next.js 15 (App Router) + Tailwind CSS 4 + TypeScript. Deploy on Vercel.
-- **All content lives in `src/content/site.ts`.** `PLACEHOLDER` marks anything still waiting on the client. Images are in `public/images/` and are currently labelled grey placeholders.
-- Design tokens are in the `@theme` block of `src/app/globals.css`: asphalt `#202428`, tarmac `#5b6168`, concrete `#e3e5e7`, chalk `#f7f8f8`, and one accent, signal amber `#f2a900` (swap for brand colours later).
-- Type: Archivo Variable (from `@fontsource-variable`, not Google Fonts). The expanded width (`font-stretch: 125%`) is the brand signature; use the `.type-display`, `.type-h2`, `.type-h3` and `.type-lead` classes.
+- **All content lives in `src/content/site.ts`.** `PLACEHOLDER` marks anything still waiting on the client. Images are in `public/images/`; the labelled grey ones are placeholders.
+- **Brand (from the client's RD.K brand guidelines PDF, October 2026):** the company is written "RD.K" / "RD.K Developments". Tokens in the `@theme` block of `src/app/globals.css`: green `#0A3B25` (Deep Bluish Green), moss `#2A6151` (Moderate Green), laurel `#B2B7AA` (Laurel Green), cream `#FCF7F0` (Light Cream), and one accent, gold `#D8C2A4` (Tuscan Gold). `gold-deep` is a hover shade we derived. Use only these.
+- Type: Montserrat Variable (from `@fontsource-variable`, not Google Fonts). Titles are tracked uppercase, as in the guide; use `.type-display`, `.type-h1`, `.type-h2`, `.type-h3`, `.type-lead` and `.type-eyebrow`.
+- Logo: `Logo.tsx`, traced from the client's PNG, fills with currentColor. `variant="mark"` (RD.K alone) in the header, `"full"` (with DEVELOPMENTS) in the footer and page transition. The guide asks for clear space of half the K's height around it. Favicons are `src/app/icon.png` and `apple-icon.png`.
+- Photography style per the guide: golden hour, architectural geometry, understated luxury. The About photos are renders taken from the brand guide; Autovia's photos are still placeholders.
 - Motion: the hero has a slow push-in crossfade, and the stats roll like an odometer (`Odometer.tsx`). That is the one signature animation, plus the page transition (`PageTransition.tsx`, copied from Misr Italia at Amy's request: a dark then a light panel sweep down from the top, then lift back up to reveal the new page; timings are constants at the top of the file). Keep everything else calm: avoid adding fade-ups to every section, and respect reduced motion.
-- Buttons: `.btn` plus `.btn-signal`, `.btn-ghost-light` or `.btn-ghost-dark`. Layout container: `.container-site`.
+- Buttons: `.btn` plus `.btn-gold`, `.btn-ghost-light` or `.btn-ghost-dark`. Layout container: `.container-site`.
 - Must work well on phones; most visitors come from Instagram and WhatsApp.
 
 ## Client docs (in Amy's Claude account)

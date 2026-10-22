@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import Logo from "./Logo";
 import { company, nav } from "@/content/site";
 
 export default function Header() {
@@ -31,17 +32,16 @@ export default function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-500 ease-out-quint ${
-        solid && !open ? "bg-chalk/95 shadow-[0_1px_0_var(--color-concrete)] backdrop-blur" : ""
+        solid && !open ? "bg-cream/95 shadow-[0_1px_0_var(--color-laurel)] backdrop-blur" : ""
       }`}
     >
       <div className="container-site flex h-[4.5rem] items-center justify-between md:h-20">
         <Link
           href="/"
-          className={`relative z-10 text-2xl font-extrabold tracking-tight [font-stretch:125%] transition-colors duration-500 ${
-            light || open ? "text-white" : "text-asphalt"
-          }`}
+          aria-label={`${company.fullName}, home`}
+          className={`relative z-10 transition-colors duration-500 ${light || open ? "text-cream" : "text-green"}`}
         >
-          {company.name}
+          <Logo variant="mark" className="h-7 w-auto md:h-8" />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-9 lg:flex">
@@ -52,13 +52,13 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`group relative py-2 text-[0.95rem] font-medium transition-colors duration-500 ${
-                  light ? "text-white" : "text-asphalt"
+                className={`group relative py-2 text-[0.8125rem] font-medium uppercase tracking-[0.14em] transition-colors duration-500 ${
+                  light ? "text-white" : "text-green"
                 }`}
               >
                 {item.label}
                 <span
-                  className={`absolute inset-x-0 -bottom-0.5 h-0.5 origin-left bg-signal transition-transform duration-400 ease-in-out-drive ${
+                  className={`absolute inset-x-0 -bottom-0.5 h-0.5 origin-left bg-gold transition-transform duration-400 ease-in-out-drive ${
                     active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                   }`}
                 />
@@ -68,7 +68,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/#enquire" className="btn btn-signal hidden !h-11 !px-6 text-[0.95rem] sm:inline-flex">
+          <Link href="/#enquire" className="btn btn-gold hidden !h-11 !px-6 sm:inline-flex">
             Enquire now
           </Link>
           <button
@@ -78,7 +78,7 @@ export default function Header() {
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
             className={`relative z-10 grid size-11 place-items-center rounded-full lg:hidden ${
-              light || open ? "text-white" : "text-asphalt"
+              light || open ? "text-white" : "text-green"
             }`}
           >
             <span className="relative block h-3.5 w-6">
@@ -99,7 +99,7 @@ export default function Header() {
 
       <div
         id="mobile-menu"
-        className={`fixed inset-0 bg-asphalt transition-[opacity,visibility] duration-500 ease-out-quint lg:hidden ${
+        className={`fixed inset-0 bg-green transition-[opacity,visibility] duration-500 ease-out-quint lg:hidden ${
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
@@ -116,7 +116,7 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <Link href="/#enquire" onClick={() => setOpen(false)} className="btn btn-signal mt-8 self-start">
+          <Link href="/#enquire" onClick={() => setOpen(false)} className="btn btn-gold mt-8 self-start">
             Enquire now
           </Link>
         </nav>

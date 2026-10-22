@@ -3,7 +3,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import LaunchCard from "@/components/LaunchCard";
 import EnquireSection from "@/components/EnquireSection";
-import { company, developments } from "@/content/site";
+import { aboutPage, company, developments } from "@/content/site";
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
             <h2 id="launches-heading" className="type-h2">
               Current launches
             </h2>
-            <Link href="/developments" className="shrink-0 font-semibold underline decoration-signal decoration-2 underline-offset-[6px] hover:text-tarmac">
+            <Link href="/developments" className="shrink-0 font-semibold underline decoration-moss decoration-2 underline-offset-[6px] hover:text-moss">
               All developments
             </Link>
           </div>
@@ -34,13 +34,13 @@ export default function Home() {
             <h2 id="about-heading" className="type-h2">
               About {company.name}
             </h2>
-            <p className="type-lead mt-6 max-w-[40ch] text-asphalt/85">{company.intro}</p>
+            <p className="type-lead mt-6 max-w-[40ch] text-green/85">{company.intro}</p>
             <Link href="/about" className="btn btn-ghost-dark mt-10">
               Read our story
             </Link>
           </div>
-          <div className="relative aspect-[6/7] overflow-hidden rounded-[1.75rem] md:col-span-5 md:col-start-8">
-            <Image src="/images/about-intro.jpg" alt={`The ${company.name} team`} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
+          <div className="relative aspect-[6/7] overflow-hidden rounded-sm md:col-span-5 md:col-start-8">
+            <Image src={aboutPage.images.intro.image} alt={aboutPage.images.intro.alt} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
           </div>
         </div>
       </section>

@@ -34,7 +34,7 @@ export default async function DevelopmentPage({ params }: Props) {
 
   return (
     <>
-      <section className="relative isolate flex min-h-[88svh] flex-col justify-end overflow-hidden bg-asphalt text-white">
+      <section className="relative isolate flex min-h-[88svh] flex-col justify-end overflow-hidden bg-green text-white">
         <div className="absolute inset-0 -z-10">
           <Image
             src={dev.cover}
@@ -45,7 +45,7 @@ export default async function DevelopmentPage({ params }: Props) {
             className="object-cover"
             style={{ animation: "push-in 8000ms var(--ease-out-quint) both" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/45 to-asphalt/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-green via-green/45 to-green/10" />
         </div>
 
         <div className="container-site pt-32 md:pt-40">
@@ -65,14 +65,14 @@ export default async function DevelopmentPage({ params }: Props) {
           <h1 className="type-display">{dev.name}</h1>
           <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="flex items-center gap-3 text-[0.95rem] font-medium text-white/85">
-                <span className="size-2 rounded-full bg-signal" aria-hidden="true" />
+              <p className="flex items-center gap-3 type-eyebrow text-white/85">
+                <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
                 {company.byline} · {dev.status} in {dev.location}
               </p>
               <p className="type-lead mt-4 max-w-[38ch] text-white/85">{dev.summary}</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Link href="#enquire" className="btn btn-signal">
+              <Link href="#enquire" className="btn btn-gold">
                 Enquire now
               </Link>
               <Link href="#visit" className="btn btn-ghost-light">
@@ -92,7 +92,7 @@ export default async function DevelopmentPage({ params }: Props) {
                     value={s.value}
                     suffix={s.suffix}
                     delay={500 + i * 150}
-                    className="text-[2.25rem] font-bold [font-stretch:118%] md:text-[3rem]"
+                    className="text-[2.25rem] font-semibold md:text-[3rem]"
                   />
                 </dd>
               </div>
@@ -109,7 +109,7 @@ export default async function DevelopmentPage({ params }: Props) {
             </h2>
             <div className="space-y-5 md:col-span-6 md:col-start-7">
               {dev.description.map((para, i) => (
-                <p key={i} className={i === 0 ? "type-lead" : "text-asphalt/85"}>
+                <p key={i} className={i === 0 ? "type-lead" : "text-green/85"}>
                   {para}
                 </p>
               ))}
@@ -119,30 +119,30 @@ export default async function DevelopmentPage({ params }: Props) {
           <h3 className="type-h3 mt-16 md:mt-24">What we sell</h3>
           <ul className="mt-8 grid gap-6 md:grid-cols-2">
             {dev.sells.map((item) => (
-              <li key={item.title} className="rounded-[1.75rem] bg-white p-7 md:p-10">
-                <p className="flex items-center gap-2.5 text-sm font-medium text-tarmac">
-                  <span className="size-2 rounded-full bg-signal" aria-hidden="true" />
+              <li key={item.title} className="rounded-sm bg-white p-7 md:p-10">
+                <p className="flex items-center gap-2.5 type-eyebrow text-moss">
+                  <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
                   {item.label}
                 </p>
                 <h4 className="type-h3 mt-5">{item.title}</h4>
-                <p className="mt-3 max-w-[42ch] text-asphalt/85">{item.text}</p>
+                <p className="mt-3 max-w-[42ch] text-green/85">{item.text}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section aria-labelledby="brands-heading" className="border-y border-concrete bg-white py-20 md:py-28">
+      <section aria-labelledby="brands-heading" className="border-y border-laurel bg-white py-20 md:py-28">
         <div className="container-site">
           <div className="mb-10 flex flex-col gap-3 md:mb-14 md:flex-row md:items-end md:justify-between">
             <h2 id="brands-heading" className="type-h2">
               Brands on the floor
             </h2>
-            <p className="text-tarmac">Compare them side by side, in one visit.</p>
+            <p className="text-moss">Compare them side by side, in one visit.</p>
           </div>
-          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-concrete bg-concrete sm:grid-cols-3 lg:grid-cols-6">
+          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-laurel bg-laurel sm:grid-cols-3 lg:grid-cols-6">
             {dev.brands.map((brand) => (
-              <li key={brand} className="grid h-24 place-items-center bg-white px-4 text-center text-lg font-bold [font-stretch:118%] md:h-32">
+              <li key={brand} className="grid h-24 place-items-center bg-white px-4 text-center text-sm font-semibold uppercase tracking-[0.14em] md:h-32">
                 {brand}
               </li>
             ))}
@@ -167,21 +167,21 @@ export default async function DevelopmentPage({ params }: Props) {
             </h2>
             <ul className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
               {dev.services.map((service, i) => (
-                <li key={service.title} className="border-t border-asphalt pt-6">
-                  <p className="text-sm font-medium tabular-nums text-tarmac">{String(i + 1).padStart(2, "0")}</p>
-                  <h3 className="mt-4 text-xl font-bold leading-tight [font-stretch:112%]">{service.title}</h3>
-                  <p className="mt-3 text-asphalt/85">{service.text}</p>
+                <li key={service.title} className="border-t border-green pt-6">
+                  <p className="type-eyebrow tabular-nums text-moss">{String(i + 1).padStart(2, "0")}</p>
+                  <h3 className="type-h3 mt-4">{service.title}</h3>
+                  <p className="mt-3 text-green/85">{service.text}</p>
                 </li>
               ))}
             </ul>
-            <Link href="#enquire" className="btn btn-signal mt-12">
+            <Link href="#enquire" className="btn btn-gold mt-12">
               Ask about any of these
             </Link>
           </div>
         </section>
       )}
 
-      <section id="visit" aria-labelledby="visit-heading" className="scroll-mt-20 border-t border-concrete bg-white py-20 md:py-28">
+      <section id="visit" aria-labelledby="visit-heading" className="scroll-mt-20 border-t border-laurel bg-white py-20 md:py-28">
         <div className="container-site grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <h2 id="visit-heading" className="type-h2">
@@ -189,36 +189,36 @@ export default async function DevelopmentPage({ params }: Props) {
             </h2>
             <dl className="mt-10 space-y-6">
               <div>
-                <dt className="text-sm text-tarmac">Address</dt>
+                <dt className="text-sm text-moss">Address</dt>
                 <dd className="mt-1 text-lg font-semibold">{dev.showroom.address}</dd>
               </div>
               <div>
-                <dt className="text-sm text-tarmac">Opening hours</dt>
+                <dt className="text-sm text-moss">Opening hours</dt>
                 <dd className="mt-1 text-lg">{dev.showroom.hours}</dd>
               </div>
               <div>
-                <dt className="text-sm text-tarmac">Call or message</dt>
+                <dt className="text-sm text-moss">Call or message</dt>
                 <dd className="mt-1 flex flex-wrap gap-x-6 gap-y-1 text-lg">
-                  <a href={contact.phoneHref} className="font-semibold hover:text-tarmac">
+                  <a href={contact.phoneHref} className="font-semibold hover:text-moss">
                     {contact.phone}
                   </a>
                   <a
                     href={`https://wa.me/${contact.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="underline decoration-signal decoration-2 underline-offset-[6px] hover:text-tarmac"
+                    className="underline decoration-moss decoration-2 underline-offset-[6px] hover:text-moss"
                   >
                     WhatsApp
                   </a>
                 </dd>
               </div>
             </dl>
-            <a href={dev.showroom.mapUrl} target="_blank" rel="noopener noreferrer" className="btn btn-signal mt-10">
+            <a href={dev.showroom.mapUrl} target="_blank" rel="noopener noreferrer" className="btn btn-gold mt-10">
               Get directions
             </a>
           </div>
 
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] bg-concrete md:col-span-7 md:aspect-auto md:min-h-[26rem]">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-laurel md:col-span-7 md:aspect-auto md:min-h-[26rem]">
             <iframe
               src={dev.showroom.mapEmbedUrl}
               title={`Map showing ${dev.name}'s location`}

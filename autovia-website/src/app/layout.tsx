@@ -8,10 +8,10 @@ import { company } from "@/content/site";
 
 export const metadata: Metadata = {
   title: {
-    default: `${company.name} | ${company.tagline}`,
-    template: `%s | ${company.name}`,
+    default: `${company.fullName} | ${company.tagline}`,
+    template: `%s | ${company.fullName}`,
   },
-  description: company.tagline,
+  description: company.intro,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -22,7 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body suppressHydrationWarning>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-signal focus:px-5 focus:py-3 focus:font-semibold"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-gold focus:px-5 focus:py-3 focus:font-semibold"
         >
           Skip to content
         </a>
