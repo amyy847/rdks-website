@@ -108,9 +108,9 @@ export default function RegisterInterestDialog() {
           type="button"
           onClick={close}
           aria-label="Close"
-          className="absolute right-4 top-4 grid size-11 place-items-center rounded-full border border-moss/30 text-moss transition-colors hover:bg-moss hover:text-cream"
+          className="absolute right-3 top-3 grid size-11 place-items-center text-moss transition-colors hover:text-green"
         >
-          <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
+          <svg viewBox="0 0 16 16" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
             <path d="M3 3l10 10M13 3L3 13" strokeLinecap="round" />
           </svg>
         </button>
