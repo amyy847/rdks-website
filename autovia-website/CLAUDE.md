@@ -5,7 +5,7 @@ Website for Amy's client, a startup developer called **RD.K** (RD.K Developments
 **Deadline: live on Sunday 25 October 2026.** Client content is due Friday 23 October, 12:00 pm. English only for launch; Arabic comes later.
 
 ## Pages for Sunday
-- [x] Home: hero, current launches, about intro, Enquire Now, footer
+- [x] Home: hero, current launches, about intro, Enquire Now, partners strip (GAC, Ghabbour, El Tarek; after Misr Italia's "Our Partners"), footer
 - [x] Developments (current launches): a card grid, Autovia only for now
 - [x] Development detail: `/developments/autovia`, covering the showroom description, what they sell (new/used), brands, gallery, location and hours, and an enquiry form. Optional extras the client may pick: featured cars, financing, trade-in, test drive booking, after-sales, warranty, offers, reviews, video
 - [x] About us: story, vision and mission, optional numbers and founder message, RDK's developments

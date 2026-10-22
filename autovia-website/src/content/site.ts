@@ -313,3 +313,20 @@ export const privacyPage = {
     },
   ] as PolicySection[],
 };
+
+export type Partner = {
+  name: string;
+  logo?: string; // transparent PNG or SVG in /public/images/partners/. Shown in green, cream on hover. Without one, the name is shown
+  description?: string; // one short line, revealed on hover or tap
+};
+
+// Home page, bottom: after Misr Italia's "Our Partners" strip
+export const partners = {
+  heading: "Our partners",
+  list: [
+    // PLACEHOLDER: logos (transparent PNG or SVG) and a one-line description for each, from the client
+    { name: "GAC" },
+    { name: "Ghabbour" },
+    { name: "El Tarek" },
+  ] as Partner[],
+};

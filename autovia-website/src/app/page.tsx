@@ -3,6 +3,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import LaunchCard from "@/components/LaunchCard";
 import EnquireSection from "@/components/EnquireSection";
+import Partners from "@/components/Partners";
 import { aboutPage, company, developments } from "@/content/site";
 
 export default function Home() {
@@ -46,6 +47,8 @@ export default function Home() {
       </section>
 
       <EnquireSection />
+
+      <Partners />
     </>
   );
 }
