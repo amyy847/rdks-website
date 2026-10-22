@@ -9,6 +9,7 @@ const field =
   "w-full rounded-xl border border-white/20 bg-white/[0.06] px-4 py-3.5 text-white placeholder:text-white/40 transition-colors duration-300 hover:border-white/40 focus:border-signal focus:outline-none";
 
 export default function EnquireSection({ project = developments[0].name }: { project?: string }) {
+  const dev = developments.find((d) => d.name === project) ?? developments[0];
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [name, setName] = useState("");
@@ -52,8 +53,8 @@ export default function EnquireSection({ project = developments[0].name }: { pro
               </dd>
             </div>
             <div>
-              <dt className="text-sm text-white/50">Showroom hours</dt>
-              <dd className="mt-1">{contact.hours}</dd>
+              <dt className="text-sm text-white/50">{dev.name} showroom hours</dt>
+              <dd className="mt-1">{dev.showroom.hours}</dd>
             </div>
           </dl>
         </div>

@@ -25,7 +25,7 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h2 className="text-sm font-semibold text-white/50">Visit</h2>
+            <h2 className="text-sm font-semibold text-white/50">Head office</h2>
             <address className="mt-4 space-y-2.5 not-italic">
               <p>{contact.address}</p>
               <p className="text-white/70">{contact.hours}</p>

@@ -4,12 +4,18 @@
  * Anything marked PLACEHOLDER still needs real content from the client.
  */
 
+/*
+ * RDK is the company; Autovia is one of its developments.
+ * `company` and `contact` are RDK's own details (head office). Each development
+ * has its own `showroom` details further down.
+ */
 export const company = {
-  name: "RDK", // PLACEHOLDER: company name
+  name: "RDK",
   legalName: "RDK Developments", // PLACEHOLDER: legal name (used in footer + privacy policy)
   tagline: "Developments built around the way people live and drive.", // PLACEHOLDER
   intro:
     "We're a young development company building places people actually want to spend time in. Autovia, our first launch, brings car buying under one roof.", // PLACEHOLDER
+  byline: "An RDK development", // shown above each development's name
 };
 
 export const contact = {
@@ -17,11 +23,11 @@ export const contact = {
   phoneHref: "tel:+201000000000",
   whatsapp: "201000000000", // PLACEHOLDER: international format, digits only
   email: "info@example.com", // PLACEHOLDER
-  address: "Showroom address, New Cairo, Egypt", // PLACEHOLDER
-  mapUrl: "https://maps.google.com", // PLACEHOLDER: Google Maps share link
+  address: "Head office address, New Cairo, Egypt", // PLACEHOLDER: RDK's office (not the showroom)
+  mapUrl: "https://maps.google.com", // PLACEHOLDER: Google Maps share link for the office
   // PLACEHOLDER: in Google Maps, Share > Embed a map, and paste the src="..." link here
   mapEmbedUrl: "https://www.google.com/maps?q=New+Cairo,+Egypt&output=embed",
-  hours: "Saturday to Thursday, 10 am to 10 pm", // PLACEHOLDER
+  hours: "Sunday to Thursday, 9 am to 5 pm", // PLACEHOLDER: office working hours
   socials: [
     { label: "Instagram", href: "https://instagram.com" }, // PLACEHOLDER
     { label: "Facebook", href: "https://facebook.com" }, // PLACEHOLDER
@@ -48,6 +54,7 @@ export type Development = {
   summary: string;
   cover: string;
   stats: Stat[];
+  showroom: { address: string; hours: string; mapUrl: string; mapEmbedUrl: string };
   // Detail page (/developments/[slug])
   description: string[]; // one string per paragraph
   sells: { label: string; title: string; text: string }[];
@@ -72,6 +79,12 @@ export const developments: Development[] = [
       { value: 2400, suffix: " m²", label: "Showroom space" },
       { value: 5, suffix: " yrs", label: "Warranty available" },
     ],
+    showroom: {
+      address: "Autovia showroom address, New Cairo, Egypt", // PLACEHOLDER
+      hours: "Saturday to Thursday, 10 am to 10 pm", // PLACEHOLDER
+      mapUrl: "https://maps.google.com", // PLACEHOLDER: Google Maps share link for the showroom
+      mapEmbedUrl: "https://www.google.com/maps?q=New+Cairo,+Egypt&output=embed", // PLACEHOLDER
+    },
     description: [
       // PLACEHOLDER: 2–3 short paragraphs from the client
       "Autovia puts the brands you're weighing up on one floor, so you can sit in each car, compare them properly and decide without driving across the city.",
@@ -115,6 +128,34 @@ export const developmentsPage = {
     title: "More on the way",
     text: "Leave your details and we'll tell you first when our next development launches.",
   } as { title: string; text: string } | null,
+};
+
+export const aboutPage = {
+  // PLACEHOLDER: 1–2 paragraphs from the client
+  story: [
+    "RDK started with a simple idea: the places people visit every week should be easy to reach, pleasant to spend time in and run by people who care about the details.",
+    "Autovia is the first of those places. We'll keep building the same way, one development at a time, and only when we're sure it's worth the visit.",
+  ],
+  vision: "To build the places people choose first, because they work better than anywhere else.", // PLACEHOLDER
+  mission: "To plan, build and run developments that save people time and treat them well from the first visit.", // PLACEHOLDER
+  // PLACEHOLDER: optional numbers about the company. An empty list hides the row.
+  stats: [
+    { value: 15, suffix: "+", label: "Years of team experience" },
+    { value: 40, label: "People on the team" },
+    { value: 1, label: "Development open" },
+  ] as Stat[],
+  // PLACEHOLDER: optional founder or team message. Set to null to hide it.
+  founder: {
+    quote: "We'd rather build one place people love than ten they put up with.",
+    name: "Founder name",
+    role: "Founder and CEO",
+    image: "/images/about-founder.jpg",
+  } as { quote: string; name: string; role: string; image: string } | null,
+};
+
+export const contactPage = {
+  heading: "Contact us",
+  intro: "Call, message or drop by the office. We reply to every enquiry within one working day.", // PLACEHOLDER
 };
 
 export const hero = {

@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import EnquireSection from "@/components/EnquireSection";
 import Gallery from "@/components/Gallery";
 import Odometer from "@/components/Odometer";
-import { contact, developments } from "@/content/site";
+import { company, contact, developments } from "@/content/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -67,7 +67,7 @@ export default async function DevelopmentPage({ params }: Props) {
             <div>
               <p className="flex items-center gap-3 text-[0.95rem] font-medium text-white/85">
                 <span className="size-2 rounded-full bg-signal" aria-hidden="true" />
-                {dev.status} in {dev.location}
+                {company.byline} · {dev.status} in {dev.location}
               </p>
               <p className="type-lead mt-4 max-w-[38ch] text-white/85">{dev.summary}</p>
             </div>
@@ -190,11 +190,11 @@ export default async function DevelopmentPage({ params }: Props) {
             <dl className="mt-10 space-y-6">
               <div>
                 <dt className="text-sm text-tarmac">Address</dt>
-                <dd className="mt-1 text-lg font-semibold">{contact.address}</dd>
+                <dd className="mt-1 text-lg font-semibold">{dev.showroom.address}</dd>
               </div>
               <div>
                 <dt className="text-sm text-tarmac">Opening hours</dt>
-                <dd className="mt-1 text-lg">{contact.hours}</dd>
+                <dd className="mt-1 text-lg">{dev.showroom.hours}</dd>
               </div>
               <div>
                 <dt className="text-sm text-tarmac">Call or message</dt>
@@ -213,14 +213,14 @@ export default async function DevelopmentPage({ params }: Props) {
                 </dd>
               </div>
             </dl>
-            <a href={contact.mapUrl} target="_blank" rel="noopener noreferrer" className="btn btn-signal mt-10">
+            <a href={dev.showroom.mapUrl} target="_blank" rel="noopener noreferrer" className="btn btn-signal mt-10">
               Get directions
             </a>
           </div>
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] bg-concrete md:col-span-7 md:aspect-auto md:min-h-[26rem]">
             <iframe
-              src={contact.mapEmbedUrl}
+              src={dev.showroom.mapEmbedUrl}
               title={`Map showing ${dev.name}'s location`}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

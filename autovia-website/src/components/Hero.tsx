@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Odometer from "./Odometer";
-import { developments, hero } from "@/content/site";
+import { company, developments, hero } from "@/content/site";
 
 const SLIDE_MS = 6500;
 
@@ -53,7 +53,7 @@ export default function Hero() {
       <div className="container-site pt-32 md:pt-40">
         <p className="mb-5 flex items-center gap-3 text-[0.95rem] font-medium text-white/85">
           <span className="size-2 rounded-full bg-signal" aria-hidden="true" />
-          {autovia.status} in {autovia.location}
+          {company.byline} · {autovia.status} in {autovia.location}
         </p>
         <h1 className="type-display">{hero.headline}</h1>
         <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">

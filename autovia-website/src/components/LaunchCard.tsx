@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Development } from "@/content/site";
 
-export default function LaunchCard({ dev }: { dev: Development }) {
+// enquireHref: pages without their own enquiry form point it at the development's form instead
+export default function LaunchCard({ dev, enquireHref = "#enquire" }: { dev: Development; enquireHref?: string }) {
   return (
     <article className="group grid overflow-hidden rounded-[1.75rem] bg-white md:grid-cols-12">
       <Link
@@ -34,7 +35,7 @@ export default function LaunchCard({ dev }: { dev: Development }) {
             Learn more
             <span className="sr-only"> about {dev.name}</span>
           </Link>
-          <Link href="#enquire" className="btn btn-signal">
+          <Link href={enquireHref} className="btn btn-signal">
             Enquire now
           </Link>
         </div>

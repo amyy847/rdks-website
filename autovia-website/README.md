@@ -24,8 +24,8 @@ Then open http://localhost:3000
 - [x] Home (hero, current launches, about intro, enquire now)
 - [x] Developments
 - [x] Autovia detail
-- [ ] About us
-- [ ] Contact us
+- [x] About us
+- [x] Contact us
 - [ ] Thank you
 - [ ] Privacy policy
 - [ ] 404

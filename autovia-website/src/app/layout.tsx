@@ -7,7 +7,7 @@ import { company } from "@/content/site";
 
 export const metadata: Metadata = {
   title: {
-    default: `${company.name} | Autovia`,
+    default: `${company.name} | ${company.tagline}`,
     template: `%s | ${company.name}`,
   },
   description: company.tagline,
@@ -15,8 +15,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body>
+    // suppressHydrationWarning: browser extensions (QuillBot, Grammarly…) add attributes to
+    // <html> and <body> before React loads. It only silences these two tags, not the page.
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-signal focus:px-5 focus:py-3 focus:font-semibold"

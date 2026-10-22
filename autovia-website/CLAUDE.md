@@ -1,6 +1,6 @@
 # Project context (read first)
 
-Website for Amy's client, a startup developer (placeholder name "RDK"). Their first and only project is **Autovia, a car sales showroom**: people buy cars there, not property. Style and transitions are inspired by misritaliaproperties.com, but the scope is much smaller.
+Website for Amy's client, a startup developer called **RDK**. This is RDK's company website; **Autovia, a car sales showroom**, is one of RDK's developments (currently the only one): people buy cars there, not property. Don't present Autovia as the company. Company details (`company`, `contact` = head office) are kept separate from each development's `showroom` details in `site.ts`. Style and transitions are inspired by misritaliaproperties.com, but the scope is much smaller.
 
 **Deadline: live on Sunday 25 October 2026.** Client content is due Friday 23 October, 12:00 pm. English only for launch; Arabic comes later.
 
@@ -8,8 +8,8 @@ Website for Amy's client, a startup developer (placeholder name "RDK"). Their fi
 - [x] Home: hero, current launches, about intro, Enquire Now, footer
 - [x] Developments (current launches): a card grid, Autovia only for now
 - [x] Development detail: `/developments/autovia`, covering the showroom description, what they sell (new/used), brands, gallery, location and hours, and an enquiry form. Optional extras the client may pick: featured cars, financing, trade-in, test drive booking, after-sales, warranty, offers, reviews, video
-- [ ] About us
-- [ ] Contact us: form, phone, WhatsApp, email, address, map, hours, socials
+- [x] About us: story, vision and mission, optional numbers and founder message, RDK's developments
+- [x] Contact us: form, phone, WhatsApp, email, office address, map, hours, socials, plus a card per showroom
 - [ ] Thank you: shown after an enquiry
 - [ ] Privacy policy
 - [ ] 404
