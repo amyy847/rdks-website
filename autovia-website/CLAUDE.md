@@ -10,8 +10,8 @@ Website for Amy's client, a startup developer called **RD.K** (RD.K Developments
 - [x] Development detail: `/developments/autovia`, covering the showroom description, what they sell (new/used), brands, gallery, location and hours, and an enquiry form. Optional extras the client may pick: featured cars, financing, trade-in, test drive booking, after-sales, warranty, offers, reviews, video
 - [x] About us: story, vision and mission, optional numbers and founder message, RDK's developments
 - [x] Contact us: form, phone, WhatsApp, email, office address, map, hours, socials, plus a card per showroom
-- [ ] Thank you: shown after an enquiry
-- [ ] Privacy policy
+- [x] Thank you: shown after an enquiry (greets by first name from sessionStorage; noindex)
+- [x] Privacy policy (standard text in site.ts, needs client approval; update it if analytics or new providers are added)
 - [ ] 404
 
 ## Enquire Now (next big piece)
@@ -20,7 +20,7 @@ The visitor enters name, email, phone and interest, then:
 2. the sales team gets a lead notification
 3. the lead is saved to a Google Sheet
 
-Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mail is Microsoft 365 bought through GoDaddy (MX: ppe-hosted.com), so the Gmail app-password plan doesn't apply. Plan: send with a transactional service (Resend) from the rdkeg.com domain, verified with DNS records added in GoDaddy; leads to a Google Sheet through an Apps Script web app. Secrets in Vercel env vars. `src/app/api/enquire/route.ts` currently only validates and logs. After a successful submit, redirect to `/thank-you`.
+Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mail is Microsoft 365 bought through GoDaddy (MX: ppe-hosted.com), so the Gmail app-password plan doesn't apply. Plan: send with a transactional service (Resend) from the rdkeg.com domain, verified with DNS records added in GoDaddy; leads to a Google Sheet through an Apps Script web app. Secrets in Vercel env vars. `src/app/api/enquire/route.ts` currently only validates and logs. After a successful submit the form goes to `/thank-you` (done, via `navigateWithTransition`).
 
 ## Stack and conventions
 - Next.js 15 (App Router) + Tailwind CSS 4 + TypeScript. Deploy on Vercel.

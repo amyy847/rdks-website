@@ -20,6 +20,12 @@ const MAX_WAIT = 8000; // reveal anyway if the next page never arrives
 
 /** Fired when the panels start lifting; Odometer waits for it so the numbers roll in view */
 export const REVEAL_EVENT = "rdk:page-reveal";
+const NAVIGATE_EVENT = "rdk:navigate";
+
+/** Go to another page from code (not a link click), with the same transition */
+export function navigateWithTransition(href: string) {
+  window.dispatchEvent(new CustomEvent(NAVIGATE_EVENT, { detail: href }));
+}
 const TRANSITION_ATTR = "data-page-transition";
 
 const sweep = (from: number, to: number) => [{ transform: `scaleY(${from})` }, { transform: `scaleY(${to})` }];
@@ -70,7 +76,16 @@ export default function PageTransition() {
   }, []);
 
   useEffect(() => {
-    const onClick = async (e: MouseEvent) => {
+    const go = async (href: string) => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return router.push(href);
+      if (state.current !== "idle") return;
+      router.prefetch(href);
+      await cover();
+      router.push(href);
+      fallback.current = setTimeout(reveal, MAX_WAIT);
+    };
+
+    const onClick = (e: MouseEvent) => {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       const a = (e.target as Element | null)?.closest?.("a");
       if (!a || !a.href || (a.target && a.target !== "_self") || a.hasAttribute("download")) return;
@@ -80,15 +95,16 @@ export default function PageTransition() {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
       e.preventDefault(); // Next's <Link> skips its own navigation when the click is already handled
-      if (state.current !== "idle") return;
-      const href = url.pathname + url.search + url.hash;
-      router.prefetch(href);
-      await cover();
-      router.push(href);
-      fallback.current = setTimeout(reveal, MAX_WAIT);
+      go(url.pathname + url.search + url.hash);
     };
+    const onNavigate = (e: Event) => go((e as CustomEvent<string>).detail);
+
     window.addEventListener("click", onClick, true);
-    return () => window.removeEventListener("click", onClick, true);
+    window.addEventListener(NAVIGATE_EVENT, onNavigate);
+    return () => {
+      window.removeEventListener("click", onClick, true);
+      window.removeEventListener(NAVIGATE_EVENT, onNavigate);
+    };
   }, [router, cover, reveal]);
 
   // The new page has rendered under the panels

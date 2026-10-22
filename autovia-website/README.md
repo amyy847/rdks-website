@@ -27,6 +27,6 @@ Then open http://localhost:3000
 - [x] Autovia detail
 - [x] About us
 - [x] Contact us
-- [ ] Thank you
-- [ ] Privacy policy
+- [x] Thank you
+- [x] Privacy policy
 - [ ] 404

@@ -203,3 +203,113 @@ export const enquiry = {
   // PLACEHOLDER: confirm the units on offer, and whether they're for sale, rent or both
   interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Something else"],
 };
+
+export const thankYouPage = {
+  heading: "Thank you",
+  // Assumes the enquiry email is live: until it is, visitors won't receive the brochure
+  text: "Your enquiry is in. Autovia's brochure is on its way to your inbox, and our sales team will call you within one working day.",
+  whatsappText: "Can't wait? Message us on WhatsApp.",
+};
+
+export type PolicySection = { heading: string; paragraphs?: string[]; list?: string[]; after?: string[] };
+
+/*
+ * Standard privacy policy, written to match how this site actually works.
+ * PLACEHOLDER: the client should approve it (and ideally have a lawyer review it) before launch.
+ * Update it if anything changes: analytics, new form fields, new service providers.
+ */
+export const privacyPage = {
+  heading: "Privacy policy",
+  updated: "22 October 2026",
+  intro:
+    "This policy explains what personal information RD.K Developments collects through this website, why we collect it, and how we look after it.",
+  sections: [
+    {
+      heading: "Who we are",
+      paragraphs: [
+        "This website is run by RD.K Developments, a real estate developer based in New Cairo, Egypt. We are responsible for the personal information you share with us here. You can reach us at contact@rdkeg.com.",
+      ],
+    },
+    {
+      heading: "What we collect",
+      paragraphs: ["When you send an enquiry, we collect:"],
+      list: [
+        "your full name",
+        "your email address",
+        "your phone number",
+        "what you're interested in, and any message you choose to add",
+        "which development you enquired about, and when",
+      ],
+    },
+    {
+      heading: "Why we use it",
+      paragraphs: ["We use your details only to deal with your enquiry. That means we use them to:"],
+      list: [
+        "send you the brochure and details you asked for",
+        "have our sales team call or email you about your enquiry",
+        "keep a record of enquiries so we can follow up properly",
+      ],
+    },
+    {
+      heading: "What we don't do",
+      paragraphs: [
+        "We don't sell your information, and we don't add you to marketing lists. If we ever want to send you news about other developments, we'll ask you first.",
+      ],
+    },
+    {
+      heading: "Who we share it with",
+      paragraphs: [
+        "We share your details only with the companies that help us run this website and handle enquiries, and only as far as they need to do that job:",
+      ],
+      list: [
+        "Vercel, which hosts this website",
+        "Resend, which sends our emails",
+        "Google, whose Google Sheets service we use to keep a list of enquiries",
+      ],
+    },
+    {
+      heading: "Where it's stored",
+      paragraphs: [
+        "These companies may store information on servers outside Egypt. We choose providers that protect personal information to recognised international standards.",
+      ],
+    },
+    {
+      heading: "How long we keep it",
+      // PLACEHOLDER: confirm the retention period with the client
+      paragraphs: [
+        "We keep enquiry details for up to two years after we were last in touch with you, then delete them. You can ask us to delete them sooner at any time.",
+      ],
+    },
+    {
+      heading: "Your rights",
+      paragraphs: ["You can ask us at any time to:"],
+      list: [
+        "tell you what personal information we hold about you",
+        "correct anything that's wrong",
+        "delete your information",
+        "stop contacting you",
+      ],
+      after: [
+        "Email contact@rdkeg.com and we'll reply within 30 days. We handle personal information in line with Egyptian law, including the Personal Data Protection Law (Law No. 151 of 2020).",
+      ],
+    },
+    {
+      heading: "Cookies",
+      paragraphs: [
+        "This website doesn't use cookies of its own, and doesn't use advertising or tracking tools. Some pages show a map from Google Maps, and Google may set its own cookies when the map loads. Google's privacy policy explains how it uses them.",
+      ],
+    },
+    {
+      heading: "Keeping it safe",
+      paragraphs: [
+        "Information you send through this website is encrypted on its way to us, and only the people who need it to handle your enquiry can see it.",
+      ],
+    },
+    {
+      heading: "Changes to this policy",
+      paragraphs: [
+        "If we change how we handle personal information, we'll update this page and the date at the top.",
+      ],
+    },
+  ] as PolicySection[],
+};

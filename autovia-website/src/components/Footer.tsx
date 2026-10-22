@@ -5,7 +5,7 @@ import { company, contact, nav } from "@/content/site";
 export default function Footer() {
   return (
     <footer className="bg-green text-white">
-      <div className="container-site pb-10 pt-20 md:pt-28">
+      <div className="container-site pb-28 pt-20 md:pt-28">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <Logo className="w-48 text-cream md:w-60" />
