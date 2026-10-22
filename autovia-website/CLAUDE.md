@@ -27,7 +27,7 @@ Send email with Nodemailer through the client's own email account (Gmail or Goog
 - **All content lives in `src/content/site.ts`.** `PLACEHOLDER` marks anything still waiting on the client. Images are in `public/images/` and are currently labelled grey placeholders.
 - Design tokens are in the `@theme` block of `src/app/globals.css`: asphalt `#202428`, tarmac `#5b6168`, concrete `#e3e5e7`, chalk `#f7f8f8`, and one accent, signal amber `#f2a900` (swap for brand colours later).
 - Type: Archivo Variable (from `@fontsource-variable`, not Google Fonts). The expanded width (`font-stretch: 125%`) is the brand signature; use the `.type-display`, `.type-h2`, `.type-h3` and `.type-lead` classes.
-- Motion: the hero has a slow push-in crossfade, and the stats roll like an odometer (`Odometer.tsx`). That is the one signature animation. Keep everything else calm: avoid adding fade-ups to every section, and respect reduced motion.
+- Motion: the hero has a slow push-in crossfade, and the stats roll like an odometer (`Odometer.tsx`). That is the one signature animation, plus the page transition (`PageTransition.tsx`, copied from Misr Italia at Amy's request: a dark then a light panel sweep down from the top, then lift back up to reveal the new page; timings are constants at the top of the file). Keep everything else calm: avoid adding fade-ups to every section, and respect reduced motion.
 - Buttons: `.btn` plus `.btn-signal`, `.btn-ghost-light` or `.btn-ghost-dark`. Layout container: `.container-site`.
 - Must work well on phones; most visitors come from Instagram and WhatsApp.
 

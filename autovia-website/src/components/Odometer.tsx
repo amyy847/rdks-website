@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { REVEAL_EVENT } from "./PageTransition";
 
 /**
  * Numbers roll into place like a car's odometer when they come into view.
@@ -23,17 +24,26 @@ export default function Odometer({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const start = () => setRun(true);
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setRun(true);
           io.disconnect();
+          // During a page transition the panels hide the page: roll once they start lifting
+          if (document.documentElement.hasAttribute("data-page-transition")) {
+            window.addEventListener(REVEAL_EVENT, start, { once: true });
+          } else {
+            start();
+          }
         }
       },
       { threshold: 0.4 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      window.removeEventListener(REVEAL_EVENT, start);
+    };
   }, []);
 
   const chars = value.toLocaleString("en-US").split("");
