@@ -5,10 +5,11 @@ Website for Amy's client, a startup developer called **RD.K** (RD.K Developments
 **Deadline: live on Sunday 25 October 2026.** Client content is due Friday 23 October, 12:00 pm. English only for launch; Arabic comes later.
 
 ## Pages for Sunday
-- [x] Home: hero, current launches, about intro, Enquire Now, then the partners strip just above the footer (GAC, GB Corp, ElTarek; after Misr Italia's "Our Partners": green panel sweeps up on hover with a description), footer
+- [x] Home: hero, current launches, about intro, partners strip, then Enquire Now (GAC, GB Corp, ElTarek; after Misr Italia's "Our Partners": green panel sweeps up on hover with a description), footer
 - [x] Developments (current launches): a card grid, Autovia only for now
 - [x] Development detail: `/developments/autovia`, covering the showroom description, what they sell (new/used), brands, gallery, location and hours, and an enquiry form. Optional extras the client may pick: featured cars, financing, trade-in, test drive booking, after-sales, warranty, offers, reviews, video
 - [x] About us: story, vision and mission, optional numbers and founder message, RDK's developments
+- Enquire Now is a white card (photo + form) that overlaps the top of the footer, after Misr Italia's development pages; same on every page that has it.
 - [x] Contact us: form, phone, WhatsApp, email, office address, map, hours, socials, plus a card per showroom
 - [x] Thank you: shown after an enquiry (greets by first name from sessionStorage; noindex)
 - [x] Privacy policy (standard text in site.ts, needs client approval; update it if analytics or new providers are added)

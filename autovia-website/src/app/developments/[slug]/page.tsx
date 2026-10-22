@@ -205,7 +205,7 @@ export default async function DevelopmentPage({ params }: Props) {
         </section>
       )}
 
-      <section id="visit" aria-labelledby="visit-heading" className="scroll-mt-20 border-t border-laurel bg-white py-20 md:py-28">
+      <section id="visit" aria-labelledby="visit-heading" className="scroll-mt-20 border-t border-laurel py-20 md:py-28">
         <div className="container-site grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <h2 id="visit-heading" className="type-h2">
