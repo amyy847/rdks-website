@@ -316,8 +316,8 @@ export const privacyPage = {
 
 export type Partner = {
   name: string;
-  logo: string; // full-colour logo for the white tile (transparent PNG or SVG in /public/images/partners/)
-  logoOnGreen: string; // version that reads on the green hover panel
+  logo: string; // one-colour green (#0A3B25) logo for the white tile, transparent PNG in /public/images/partners/
+  logoOnGreen: string; // the same logo in cream, for the green hover panel
   description: string; // one or two short lines, slides up on hover or tap
 };
 
@@ -328,19 +328,19 @@ export const partners = {
     // Descriptions from public company profiles; PLACEHOLDER: the client should approve the wording
     {
       name: "GAC",
-      logo: "/images/partners/gac.svg",
-      logoOnGreen: "/images/partners/gac.svg",
+      logo: "/images/partners/gac-green.png",
+      logoOnGreen: "/images/partners/gac-light.png",
       description: "GAC Motor is the car brand of GAC Group, one of China's largest automakers, in Egypt since 2023.",
     },
     {
       name: "GB Corp (Ghabbour)",
-      logo: "/images/partners/gb-corp.svg",
-      logoOnGreen: "/images/partners/gb-corp-light.svg",
+      logo: "/images/partners/gb-corp-green.png",
+      logoOnGreen: "/images/partners/gb-corp-light.png",
       description: "GB Corp, the Ghabbour group, is one of Egypt's leading automotive companies, with brands including Hyundai, Chery and Haval.",
     },
     {
       name: "ElTarek",
-      logo: "/images/partners/el-tarek.png",
+      logo: "/images/partners/el-tarek-green.png",
       logoOnGreen: "/images/partners/el-tarek-light.png",
       description: "ElTarek Group, based in Alexandria, is one of Egypt's largest automotive distributors, representing more than 20 brands.",
     },

@@ -58,7 +58,7 @@ export default function Partners() {
 
         <ul
           ref={strip}
-          className="flex snap-x snap-mandatory gap-px overflow-x-auto rounded-sm border border-laurel bg-laurel [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-px overflow-x-auto rounded-2xl bg-laurel/40 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {partners.list.map((partner) => (
             <li
