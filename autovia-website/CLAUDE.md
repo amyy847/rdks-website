@@ -6,8 +6,8 @@ Website for Amy's client, a startup developer (placeholder name "RDK"). Their fi
 
 ## Pages for Sunday
 - [x] Home: hero, current launches, about intro, Enquire Now, footer
-- [ ] Developments (current launches): a card grid, Autovia only for now
-- [ ] Development detail: `/developments/autovia`, covering the showroom description, what they sell (new/used), brands, gallery, location and hours, and an enquiry form. Optional extras the client may pick: featured cars, financing, trade-in, test drive booking, after-sales, warranty, offers, reviews, video
+- [x] Developments (current launches): a card grid, Autovia only for now
+- [x] Development detail: `/developments/autovia`, covering the showroom description, what they sell (new/used), brands, gallery, location and hours, and an enquiry form. Optional extras the client may pick: featured cars, financing, trade-in, test drive booking, after-sales, warranty, offers, reviews, video
 - [ ] About us
 - [ ] Contact us: form, phone, WhatsApp, email, address, map, hours, socials
 - [ ] Thank you: shown after an enquiry

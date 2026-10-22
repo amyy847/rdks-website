@@ -7,7 +7,8 @@ import { company, nav } from "@/content/site";
 
 export default function Header() {
   const pathname = usePathname();
-  const overHero = pathname === "/";
+  // Pages that open with a full-bleed photo: Home and each development
+  const overHero = pathname === "/" || /^\/developments\/[^/]+$/.test(pathname);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 

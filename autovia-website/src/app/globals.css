@@ -53,6 +53,14 @@
     font-size: clamp(3.75rem, 16.5vw, 10.5rem);
     overflow-wrap: anywhere;
   }
+  /* Page titles on inner pages; narrower than .type-display so long words fit on phones */
+  .type-h1 {
+    font-stretch: 122%;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    font-size: clamp(2.25rem, 8vw, 6.5rem);
+  }
   .type-h2 {
     font-stretch: 118%;
     font-weight: 700;
