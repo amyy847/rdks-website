@@ -50,7 +50,7 @@ export default function Partners() {
   if (partners.list.length === 0) return null;
 
   return (
-    <section aria-labelledby="partners-heading" className="pb-20 md:pb-32">
+    <section aria-labelledby="partners-heading" className="py-20 md:py-32">
       <div className="container-site">
         <h2 id="partners-heading" className="type-h2 mb-10 md:mb-14">
           {partners.heading}
