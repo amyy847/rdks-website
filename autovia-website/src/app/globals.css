@@ -147,6 +147,31 @@
   }
 }
 
+/* Scrollbar as a thin deep-green line (Register interest window). Chrome, Edge, Safari: */
+.scrollbar-line::-webkit-scrollbar {
+  width: 12px; /* 4px line + 4px of cream either side, so it doesn't merge with the window's edge */
+}
+.scrollbar-line::-webkit-scrollbar-track {
+  background: transparent;
+  margin-block: 1.25rem; /* keep clear of the rounded corners */
+}
+.scrollbar-line::-webkit-scrollbar-thumb {
+  background: var(--color-green);
+  background-clip: padding-box;
+  border: 4px solid transparent;
+  border-radius: 999px;
+}
+.scrollbar-line::-webkit-scrollbar-button {
+  display: none;
+}
+/* Firefox has no pseudo-elements: closest is thin, in the same colour */
+@supports not selector(::-webkit-scrollbar) {
+  .scrollbar-line {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-green) transparent;
+  }
+}
+
 /* Windows (Register interest): rise and fade in, backdrop fades */
 @keyframes dialog-rise {
   from {

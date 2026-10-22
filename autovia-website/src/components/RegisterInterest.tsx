@@ -101,7 +101,7 @@ export default function RegisterInterestDialog() {
       aria-labelledby="register-heading"
       onClose={close}
       onClick={(e) => e.target === e.currentTarget && close()} // click on the backdrop
-      className="dialog-rise m-auto max-h-[calc(100svh-2rem)] w-[min(38rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl bg-cream p-0 text-green shadow-[0_24px_80px_rgb(10_59_37/0.35)] backdrop:bg-green/60 backdrop:backdrop-blur-sm"
+      className="dialog-rise scrollbar-line m-auto max-h-[calc(100svh-2rem)] w-[min(38rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl bg-cream p-0 text-green shadow-[0_24px_80px_rgb(10_59_37/0.35)] backdrop:bg-green/60 backdrop:backdrop-blur-sm"
     >
       <div className="relative px-6 pb-8 pt-14 sm:px-10 sm:pb-10">
         <button
