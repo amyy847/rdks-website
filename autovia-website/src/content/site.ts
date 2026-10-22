@@ -57,7 +57,7 @@ export type Development = {
   status: string;
   summary: string;
   cover: string;
-  cardImages: string[]; // 3–4 photos the Home and About card cycles through, every 3 seconds
+  cardImages: string[]; // 3–4 photos the development card cycles through every 3 seconds (Home, About, Developments)
   stats: Stat[];
   site: { address: string; hours: string; mapUrl: string; mapEmbedUrl: string; note: string };
   // Detail page (/developments/[slug])

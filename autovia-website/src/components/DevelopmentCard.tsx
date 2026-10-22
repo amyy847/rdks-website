@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import CardSlideshow from "./CardSlideshow";
 import type { Development } from "@/content/site";
 
 export default function DevelopmentCard({ dev }: { dev: Development }) {
@@ -11,12 +11,10 @@ export default function DevelopmentCard({ dev }: { dev: Development }) {
         tabIndex={-1}
         aria-hidden="true"
       >
-        <Image
-          src={dev.cover}
-          alt=""
-          fill
+        <CardSlideshow
+          images={dev.cardImages}
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover transition-transform duration-[1200ms] ease-out-quint group-hover:scale-[1.04]"
+          className="transition-transform duration-[1200ms] ease-out-quint group-hover:scale-[1.04]"
         />
       </Link>
 
