@@ -57,6 +57,7 @@ export type Development = {
   status: string;
   summary: string;
   cover: string;
+  cardImages: string[]; // 3–4 photos the Home and About card cycles through, every 3 seconds
   stats: Stat[];
   site: { address: string; hours: string; mapUrl: string; mapEmbedUrl: string; note: string };
   // Detail page (/developments/[slug])
@@ -82,6 +83,12 @@ export const developments: Development[] = [
     status: "Now launching", // PLACEHOLDER: confirm (open, launching, under construction?)
     summary: "A landmark automotive, retail and office destination on Cairo's Ring Road.", // book, shortened
     cover: "/images/autovia-cover.jpg",
+    cardImages: [
+      "/images/autovia-cover.jpg",
+      "/images/autovia-gallery-1.jpg",
+      "/images/hero-1.jpg",
+      "/images/hero-3.jpg",
+    ],
     stats: [
       { value: 5, label: "Standalone buildings" }, // book master plan (B01 to B05). Confirm
       { value: 4, label: "Types of space" }, // showrooms, service centres, retail, offices (book)
