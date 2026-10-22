@@ -46,9 +46,9 @@ export default function Home() {
         </div>
       </section>
 
-      <EnquireSection />
-
       <Partners />
+
+      <EnquireSection />
     </>
   );
 }

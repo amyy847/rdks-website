@@ -316,17 +316,33 @@ export const privacyPage = {
 
 export type Partner = {
   name: string;
-  logo?: string; // transparent PNG or SVG in /public/images/partners/. Shown in green, cream on hover. Without one, the name is shown
-  description?: string; // one short line, revealed on hover or tap
+  logo: string; // full-colour logo for the white tile (transparent PNG or SVG in /public/images/partners/)
+  logoOnGreen: string; // version that reads on the green hover panel
+  description: string; // one or two short lines, slides up on hover or tap
 };
 
-// Home page, bottom: after Misr Italia's "Our Partners" strip
+// Home page, above Enquire now: after Misr Italia's "Our Partners" strip
 export const partners = {
   heading: "Our partners",
   list: [
-    // PLACEHOLDER: logos (transparent PNG or SVG) and a one-line description for each, from the client
-    { name: "GAC" },
-    { name: "Ghabbour" },
-    { name: "El Tarek" },
+    // Descriptions from public company profiles; PLACEHOLDER: the client should approve the wording
+    {
+      name: "GAC",
+      logo: "/images/partners/gac.svg",
+      logoOnGreen: "/images/partners/gac.svg",
+      description: "GAC Motor is the car brand of GAC Group, one of China's largest automakers, in Egypt since 2023.",
+    },
+    {
+      name: "GB Corp (Ghabbour)",
+      logo: "/images/partners/gb-corp.svg",
+      logoOnGreen: "/images/partners/gb-corp-light.svg",
+      description: "GB Corp, the Ghabbour group, is one of Egypt's leading automotive companies, with brands including Hyundai, Chery and Haval.",
+    },
+    {
+      name: "ElTarek",
+      logo: "/images/partners/el-tarek.png",
+      logoOnGreen: "/images/partners/el-tarek-light.png",
+      description: "ElTarek Group, based in Alexandria, is one of Egypt's largest automotive distributors, representing more than 20 brands.",
+    },
   ] as Partner[],
 };

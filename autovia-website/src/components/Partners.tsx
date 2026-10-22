@@ -6,9 +6,19 @@ import { partners } from "@/content/site";
 
 /**
  * Partner logos in one strip, after Misr Italia's "Our Partners".
- * Hover (or tap) a tile and it turns green with the logo in cream and the description fading in.
+ * Each tile is white with the logo in colour. On hover (or tap) a green panel sweeps up
+ * from the bottom with a slanted edge that levels out; the logo changes colour as the edge
+ * passes it, moves up, and the description slides in underneath.
  * Swipes sideways when the tiles don't fit; the arrows only show then.
  */
+
+// The panel is clipped below the tile, slanted (left side higher), and rises to cover it
+const PANEL =
+  "[clip-path:polygon(0_105%,100%_125%,100%_125%,0_125%)] group-hover:[clip-path:polygon(0_0,100%_0,100%_100%,0_100%)] group-focus:[clip-path:polygon(0_0,100%_0,100%_100%,0_100%)]";
+// Same box and movement in both layers, so the two logos line up exactly
+const LOGO_BOX =
+  "absolute left-1/2 top-1/2 h-20 w-48 -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 ease-in-out-drive group-hover:-translate-y-[calc(50%+3rem)] group-focus:-translate-y-[calc(50%+3rem)]";
+
 export default function Partners() {
   const strip = useRef<HTMLUListElement>(null);
   const [edges, setEdges] = useState({ overflow: false, start: true, end: true });
@@ -40,7 +50,7 @@ export default function Partners() {
   if (partners.list.length === 0) return null;
 
   return (
-    <section aria-labelledby="partners-heading" className="py-20 md:py-28">
+    <section aria-labelledby="partners-heading" className="pb-20 md:pb-32">
       <div className="container-site">
         <h2 id="partners-heading" className="type-h2 mb-10 md:mb-14">
           {partners.heading}
@@ -54,28 +64,21 @@ export default function Partners() {
             <li
               key={partner.name}
               tabIndex={0}
-              className="group relative flex h-56 w-[72%] shrink-0 snap-start flex-col items-center justify-center bg-white px-8 text-center outline-offset-[-3px] transition-colors duration-500 ease-out-quint hover:bg-green focus:bg-green sm:w-[45%] md:h-64 md:min-w-0 md:flex-1 md:basis-0"
+              className="group relative h-72 w-[78%] shrink-0 snap-start overflow-hidden bg-white outline-offset-[-3px] sm:w-[45%] md:min-w-0 md:flex-1 md:basis-0"
             >
-              {partner.logo ? (
-                <span className="relative block h-14 w-40 transition-[filter] duration-500 ease-out-quint md:h-16 md:w-48">
-                  <Image
-                    src={partner.logo}
-                    alt={partner.name}
-                    fill
-                    sizes="12rem"
-                    className="object-contain [filter:brightness(0)] group-hover:[filter:brightness(0)_invert(1)] group-focus:[filter:brightness(0)_invert(1)]"
-                  />
+              <span className={LOGO_BOX}>
+                <Image src={partner.logo} alt={partner.name} fill sizes="12rem" className="object-contain" />
+              </span>
+
+              <div className={`absolute inset-0 bg-green transition-[clip-path] duration-500 ease-in-out-drive ${PANEL}`}>
+                <span className={LOGO_BOX}>
+                  {/* eager: the browser treats the clipped panel as hidden and would delay loading it */}
+                  <Image src={partner.logoOnGreen} alt="" fill sizes="12rem" loading="eager" className="object-contain" />
                 </span>
-              ) : (
-                <span className="text-2xl font-semibold uppercase tracking-[0.12em] text-green transition-colors duration-500 ease-out-quint group-hover:text-cream group-focus:text-cream md:text-3xl">
-                  {partner.name}
-                </span>
-              )}
-              {partner.description && (
-                <p className="mt-4 max-w-[26ch] text-sm text-cream/85 opacity-0 transition-[opacity,transform] duration-500 ease-out-quint translate-y-2 group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100">
+                <p className="absolute inset-x-6 bottom-8 translate-y-full text-center text-sm leading-relaxed text-cream/80 opacity-0 transition-[transform,opacity] duration-500 ease-out-quint group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-150 group-focus:translate-y-0 group-focus:opacity-100 group-focus:delay-150 md:inset-x-8">
                   {partner.description}
                 </p>
-              )}
+              </div>
             </li>
           ))}
         </ul>
