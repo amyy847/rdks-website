@@ -26,7 +26,7 @@ export const contact = {
   whatsapp: "201000000000", // PLACEHOLDER: international format, digits only
   email: "contact@rdkeg.com", // from the Autovia branding book
   address: "Head office address, New Cairo, Egypt", // PLACEHOLDER: RD.K's office (not Autovia)
-  mapUrl: "https://maps.google.com", // PLACEHOLDER: Google Maps share link for the office
+  mapUrl: "", // PLACEHOLDER: Google Maps link for the office. "Get directions" links stay hidden while empty
   // PLACEHOLDER: in Google Maps, Share > Embed a map, and paste the src="..." link here
   mapEmbedUrl: "https://www.google.com/maps?q=New+Cairo,+Egypt&output=embed",
   hours: "Sunday to Thursday, 9 am to 5 pm", // PLACEHOLDER: office working hours
@@ -90,8 +90,9 @@ export const developments: Development[] = [
     site: {
       address: "Ring Road, New Cairo, near South 90th Street", // book. PLACEHOLDER: exact address
       hours: "Sunday to Thursday, 9 am to 5 pm", // PLACEHOLDER: sales office or site visit hours
-      mapUrl: "https://maps.google.com", // PLACEHOLDER: Google Maps share link for the site
-      mapEmbedUrl: "https://www.google.com/maps?q=5A+by+The+Waterway,+New+Cairo&output=embed", // PLACEHOLDER: exact pin
+      // 30°00'31.7"N 31°23'57.7"E, from Amy. Directions link opens the Maps app with the route on phones
+      mapUrl: "https://www.google.com/maps/dir/?api=1&destination=30.008806,31.399361",
+      mapEmbedUrl: "https://www.google.com/maps?q=30.008806,31.399361&z=16&output=embed",
       note:
         "Situated on the Ring Road with direct and effortless access, Autovia stands at the gateway to New Cairo's most important destinations, near South 90th Street, Waterway 5A, Park Street and The Drive.", // book
     },

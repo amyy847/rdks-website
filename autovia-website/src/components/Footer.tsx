@@ -30,11 +30,13 @@ export default function Footer() {
             <address className="mt-4 space-y-2.5 not-italic">
               <p>{contact.address}</p>
               <p className="text-white/70">{contact.hours}</p>
-              <p>
-                <a href={contact.mapUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-white/30 underline-offset-4 hover:text-gold">
-                  Get directions
-                </a>
-              </p>
+              {contact.mapUrl && (
+                <p>
+                  <a href={contact.mapUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-white/30 underline-offset-4 hover:text-gold">
+                    Get directions
+                  </a>
+                </p>
+              )}
             </address>
           </div>
 

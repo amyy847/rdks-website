@@ -59,9 +59,11 @@ export default function ContactPage() {
               <dt className="text-sm text-moss">Office</dt>
               <dd className="mt-1 text-lg">
                 {contact.address}
-                <a href={contact.mapUrl} target="_blank" rel="noopener noreferrer" className={`mt-2 block w-fit font-semibold ${linkStyle}`}>
-                  Get directions
-                </a>
+                {contact.mapUrl && (
+                  <a href={contact.mapUrl} target="_blank" rel="noopener noreferrer" className={`mt-2 block w-fit font-semibold ${linkStyle}`}>
+                    Get directions
+                  </a>
+                )}
               </dd>
             </div>
             <div>
