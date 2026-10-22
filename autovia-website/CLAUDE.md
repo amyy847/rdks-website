@@ -24,6 +24,7 @@ Send email with Nodemailer through the client's own email account (Gmail or Goog
 
 ## Stack and conventions
 - Next.js 15 (App Router) + Tailwind CSS 4 + TypeScript. Deploy on Vercel.
+- Deployed to Vercel project `rdk-website` (Amy's account): https://rdk-website.vercel.app. Redeploy from `autovia-website/` with `npx vercel deploy --prod`. Vercel refuses Next.js versions with known vulnerabilities, so keep `next` on the latest 15.5.x patch.
 - **All content lives in `src/content/site.ts`.** `PLACEHOLDER` marks anything still waiting on the client. Images are in `public/images/`; the labelled grey ones are placeholders.
 - **Brand (from the client's RD.K brand guidelines PDF, October 2026):** the company is written "RD.K" / "RD.K Developments". Tokens in the `@theme` block of `src/app/globals.css`: green `#0A3B25` (Deep Bluish Green), moss `#2A6151` (Moderate Green), laurel `#B2B7AA` (Laurel Green), cream `#FCF7F0` (Light Cream), and one accent, gold `#D8C2A4` (Tuscan Gold). `gold-deep` is a hover shade we derived. Use only these.
 - Type: Montserrat Variable (from `@fontsource-variable`, not Google Fonts). Titles are tracked uppercase, as in the guide; use `.type-display`, `.type-h1`, `.type-h2`, `.type-h3`, `.type-lead` and `.type-eyebrow`.
