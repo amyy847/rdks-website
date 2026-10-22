@@ -24,7 +24,7 @@ export default function PrivacyPage() {
         <div className="container-site">
           <div className="max-w-[68ch] border-t border-laurel">
             {privacyPage.sections.map((section) => (
-              <div key={section.heading} className="border-b border-laurel py-8 md:py-10">
+              <div key={section.heading} className="border-b border-laurel pb-8 pt-14 md:pb-10 md:pt-16">
                 <h2 className="type-h3">{section.heading}</h2>
                 <div className="mt-4 space-y-4 text-green/85">
                   {section.paragraphs?.map((p, i) => <p key={i}>{p}</p>)}
