@@ -28,14 +28,14 @@ export default function EnquireSection({ project = developments[0].name }: { pro
   }
 
   return (
-    <section id="enquire" className="scroll-mt-20 bg-green py-20 text-white md:py-32">
+    <section id="enquire" className="scroll-mt-20 bg-moss py-20 text-white md:py-32">
       <div className="container-site grid gap-14 md:grid-cols-12">
         <div className="md:col-span-5">
           <h2 className="type-h2">{enquiry.heading}</h2>
-          <p className="type-lead mt-6 max-w-[38ch] text-white/75">{enquiry.text}</p>
+          <p className="type-lead mt-6 max-w-[38ch] text-white/85">{enquiry.text}</p>
           <dl className="mt-12 space-y-5">
             <div>
-              <dt className="text-sm text-white/50">Rather talk now?</dt>
+              <dt className="text-sm text-white/75">Rather talk now?</dt>
               <dd className="mt-1 text-xl font-semibold">
                 <a href={contact.phoneHref} className="hover:text-gold">
                   {contact.phone}
@@ -43,7 +43,7 @@ export default function EnquireSection({ project = developments[0].name }: { pro
               </dd>
             </div>
             <div>
-              <dt className="text-sm text-white/50">{dev.name} visiting hours</dt>
+              <dt className="text-sm text-white/75">{dev.name} visiting hours</dt>
               <dd className="mt-1">{dev.site.hours}</dd>
             </div>
           </dl>
@@ -93,13 +93,13 @@ export default function EnquireSection({ project = developments[0].name }: { pro
             </label>
             <label className="sm:col-span-2">
               <span className="mb-2 block text-sm font-medium text-white/80">
-                Message <span className="text-white/45">(optional)</span>
+                Message <span className="text-white/75">(optional)</span>
               </span>
               <textarea name="message" rows={3} className={`${field} resize-none`} />
             </label>
 
             <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
-              <p className="max-w-[40ch] text-sm text-white/50">
+              <p className="max-w-[40ch] text-sm text-white/75">
                 We&apos;ll only use your details to reply to this enquiry. See our{" "}
                 <a href="/privacy" className="underline underline-offset-4 hover:text-white">
                   privacy policy
@@ -111,7 +111,7 @@ export default function EnquireSection({ project = developments[0].name }: { pro
               </button>
             </div>
             {status === "error" && (
-              <p role="alert" className="text-sm font-medium text-gold sm:col-span-2">
+              <p role="alert" className="text-sm font-semibold text-white sm:col-span-2">
                 {error}
               </p>
             )}
