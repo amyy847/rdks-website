@@ -44,7 +44,7 @@ export const nav = [
   { label: "Contact us", href: "/contact" },
 ];
 
-export type Stat = { value: number; suffix?: string; label: string };
+export type Stat = { value: number; prefix?: string; suffix?: string; label: string };
 
 export type Photo = { image: string; alt: string };
 
@@ -90,9 +90,10 @@ export const developments: Development[] = [
       "/images/hero-3.jpg",
     ],
     stats: [
-      { value: 5, label: "Standalone buildings" }, // book master plan (B01 to B05). Confirm
-      { value: 4, label: "Types of space" }, // showrooms, service centres, retail, offices (book)
-      { value: 12000, suffix: " m²", label: "Total area" }, // PLACEHOLDER: real land or built-up area
+      // From the client (23 October 2026)
+      { value: 500, prefix: "EGP", suffix: " M", label: "Invested in Autovia" },
+      { value: 12000, suffix: " m²", label: "Development area" },
+      { value: 12, label: "Car brands under one roof" },
     ],
     site: {
       address: "Ring Road, New Cairo, near South 90th Street", // book. PLACEHOLDER: exact address

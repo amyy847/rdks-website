@@ -54,7 +54,7 @@ export default function AboutPage() {
                 <div key={s.label} className="flex flex-col-reverse">
                   <dt className="mt-2 text-sm text-moss">{s.label}</dt>
                   <dd>
-                    <Odometer value={s.value} suffix={s.suffix} delay={i * 150} className="text-[2.25rem] font-semibold md:text-[3rem]" />
+                    <Odometer value={s.value} prefix={s.prefix} suffix={s.suffix} delay={i * 150} className="text-[2.25rem] font-semibold md:text-[3rem]" />
                   </dd>
                 </div>
               ))}

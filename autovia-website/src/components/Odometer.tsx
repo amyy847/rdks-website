@@ -9,11 +9,13 @@ import { REVEAL_EVENT } from "./PageTransition";
  */
 export default function Odometer({
   value,
+  prefix,
   suffix,
   className = "",
   delay = 0,
 }: {
   value: number;
+  prefix?: string; // small text before the number, e.g. a currency
   suffix?: string;
   className?: string;
   delay?: number;
@@ -52,9 +54,15 @@ export default function Odometer({
   return (
     <span ref={ref} className={`inline-flex items-end tabular-nums leading-none ${className}`}>
       <span className="sr-only">
+        {prefix && `${prefix} `}
         {value.toLocaleString("en-US")}
         {suffix}
       </span>
+      {prefix && (
+        <span aria-hidden="true" className="mb-[0.16em] mr-1.5 text-[0.45em] font-semibold">
+          {prefix}
+        </span>
+      )}
       <span aria-hidden="true" className="inline-flex items-end">
         {chars.map((c, i) => {
           if (!/\d/.test(c)) {

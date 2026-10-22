@@ -101,6 +101,7 @@ export default async function DevelopmentPage({ params }: Props) {
                 <dd>
                   <Odometer
                     value={s.value}
+                    prefix={s.prefix}
                     suffix={s.suffix}
                     delay={500 + i * 150}
                     className="text-[2.25rem] font-semibold md:text-[3rem]"
