@@ -45,7 +45,7 @@ export default async function DevelopmentPage({ params }: Props) {
             className="object-cover"
             style={{ animation: "push-in 8000ms var(--ease-out-quint) both" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-green via-green/45 to-green/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-green via-green/45 to-green/50" />
         </div>
 
         <div className="container-site pt-32 md:pt-40">
@@ -62,21 +62,32 @@ export default async function DevelopmentPage({ params }: Props) {
               </li>
             </ol>
           </nav>
-          <h1 className="type-display">{dev.name}</h1>
+          <h1>
+            {dev.logo ? (
+              <>
+                <span className="sr-only">{dev.name}</span>
+                {/* eslint-disable-next-line @next/next/no-img-element -- plain img keeps the wordmark crisp at any width */}
+                <img src={dev.logo} alt="" className="w-[min(88vw,46rem)]" />
+              </>
+            ) : (
+              <span className="type-display">{dev.name}</span>
+            )}
+          </h1>
           <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="flex items-center gap-3 type-eyebrow text-white/85">
                 <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
-                {company.byline} · {dev.status} in {dev.location}
+                {company.byline} · {dev.status} · {dev.location}
               </p>
-              <p className="type-lead mt-4 max-w-[38ch] text-white/85">{dev.summary}</p>
+              <p className="type-h3 mt-5">{dev.tagline}</p>
+              <p className="type-lead mt-2 max-w-[38ch] text-white/85">{dev.summary}</p>
             </div>
             <div className="flex flex-wrap gap-3">
               <Link href="#enquire" className="btn btn-gold">
                 Enquire now
               </Link>
               <Link href="#visit" className="btn btn-ghost-light">
-                Visit the showroom
+                Location
               </Link>
             </div>
           </div>
@@ -101,11 +112,11 @@ export default async function DevelopmentPage({ params }: Props) {
         </div>
       </section>
 
-      <section aria-labelledby="showroom-heading" className="py-20 md:py-32">
+      <section aria-labelledby="about-heading" className="py-20 md:py-32">
         <div className="container-site">
           <div className="grid gap-8 md:grid-cols-12">
-            <h2 id="showroom-heading" className="type-h2 md:col-span-5">
-              The showroom
+            <h2 id="about-heading" className="type-h2 md:col-span-5">
+              About {dev.name}
             </h2>
             <div className="space-y-5 md:col-span-6 md:col-start-7">
               {dev.description.map((para, i) => (
@@ -116,39 +127,51 @@ export default async function DevelopmentPage({ params }: Props) {
             </div>
           </div>
 
-          <h3 className="type-h3 mt-16 md:mt-24">What we sell</h3>
-          <ul className="mt-8 grid gap-6 md:grid-cols-2">
-            {dev.sells.map((item) => (
-              <li key={item.title} className="rounded-sm bg-white p-7 md:p-10">
-                <p className="flex items-center gap-2.5 type-eyebrow text-moss">
-                  <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
-                  {item.label}
-                </p>
-                <h4 className="type-h3 mt-5">{item.title}</h4>
-                <p className="mt-3 max-w-[42ch] text-green/85">{item.text}</p>
+          <h3 className="type-h3 mt-16 md:mt-24">What&apos;s inside</h3>
+          <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {dev.spaces.map((space) => (
+              <li key={space.title} className="rounded-sm bg-white p-7">
+                <span className="block size-2 rounded-full bg-gold" aria-hidden="true" />
+                <h4 className="type-h3 mt-5">{space.title}</h4>
+                <p className="mt-3 text-green/85">{space.text}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section aria-labelledby="brands-heading" className="border-y border-laurel bg-white py-20 md:py-28">
-        <div className="container-site">
-          <div className="mb-10 flex flex-col gap-3 md:mb-14 md:flex-row md:items-end md:justify-between">
-            <h2 id="brands-heading" className="type-h2">
-              Brands on the floor
-            </h2>
-            <p className="text-moss">Compare them side by side, in one visit.</p>
+      {dev.masterplan && (
+        <section aria-labelledby="masterplan-heading" className="bg-green py-20 text-cream md:py-28">
+          <div className="container-site">
+            <div className="grid gap-8 md:grid-cols-12 md:items-end">
+              <h2 id="masterplan-heading" className="type-h2 md:col-span-5">
+                Master plan
+              </h2>
+              <p className="type-lead text-cream/85 md:col-span-6 md:col-start-7">{dev.masterplan.text}</p>
+            </div>
+            <div className="relative mt-10 aspect-[4/3] overflow-hidden rounded-sm sm:aspect-[2/1] md:mt-14 md:aspect-[42/10]">
+              <Image src={dev.masterplan.image} alt={dev.masterplan.alt} fill sizes="100vw" className="object-cover" />
+            </div>
           </div>
-          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-laurel bg-laurel sm:grid-cols-3 lg:grid-cols-6">
-            {dev.brands.map((brand) => (
-              <li key={brand} className="grid h-24 place-items-center bg-white px-4 text-center text-sm font-semibold uppercase tracking-[0.14em] md:h-32">
-                {brand}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {dev.brands.length > 0 && (
+        <section aria-labelledby="brands-heading" className="border-b border-laurel bg-white py-20 md:py-28">
+          <div className="container-site">
+            <h2 id="brands-heading" className="type-h2 mb-10 md:mb-14">
+              Brands at {dev.name}
+            </h2>
+            <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-laurel bg-laurel sm:grid-cols-3 lg:grid-cols-6">
+              {dev.brands.map((brand) => (
+                <li key={brand} className="grid h-24 place-items-center bg-white px-4 text-center text-sm font-semibold uppercase tracking-[0.14em] md:h-32">
+                  {brand}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <section aria-labelledby="gallery-heading" className="py-20 md:py-32">
         <div className="container-site">
@@ -159,23 +182,23 @@ export default async function DevelopmentPage({ params }: Props) {
         </div>
       </section>
 
-      {dev.services.length > 0 && (
-        <section aria-labelledby="services-heading" className="pb-20 md:pb-32">
+      {dev.features.length > 0 && (
+        <section aria-labelledby="features-heading" className="pb-20 md:pb-32">
           <div className="container-site">
-            <h2 id="services-heading" className="type-h2 max-w-[16ch]">
-              More than a showroom
+            <h2 id="features-heading" className="type-h2 max-w-[16ch]">
+              Why {dev.name}
             </h2>
             <ul className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
-              {dev.services.map((service, i) => (
-                <li key={service.title} className="border-t border-green pt-6">
+              {dev.features.map((feature, i) => (
+                <li key={feature.title} className="border-t border-green pt-6">
                   <p className="type-eyebrow tabular-nums text-moss">{String(i + 1).padStart(2, "0")}</p>
-                  <h3 className="type-h3 mt-4">{service.title}</h3>
-                  <p className="mt-3 text-green/85">{service.text}</p>
+                  <h3 className="type-h3 mt-4">{feature.title}</h3>
+                  <p className="mt-3 text-green/85">{feature.text}</p>
                 </li>
               ))}
             </ul>
             <Link href="#enquire" className="btn btn-gold mt-12">
-              Ask about any of these
+              Ask about space at {dev.name}
             </Link>
           </div>
         </section>
@@ -185,16 +208,17 @@ export default async function DevelopmentPage({ params }: Props) {
         <div className="container-site grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <h2 id="visit-heading" className="type-h2">
-              Visit {dev.name}
+              Location
             </h2>
+            <p className="mt-6 max-w-[48ch] text-green/85">{dev.site.note}</p>
             <dl className="mt-10 space-y-6">
               <div>
                 <dt className="text-sm text-moss">Address</dt>
-                <dd className="mt-1 text-lg font-semibold">{dev.showroom.address}</dd>
+                <dd className="mt-1 text-lg font-semibold">{dev.site.address}</dd>
               </div>
               <div>
-                <dt className="text-sm text-moss">Opening hours</dt>
-                <dd className="mt-1 text-lg">{dev.showroom.hours}</dd>
+                <dt className="text-sm text-moss">Visiting hours</dt>
+                <dd className="mt-1 text-lg">{dev.site.hours}</dd>
               </div>
               <div>
                 <dt className="text-sm text-moss">Call or message</dt>
@@ -213,14 +237,14 @@ export default async function DevelopmentPage({ params }: Props) {
                 </dd>
               </div>
             </dl>
-            <a href={dev.showroom.mapUrl} target="_blank" rel="noopener noreferrer" className="btn btn-gold mt-10">
+            <a href={dev.site.mapUrl} target="_blank" rel="noopener noreferrer" className="btn btn-gold mt-10">
               Get directions
             </a>
           </div>
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-laurel md:col-span-7 md:aspect-auto md:min-h-[26rem]">
             <iframe
-              src={dev.showroom.mapEmbedUrl}
+              src={dev.site.mapEmbedUrl}
               title={`Map showing ${dev.name}'s location`}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

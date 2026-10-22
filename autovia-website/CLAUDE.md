@@ -1,6 +1,6 @@
 # Project context (read first)
 
-Website for Amy's client, a startup developer called **RDK**. This is RDK's company website; **Autovia, a car sales showroom**, is one of RDK's developments (currently the only one): people buy cars there, not property. Don't present Autovia as the company. Company details (`company`, `contact` = head office) are kept separate from each development's `showroom` details in `site.ts`. Style and transitions are inspired by misritaliaproperties.com, but the scope is much smaller.
+Website for Amy's client, a startup developer called **RDK**. This is RDK's company website; **Autovia** is one of RD.K's developments (currently the only one): a commercial destination on Cairo's Ring Road, New Cairo, made of standalone buildings for automotive showrooms, service centres, retail and offices. Its audience is businesses looking for space, not car buyers (see the Autovia Branding Book, October 2026; its renders are the site's Autovia photos and its logo is `public/images/autovia-logo.png`). Don't present Autovia as the company. Company details (`company`, `contact` = head office) are kept separate from each development's `showroom` details in `site.ts`. Style and transitions are inspired by misritaliaproperties.com, but the scope is much smaller.
 
 **Deadline: live on Sunday 25 October 2026.** Client content is due Friday 23 October, 12:00 pm. English only for launch; Arabic comes later.
 
@@ -20,7 +20,7 @@ The visitor enters name, email, phone and interest, then:
 2. the sales team gets a lead notification
 3. the lead is saved to a Google Sheet
 
-Send email with Nodemailer through the client's own email account (Gmail or Google Workspace SMTP with an app password), with credentials in env vars. `src/app/api/enquire/route.ts` currently only validates and logs. After a successful submit, redirect to `/thank-you`.
+Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mail is Microsoft 365 bought through GoDaddy (MX: ppe-hosted.com), so the Gmail app-password plan doesn't apply. Plan: send with a transactional service (Resend) from the rdkeg.com domain, verified with DNS records added in GoDaddy; leads to a Google Sheet through an Apps Script web app. Secrets in Vercel env vars. `src/app/api/enquire/route.ts` currently only validates and logs. After a successful submit, redirect to `/thank-you`.
 
 ## Stack and conventions
 - Next.js 15 (App Router) + Tailwind CSS 4 + TypeScript. Deploy on Vercel.

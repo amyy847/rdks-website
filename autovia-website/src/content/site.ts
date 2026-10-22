@@ -24,8 +24,8 @@ export const contact = {
   phone: "+20 100 000 0000", // PLACEHOLDER
   phoneHref: "tel:+201000000000",
   whatsapp: "201000000000", // PLACEHOLDER: international format, digits only
-  email: "info@example.com", // PLACEHOLDER
-  address: "Head office address, New Cairo, Egypt", // PLACEHOLDER: RDK's office (not the showroom)
+  email: "contact@rdkeg.com", // from the Autovia branding book
+  address: "Head office address, New Cairo, Egypt", // PLACEHOLDER: RD.K's office (not Autovia)
   mapUrl: "https://maps.google.com", // PLACEHOLDER: Google Maps share link for the office
   // PLACEHOLDER: in Google Maps, Share > Embed a map, and paste the src="..." link here
   mapEmbedUrl: "https://www.google.com/maps?q=New+Cairo,+Egypt&output=embed",
@@ -51,80 +51,89 @@ export type Photo = { image: string; alt: string };
 export type Development = {
   slug: string;
   name: string;
+  logo?: string; // the development's own logo, shown in its hero (white artwork, transparent background)
+  tagline: string;
   location: string;
   status: string;
   summary: string;
   cover: string;
   stats: Stat[];
-  showroom: { address: string; hours: string; mapUrl: string; mapEmbedUrl: string };
+  site: { address: string; hours: string; mapUrl: string; mapEmbedUrl: string; note: string };
   // Detail page (/developments/[slug])
   description: string[]; // one string per paragraph
-  sells: { label: string; title: string; text: string }[];
-  brands: string[];
+  spaces: { title: string; text: string }[]; // what the development is made of
+  masterplan: (Photo & { text: string }) | null;
+  brands: string[]; // tenant brands; an empty list hides the section
   gallery: Photo[];
-  services: { title: string; text: string }[]; // optional extras; an empty list hides the section
+  features: { title: string; text: string }[]; // an empty list hides the section
 };
 
+/*
+ * Autovia wording marked "book" comes from the Autovia Branding Book (October 2026).
+ * Photos are the renders from that book.
+ */
 export const developments: Development[] = [
   {
     slug: "autovia",
     name: "Autovia",
-    location: "New Cairo", // PLACEHOLDER
-    status: "Now open", // PLACEHOLDER
-    summary:
-      "A car showroom where you can compare brands, book a test drive and sort financing in one visit.", // PLACEHOLDER
+    logo: "/images/autovia-logo.png",
+    tagline: "Built to be seen", // book
+    location: "Ring Road, New Cairo", // book
+    status: "Now launching", // PLACEHOLDER: confirm (open, launching, under construction?)
+    summary: "A landmark automotive, retail and office destination on Cairo's Ring Road.", // book, shortened
     cover: "/images/autovia-cover.jpg",
     stats: [
-      // PLACEHOLDER: 3–4 key numbers from the client
-      { value: 12, label: "Brands on the floor" },
-      { value: 80, suffix: "+", label: "Cars on display" },
-      { value: 2400, suffix: " m²", label: "Showroom space" },
-      { value: 5, suffix: " yrs", label: "Warranty available" },
+      { value: 5, label: "Standalone buildings" }, // book master plan (B01 to B05). Confirm
+      { value: 4, label: "Types of space" }, // showrooms, service centres, retail, offices (book)
+      { value: 12000, suffix: " m²", label: "Total area" }, // PLACEHOLDER: real land or built-up area
     ],
-    showroom: {
-      address: "Autovia showroom address, New Cairo, Egypt", // PLACEHOLDER
-      hours: "Saturday to Thursday, 10 am to 10 pm", // PLACEHOLDER
-      mapUrl: "https://maps.google.com", // PLACEHOLDER: Google Maps share link for the showroom
-      mapEmbedUrl: "https://www.google.com/maps?q=New+Cairo,+Egypt&output=embed", // PLACEHOLDER
+    site: {
+      address: "Ring Road, New Cairo, near South 90th Street", // book. PLACEHOLDER: exact address
+      hours: "Sunday to Thursday, 9 am to 5 pm", // PLACEHOLDER: sales office or site visit hours
+      mapUrl: "https://maps.google.com", // PLACEHOLDER: Google Maps share link for the site
+      mapEmbedUrl: "https://www.google.com/maps?q=5A+by+The+Waterway,+New+Cairo&output=embed", // PLACEHOLDER: exact pin
+      note:
+        "Situated on the Ring Road with direct and effortless access, Autovia stands at the gateway to New Cairo's most important destinations, near South 90th Street, Waterway 5A, Park Street and The Drive.", // book
     },
     description: [
-      // PLACEHOLDER: 2–3 short paragraphs from the client
-      "Autovia puts the brands you're weighing up on one floor, so you can sit in each car, compare them properly and decide without driving across the city.",
-      "Our team isn't tied to a single brand. They'll walk you through the options, set up a test drive and help you sort out paperwork, financing and delivery in the same visit.",
+      // book: About us
+      "Autovia is a distinct commercial destination on the Ring Road, blending automotive showrooms and service centres with modern commercial and administrative spaces.",
+      "Its strong architectural identity makes it a landmark for businesses seeking visibility, accessibility and prestige: a specialised automotive, retail and office hub where function meets design, on one of Cairo's most vital arteries.",
     ],
-    sells: [
-      // PLACEHOLDER: confirm whether Autovia sells new, used or both
-      { label: "New", title: "New cars", text: "This year's models from every brand on the floor, with full manufacturer warranty." },
-      { label: "Used", title: "Inspected used cars", text: "Pre-owned cars that pass our inspection, with a clear history and an optional warranty." },
+    spaces: [
+      // Based on the book's "automotive showrooms, service centres, commercial and administrative spaces". Wording ours; confirm
+      { title: "Automotive showrooms", text: "Glass-fronted showrooms with prime frontage, built to put your brand in front of Ring Road traffic." },
+      { title: "Service centres", text: "Service and after-sales space beside the showrooms, with easy access for your customers." },
+      { title: "Retail", text: "Retail units that share the steady flow of visitors the automotive hub brings." },
+      { title: "Offices", text: "Modern administrative space for businesses that want a visible, accessible address." },
     ],
-    // PLACEHOLDER: the client's real brand list (swap names for logo images later if they send them)
-    brands: [
-      "Brand 1", "Brand 2", "Brand 3", "Brand 4", "Brand 5", "Brand 6",
-      "Brand 7", "Brand 8", "Brand 9", "Brand 10", "Brand 11", "Brand 12",
-    ],
+    masterplan: {
+      image: "/images/autovia-masterplan.jpg",
+      alt: "Aerial view of Autovia's buildings along the Ring Road",
+      text: "An internal circulation road gives each standalone building prime frontage and independent access, turning them into individual landmarks within one destination. Directly connected to the Ring Road, the project ensures seamless access and maximum visibility.", // book
+    },
+    brands: [], // PLACEHOLDER: tenant brands once signed (names now, logos later). Empty hides the section
     gallery: [
-      // PLACEHOLDER images: 6 works best for the grid (landscape 1600×1000 or portrait 1000×1250)
-      { image: "/images/autovia-gallery-1.jpg", alt: "The main showroom floor at Autovia" },
-      { image: "/images/autovia-gallery-2.jpg", alt: "A car on display under the showroom lights" },
-      { image: "/images/autovia-gallery-3.jpg", alt: "The customer lounge" },
-      { image: "/images/autovia-gallery-4.jpg", alt: "Close-up of a car interior" },
-      { image: "/images/autovia-gallery-5.jpg", alt: "Cars lined up by brand" },
-      { image: "/images/autovia-gallery-6.jpg", alt: "Autovia's entrance at night" },
+      { image: "/images/autovia-gallery-1.jpg", alt: "The Autovia sign on the building's dark façade" },
+      { image: "/images/autovia-gallery-2.jpg", alt: "A curved glass showroom on the corner of the site" },
+      { image: "/images/autovia-gallery-3.jpg", alt: "Cars on display behind full-height glazing" },
+      { image: "/images/autovia-gallery-4.jpg", alt: "A showroom carrying a tenant's red brand panel" },
+      { image: "/images/autovia-gallery-5.jpg", alt: "A showroom carrying a tenant's blue brand panels" },
+      { image: "/images/autovia-gallery-6.jpg", alt: "Autovia's buildings lined with palms along the road" },
     ],
-    services: [
-      // PLACEHOLDER: delete any the client doesn't offer. Other options they may pick:
-      // featured cars, special offers, reviews, video tour
-      { title: "Financing", text: "Compare instalment plans from partner banks and get pre-approved before you choose your car." },
-      { title: "Trade-in", text: "Bring your current car for a valuation and put it towards your next one." },
-      { title: "Test drives", text: "Book a test drive of any car on the floor, at a time that suits you." },
-      { title: "After-sales and warranty", text: "Servicing, spare parts and extended warranty plans, arranged through Autovia." },
+    features: [
+      // book: master plan, architecture and identity
+      { title: "Direct Ring Road access", text: "Connected directly to the Ring Road, for seamless access and maximum visibility." },
+      { title: "Every building, a landmark", text: "Bold façades and distinctive forms, instantly recognisable from the Ring Road." },
+      { title: "Prime frontage for every tenant", text: "An internal road gives each standalone building its own frontage and independent access." },
+      { title: "Room for your brand", text: "Each building gives tenants the flexibility to express their own brand, in harmony with the whole." },
     ],
   },
 ];
 
 export const developmentsPage = {
   heading: "Developments",
-  intro: "Places built around the way people live and drive. Autovia is our first launch.", // PLACEHOLDER
+  intro: "Landmark destinations, built to last. Autovia, on Cairo's Ring Road, is our first launch.",
   // The tile beside the launches. Set to null to hide it.
   comingSoon: {
     title: "More on the way",
@@ -178,16 +187,18 @@ export const contactPage = {
 
 export const hero = {
   slides: [
-    { image: "/images/hero-1.jpg", alt: "Autovia showroom floor" }, // PLACEHOLDER images
-    { image: "/images/hero-2.jpg", alt: "Cars lined up inside Autovia" },
-    { image: "/images/hero-3.jpg", alt: "Autovia at night" },
+    // Renders from the Autovia branding book
+    { image: "/images/hero-1.jpg", alt: "A curved glass showroom at Autovia" },
+    { image: "/images/hero-2.jpg", alt: "Cars on display in an Autovia showroom" },
+    { image: "/images/hero-3.jpg", alt: "Autovia's buildings and palms along the Ring Road" },
   ],
   headline: "Autovia",
-  subline: "Every brand you're considering, side by side, in one showroom.", // PLACEHOLDER
+  subline: "Built to be seen. A landmark automotive, retail and office destination on Cairo's Ring Road.", // book
 };
 
 export const enquiry = {
   heading: "Enquire now",
   text: "Leave your details and we'll email you Autovia's brochure straight away. Our sales team will call you within one working day.",
-  interests: ["Buying a new car", "Buying a used car", "Financing", "Trade-in", "Something else"], // PLACEHOLDER: depends on what Autovia offers
+  // PLACEHOLDER: confirm the units on offer, and whether they're for sale, rent or both
+  interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Something else"],
 };

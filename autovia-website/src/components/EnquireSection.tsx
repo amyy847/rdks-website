@@ -53,8 +53,8 @@ export default function EnquireSection({ project = developments[0].name }: { pro
               </dd>
             </div>
             <div>
-              <dt className="text-sm text-white/50">{dev.name} showroom hours</dt>
-              <dd className="mt-1">{dev.showroom.hours}</dd>
+              <dt className="text-sm text-white/50">{dev.name} visiting hours</dt>
+              <dd className="mt-1">{dev.site.hours}</dd>
             </div>
           </dl>
         </div>

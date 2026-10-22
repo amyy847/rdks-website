@@ -47,15 +47,25 @@ export default function Hero() {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-t from-green via-green/45 to-green/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-green via-green/45 to-green/50" />
       </div>
 
       <div className="container-site pt-32 md:pt-40">
         <p className="mb-5 flex items-center gap-3 type-eyebrow text-white/85">
           <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
-          {company.byline} · {autovia.status} in {autovia.location}
+          {company.byline} · {autovia.status} · {autovia.location}
         </p>
-        <h1 className="type-display">{hero.headline}</h1>
+        <h1>
+          {autovia.logo ? (
+            <>
+              <span className="sr-only">{hero.headline}</span>
+              {/* eslint-disable-next-line @next/next/no-img-element -- plain img keeps the wordmark crisp at any width */}
+              <img src={autovia.logo} alt="" className="w-[min(88vw,52rem)]" />
+            </>
+          ) : (
+            <span className="type-display">{hero.headline}</span>
+          )}
+        </h1>
         <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <p className="type-lead max-w-[34ch] text-white/85">{hero.subline}</p>
           <div className="flex flex-wrap gap-3">

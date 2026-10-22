@@ -91,18 +91,18 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* The showrooms have their own address and hours, separate from the office */}
+        {/* Each development has its own address and hours, separate from the office */}
         <div className="container-site mt-16 grid gap-6 md:mt-24">
           {developments.map((dev) => (
             <div key={dev.slug} className="flex flex-col gap-8 rounded-sm bg-white p-7 md:flex-row md:items-end md:justify-between md:p-10">
               <div>
-                <p className="type-eyebrow text-moss">Looking for the showroom?</p>
+                <p className="type-eyebrow text-moss">Looking for {dev.name}?</p>
                 <h2 className="type-h3 mt-4">{dev.name}</h2>
-                <p className="mt-4 font-semibold">{dev.showroom.address}</p>
-                <p className="mt-1 text-green/85">{dev.showroom.hours}</p>
+                <p className="mt-4 font-semibold">{dev.site.address}</p>
+                <p className="mt-1 text-green/85">{dev.site.hours}</p>
               </div>
               <div className="flex shrink-0 flex-wrap gap-3">
-                <a href={dev.showroom.mapUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost-dark">
+                <a href={dev.site.mapUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost-dark">
                   Get directions
                 </a>
                 <Link href={`/developments/${dev.slug}`} className="btn btn-ghost-dark">
