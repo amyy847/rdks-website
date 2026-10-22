@@ -1,0 +1,33 @@
+import type { Metadata } from "next";
+import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import { company } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: {
+    default: `${company.name} | Autovia`,
+    template: `%s | ${company.name}`,
+  },
+  description: company.tagline,
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en">
+      <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-signal focus:px-5 focus:py-3 focus:font-semibold"
+        >
+          Skip to content
+        </a>
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
+        <WhatsAppButton />
+      </body>
+    </html>
+  );
+}
