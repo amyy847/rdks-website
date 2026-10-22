@@ -3,14 +3,9 @@
 import { useState } from "react";
 import { navigateWithTransition } from "./PageTransition";
 import { contact, developments, enquiry } from "@/content/site";
+import { FIELD_CLASS as field, submitEnquiry } from "@/lib/enquiry";
 
 type Status = "idle" | "sending" | "error";
-
-/** sessionStorage key the thank-you page reads to greet the visitor by first name */
-export const ENQUIRY_NAME_KEY = "rdk:enquiry-name";
-
-const field =
-  "w-full rounded-xl border border-white/20 bg-white/[0.06] px-4 py-3.5 text-white placeholder:text-white/40 transition-colors duration-300 hover:border-white/40 focus:border-gold focus:outline-none";
 
 export default function EnquireSection({ project = developments[0].name }: { project?: string }) {
   const dev = developments.find((d) => d.name === project) ?? developments[0];
@@ -24,18 +19,7 @@ export default function EnquireSection({ project = developments[0].name }: { pro
     setStatus("sending");
     setError("");
     try {
-      const res = await fetch("/api/enquire", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(body.error || "Your enquiry didn't go through. Check your details and try again.");
-      try {
-        sessionStorage.setItem(ENQUIRY_NAME_KEY, String(data.name).trim().split(/\s+/)[0]);
-      } catch {
-        // Private mode or blocked storage: the thank-you page falls back to a generic greeting
-      }
+      await submitEnquiry({ ...data, source: "Enquiry form" });
       navigateWithTransition("/thank-you");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Your enquiry didn't go through. Try again.");

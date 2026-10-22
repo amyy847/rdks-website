@@ -228,7 +228,7 @@ export type PolicySection = { heading: string; paragraphs?: string[]; list?: str
  */
 export const privacyPage = {
   heading: "Privacy policy",
-  updated: "22 October 2026",
+  updated: "23 October 2026",
   intro:
     "This policy explains what personal information RD.K Developments collects through this website, why we collect it, and how we look after it.",
   sections: [
@@ -247,6 +247,7 @@ export const privacyPage = {
         "your phone number",
         "what you're interested in, and any message you choose to add",
         "which development you enquired about, and when",
+        "whether you asked to receive news and offers",
       ],
     },
     {
@@ -261,7 +262,7 @@ export const privacyPage = {
     {
       heading: "What we don't do",
       paragraphs: [
-        "We don't sell your information, and we don't add you to marketing lists. If we ever want to send you news about other developments, we'll ask you first.",
+        "We don't sell your information. We only send you news and offers if you ticked \"Keep me updated on news and offers\" when you registered your interest, and you can ask us to stop at any time.",
       ],
     },
     {
@@ -353,4 +354,32 @@ export const partners = {
       description: "ElTarek Group, based in Alexandria, is one of Egypt's largest automotive distributors, representing more than 20 brands.",
     },
   ] as Partner[],
+};
+
+// The "Register interest" window, opened from the Home hero and each development's header
+export const registerInterest = {
+  button: "Register interest",
+  heading: "Register your interest",
+  updatesLabel: "Keep me updated on news and offers",
+  submit: "Submit",
+  // First entry is the default. Most visitors are in Egypt, then the Gulf
+  countryCodes: [
+    { code: "EG", dial: "+20" },
+    { code: "SA", dial: "+966" },
+    { code: "AE", dial: "+971" },
+    { code: "KW", dial: "+965" },
+    { code: "QA", dial: "+974" },
+    { code: "BH", dial: "+973" },
+    { code: "OM", dial: "+968" },
+    { code: "JO", dial: "+962" },
+    { code: "LB", dial: "+961" },
+    { code: "LY", dial: "+218" },
+    { code: "SD", dial: "+249" },
+    { code: "GB", dial: "+44" },
+    { code: "US", dial: "+1" },
+    { code: "CA", dial: "+1" },
+    { code: "DE", dial: "+49" },
+    { code: "FR", dial: "+33" },
+    { code: "IT", dial: "+39" },
+  ],
 };

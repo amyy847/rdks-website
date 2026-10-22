@@ -20,7 +20,7 @@ The visitor enters name, email, phone and interest, then:
 2. the sales team gets a lead notification
 3. the lead is saved to a Google Sheet
 
-Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mail is Microsoft 365 bought through GoDaddy (MX: ppe-hosted.com), so the Gmail app-password plan doesn't apply. Plan: send with a transactional service (Resend) from the rdkeg.com domain, verified with DNS records added in GoDaddy; leads to a Google Sheet through an Apps Script web app. Secrets in Vercel env vars. `src/app/api/enquire/route.ts` currently only validates and logs. After a successful submit the form goes to `/thank-you` (done, via `navigateWithTransition`).
+Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mail is Microsoft 365 bought through GoDaddy (MX: ppe-hosted.com), so the Gmail app-password plan doesn't apply. Plan: send with a transactional service (Resend) from the rdkeg.com domain, verified with DNS records added in GoDaddy; leads to a Google Sheet through an Apps Script web app. Secrets in Vercel env vars. `src/app/api/enquire/route.ts` currently only validates and logs. After a successful submit the form goes to `/thank-you` (done, via `navigateWithTransition`). The heroes (Home, each development) have a **Register interest** button that opens a window form (`RegisterInterest.tsx`: name, email, country code + phone, news opt-in); both forms send through `src/lib/enquiry.ts` with a `source` field so leads can be told apart.
 
 ## Stack and conventions
 - Next.js 15 (App Router) + Tailwind CSS 4 + TypeScript. Deploy on Vercel.

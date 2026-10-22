@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ENQUIRY_NAME_KEY } from "@/components/EnquireSection";
+import { ENQUIRY_NAME_KEY } from "@/lib/enquiry";
 
 /** "Thank you, Sara." when the form left the visitor's first name, otherwise just "Thank you." */
 export default function Greeting({ heading }: { heading: string }) {

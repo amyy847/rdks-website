@@ -147,6 +147,25 @@
   }
 }
 
+/* Windows (Register interest): rise and fade in, backdrop fades */
+@keyframes dialog-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+}
+@keyframes backdrop-fade {
+  from {
+    opacity: 0;
+  }
+}
+.dialog-rise[open] {
+  animation: dialog-rise 0.6s var(--ease-out-quint) both;
+}
+.dialog-rise[open]::backdrop {
+  animation: backdrop-fade 0.6s var(--ease-out-quint) both;
+}
+
 /* Hero: the slow push-in on each photo (Misr Italia's 2s zoom, stretched for a calmer feel) */
 @keyframes push-in {
   from {
