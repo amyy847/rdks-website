@@ -20,7 +20,7 @@ export default function EnquireSection({ project = developments[0].name }: { pro
     setStatus("sending");
     setError("");
     try {
-      await submitEnquiry({ ...data, source: "Enquiry form" });
+      await submitEnquiry({ ...data, updates: data.updates === "on", source: "Enquiry form" });
       navigateWithTransition("/thank-you");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Your enquiry didn't go through. Try again.");
@@ -106,10 +106,23 @@ export default function EnquireSection({ project = developments[0].name }: { pro
                 </span>
                 <textarea name="message" rows={3} className={`${field} resize-none`} />
               </label>
+              <label className="flex cursor-pointer items-center gap-4 sm:col-span-2">
+                <span className="relative grid size-6 shrink-0 place-items-center">
+                  <input
+                    type="checkbox"
+                    name="updates"
+                    className="peer size-6 cursor-pointer appearance-none rounded-md border border-moss/40 bg-white transition-colors checked:border-moss checked:bg-moss hover:border-moss"
+                  />
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden="true" className="pointer-events-none absolute size-4 text-cream opacity-0 peer-checked:opacity-100">
+                    <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <span className="type-eyebrow text-green/80">{enquiry.updatesLabel}</span>
+              </label>
 
               <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
                 <p className="max-w-[40ch] text-sm text-green/65">
-                  We&apos;ll only use your details to reply to this enquiry. See our{" "}
+                  We&apos;ll only use your details to reply to this enquiry, and to send you news if you tick the box. See our{" "}
                   <a href="/privacy" className="underline decoration-moss/50 underline-offset-4 hover:text-moss">
                     privacy policy
                   </a>

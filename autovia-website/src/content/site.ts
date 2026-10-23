@@ -209,6 +209,7 @@ export const enquiry = {
   heading: "Enquire now",
   text: "Leave your details and we'll email you Autovia's brochure straight away. Our sales team will call you within one working day.",
   // PLACEHOLDER: confirm the units on offer, and whether they're for sale, rent or both
+  updatesLabel: "Keep me updated on news and offers",
   interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Something else"],
 };
 
@@ -262,7 +263,7 @@ export const privacyPage = {
     {
       heading: "What we don't do",
       paragraphs: [
-        "We don't sell your information. We only send you news and offers if you ticked \"Keep me updated on news and offers\" when you registered your interest, and you can ask us to stop at any time.",
+        "We don't sell your information. We only send you news and offers if you ticked \"Keep me updated on news and offers\" when you sent an enquiry, and you can ask us to stop at any time.",
       ],
     },
     {
@@ -360,7 +361,6 @@ export const partners = {
 export const registerInterest = {
   button: "Register interest",
   heading: "Register your interest",
-  updatesLabel: "Keep me updated on news and offers",
   submit: "Submit",
   // First entry is the default. Most visitors are in Egypt, then the Gulf
   countryCodes: [

@@ -8,7 +8,7 @@ import { FIELD_LIGHT_CLASS as field, submitEnquiry } from "@/lib/enquiry";
 /**
  * "Register your interest": one window for the whole site (mounted in the layout), opened by
  * RegisterInterestButton from anywhere (header, mobile menu, the Developments "next launch" card).
- * Short form: name, email, country code + phone, news opt-in. Sends through the same endpoint
+ * Short form: name, email, country code + phone. Sends through the same endpoint
  * as the enquiry form, tagged with where it was opened from, then goes to the thank-you page.
  */
 
@@ -74,7 +74,6 @@ export default function RegisterInterestDialog() {
         name: data.name,
         email: data.email,
         phone: `${dial} ${String(data.phoneNumber).trim()}`,
-        updates: data.updates === "on",
         project: origin?.project,
         source: `Register interest (${origin?.source})`,
       });
@@ -167,20 +166,6 @@ export default function RegisterInterestDialog() {
               />
             </label>
           </div>
-
-          <label className="mt-1 flex cursor-pointer items-center gap-4">
-            <span className="relative grid size-6 shrink-0 place-items-center">
-              <input
-                type="checkbox"
-                name="updates"
-                className="peer size-6 cursor-pointer appearance-none rounded-md border border-moss/40 bg-white transition-colors checked:border-moss checked:bg-moss hover:border-moss"
-              />
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden="true" className="pointer-events-none absolute size-4 text-cream opacity-0 peer-checked:opacity-100">
-                <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-            <span className="type-eyebrow text-green/80">{copy.updatesLabel}</span>
-          </label>
 
           <button type="submit" disabled={status === "sending"} className="btn mt-3 w-full bg-moss text-cream hover:bg-green disabled:opacity-60">
             {status === "sending" ? "Sending…" : copy.submit}
