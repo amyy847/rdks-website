@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { navigateWithTransition } from "./PageTransition";
-import { registerInterest as copy } from "@/content/site";
+import { InlineThanks, useInlineThanks } from "./InlineThanks";
+import PhoneField, { phoneFromForm } from "./PhoneField";
+import { inlineThanks, registerInterest as copy } from "@/content/site";
 import { FIELD_LIGHT_CLASS as field, submitEnquiry } from "@/lib/enquiry";
 
 /**
  * "Register your interest": one window for the whole site (mounted in the layout), opened by
  * RegisterInterestButton from anywhere (header, mobile menu, the Developments "next launch" card).
  * Short form: name, email, country code + phone. Sends through the same endpoint
- * as the enquiry form, tagged with where it was opened from, then goes to the thank-you page.
+ * as the enquiry form, tagged with where it was opened from, then thanks the visitor in place.
  */
 
 const OPEN_EVENT = "rdk:register-interest";
@@ -41,7 +42,6 @@ type Status = "idle" | "sending" | "error";
 export default function RegisterInterestDialog() {
   const dialog = useRef<HTMLDialogElement>(null);
   const [origin, setOrigin] = useState<Origin | null>(null); // null = closed
-  const [country, setCountry] = useState(copy.countryCodes[0].code);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const open = origin !== null;
@@ -60,27 +60,32 @@ export default function RegisterInterestDialog() {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
+  const thanks = useInlineThanks();
   const close = () => setOrigin(null);
+
+  // Back to the form for next time, once the window has closed
+  useEffect(() => {
+    if (!open) thanks.reset();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- reset only when the window closes
+  }, [open]);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget; // React clears currentTarget once the handler awaits
     const data = Object.fromEntries(new FormData(form));
-    const dial = copy.countryCodes.find((c) => c.code === data.country)?.dial ?? "";
     setStatus("sending");
     setError("");
     try {
       await submitEnquiry({
         name: data.name,
         email: data.email,
-        phone: `${dial} ${String(data.phoneNumber).trim()}`,
+        phone: phoneFromForm(data),
         project: origin?.project,
         source: `Register interest (${origin?.source})`,
       });
       form.reset();
       setStatus("idle");
-      close(); // the window sits above everything, including the page transition
-      navigateWithTransition("/thank-you");
+      thanks.show(String(data.name));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Your details didn't go through. Try again.");
       setStatus("error");
@@ -114,75 +119,54 @@ export default function RegisterInterestDialog() {
           </svg>
         </button>
 
-        <h2 id="register-heading" className="type-h2 text-center">
-          {copy.heading}
-        </h2>
-        <span className="mx-auto mt-5 block h-0.5 w-12 bg-moss" aria-hidden="true" />
+        <div ref={thanks.box} style={{ minHeight: thanks.minHeight }} className="flex flex-col">
+          {thanks.phase === "sent" ? (
+            <InlineThanks name={thanks.name} {...inlineThanks.registerInterest}>
+              <button type="button" onClick={close} className="btn bg-moss text-cream hover:bg-green">
+                Close
+              </button>
+            </InlineThanks>
+          ) : (
+            <div className={thanks.formClass}>
+              <h2 id="register-heading" className="type-h2 text-center">
+                {copy.heading}
+              </h2>
+              <span className="mx-auto mt-5 block h-0.5 w-12 bg-moss" aria-hidden="true" />
 
-        <form onSubmit={onSubmit} className="mt-8 grid gap-5 sm:mt-10">
-          <label>
-            <span className={label}>Full name{required}</span>
-            <input name="name" required autoComplete="name" className={field} />
-          </label>
-          <label>
-            <span className={label}>Email{required}</span>
-            <input name="email" type="email" required autoComplete="email" className={field} />
-          </label>
-          <div className="grid grid-cols-[7.5rem_1fr] items-end gap-3 sm:grid-cols-[9.5rem_1fr]">
-            <label>
-              <span className={label}>Country code{required}</span>
-              <span className="relative block">
-                <select
-                  name="country"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  autoComplete="tel-country-code"
-                  aria-label="Country code"
-                  className={`${field} appearance-none pr-9 tabular-nums`}
+              <form onSubmit={onSubmit} className="mt-8 grid gap-5 sm:mt-10">
+                <label>
+                  <span className={label}>Full name{required}</span>
+                  <input name="name" required autoComplete="name" className={field} />
+                </label>
+                <label>
+                  <span className={label}>Email{required}</span>
+                  <input name="email" type="email" required autoComplete="email" className={field} />
+                </label>
+                <PhoneField fieldClass={field} labelClass={label} marker={required} />
+
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="btn mt-3 w-full bg-moss text-cream hover:bg-green disabled:opacity-60"
                 >
-                  {copy.countryCodes.map((c) => (
-                    <option key={c.code} value={c.code}>
-                      {c.code} {c.dial}
-                    </option>
-                  ))}
-                </select>
-                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-moss">
-                  <path d="M4 6l4 4 4-4z" />
-                </svg>
-              </span>
-            </label>
-            <label>
-              <span className={label}>Phone number{required}</span>
-              <input
-                name="phoneNumber"
-                type="tel"
-                required
-                autoComplete="tel-national"
-                inputMode="tel"
-                placeholder={country === "EG" ? "10 0000 0000" : ""}
-                pattern="[0-9 ]{6,15}"
-                title="Enter your number without the country code, digits only"
-                className={field}
-              />
-            </label>
-          </div>
-
-          <button type="submit" disabled={status === "sending"} className="btn mt-3 w-full bg-moss text-cream hover:bg-green disabled:opacity-60">
-            {status === "sending" ? "Sending…" : copy.submit}
-          </button>
-          {status === "error" && (
-            <p role="alert" className="text-center text-sm font-semibold text-moss">
-              {error}
-            </p>
+                  {status === "sending" ? "Sending…" : copy.submit}
+                </button>
+                {status === "error" && (
+                  <p role="alert" className="text-center text-sm font-semibold text-moss">
+                    {error}
+                  </p>
+                )}
+                <p className="text-center text-xs text-green/60">
+                  See our{" "}
+                  <a href="/privacy" onClick={close} className="underline decoration-moss/50 underline-offset-4 hover:text-moss">
+                    privacy policy
+                  </a>{" "}
+                  for how we use your details.
+                </p>
+              </form>
+            </div>
           )}
-          <p className="text-center text-xs text-green/60">
-            See our{" "}
-            <a href="/privacy" onClick={close} className="underline decoration-moss/50 underline-offset-4 hover:text-moss">
-              privacy policy
-            </a>{" "}
-            for how we use your details.
-          </p>
-        </form>
+        </div>
       </div>
     </dialog>
   );

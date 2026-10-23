@@ -6,10 +6,12 @@ import EnquireSection from "@/components/EnquireSection";
 import Partners from "@/components/Partners";
 import { aboutPage, company, developments } from "@/content/site";
 
-export default function Home() {
+// Two hero versions to show the client: /?hero=rdk shows the RD.K one, anything else the Autovia one
+export default async function Home({ searchParams }: { searchParams: Promise<{ hero?: string }> }) {
+  const { hero } = await searchParams;
   return (
     <>
-      <Hero />
+      <Hero variant={hero === "rdk" ? "rdk" : "autovia"} />
 
       <section aria-labelledby="launches-heading" className="py-20 md:py-32">
         <div className="container-site">

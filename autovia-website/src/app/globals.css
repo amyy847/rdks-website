@@ -147,6 +147,17 @@
   }
 }
 
+/* A message fading up into place (thank-you shown in place of a form) */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+.fade-up {
+  animation: fade-up 0.8s var(--ease-out-quint) both;
+}
+
 /* Scrollbar as a thin deep-green line (Register interest window). Chrome, Edge, Safari: */
 .scrollbar-line::-webkit-scrollbar {
   width: 12px; /* 4px line + 4px of cream either side, so it doesn't merge with the window's edge */

@@ -145,9 +145,10 @@ export const developmentsPage = {
   intro: "Landmark destinations, built to last. Autovia, on Cairo's Ring Road, is our first launch.",
   // The tile beside the launches. Set to null to hide it.
   comingSoon: {
+    image: "/images/next-launch.jpg", // Pexels, mood photo only (not an RD.K site)
     title: "More on the way",
     text: "Leave your details and we'll tell you first when our next development launches.",
-  } as { title: string; text: string } | null,
+  } as { image: string; title: string; text: string } | null,
 };
 
 export const aboutPage = {
@@ -205,8 +206,20 @@ export const hero = {
   subline: "Built to be seen. A landmark automotive, retail and office destination on Cairo's Ring Road.", // book
 };
 
+// Second Home hero, about RD.K rather than Autovia. Shown at /?hero=rdk so both can be compared
+export const heroRdk = {
+  slides: [
+    // Images from the RD.K brand guidelines
+    { image: "/images/rdk-hero-1.jpg", alt: "Reviewing an RD.K masterplan" },
+    { image: "/images/rdk-hero-2.jpg", alt: "The RD.K Developments sign on a building" },
+    { image: "/images/rdk-hero-3.jpg", alt: "An RD.K lobby with wayfinding signage" },
+  ],
+  subline: "Exceptional places to live, work and invest, built to last.", // brand guide, shortened
+};
+
 export const enquiry = {
   heading: "Enquire now",
+  image: "/images/enquire-showroom.jpg", // Pexels (free to use, no credit required)
   text: "Leave your details and we'll email you Autovia's brochure straight away. Our sales team will call you within one working day.",
   // PLACEHOLDER: confirm the units on offer, and whether they're for sale, rent or both
   updatesLabel: "Keep me updated on news and offers",
@@ -362,26 +375,6 @@ export const registerInterest = {
   button: "Register interest",
   heading: "Register your interest",
   submit: "Submit",
-  // First entry is the default. Most visitors are in Egypt, then the Gulf
-  countryCodes: [
-    { code: "EG", dial: "+20" },
-    { code: "SA", dial: "+966" },
-    { code: "AE", dial: "+971" },
-    { code: "KW", dial: "+965" },
-    { code: "QA", dial: "+974" },
-    { code: "BH", dial: "+973" },
-    { code: "OM", dial: "+968" },
-    { code: "JO", dial: "+962" },
-    { code: "LB", dial: "+961" },
-    { code: "LY", dial: "+218" },
-    { code: "SD", dial: "+249" },
-    { code: "GB", dial: "+44" },
-    { code: "US", dial: "+1" },
-    { code: "CA", dial: "+1" },
-    { code: "DE", dial: "+49" },
-    { code: "FR", dial: "+33" },
-    { code: "IT", dial: "+39" },
-  ],
 };
 
 // Automated emails (sent through Resend; settings in .env.local and Vercel, see src/lib/email.ts)
@@ -400,3 +393,38 @@ export const emails = {
     subject: "New lead from the website", // the visitor's name and the form are added after it
   },
 };
+
+// Thank-you shown in place of the form (Register interest, and the Enquire now set to "inline").
+// The other Enquire now forms go to the /thank-you page instead
+export const inlineThanks = {
+  enquiry: {
+    line: "Our team will be in touch shortly to discuss your enquiry in further detail.",
+    note: "A confirmation is on its way to your inbox. We look forward to connecting with you.",
+  },
+  registerInterest: {
+    line: "We've registered your interest. Our team will be in touch shortly.",
+    note: "Keep an eye on your inbox for a confirmation from RD.K Developments.",
+  },
+};
+
+// Phone country codes for both forms. First entry is the default. Most visitors are in Egypt, then the Gulf
+export const countryCodes = [
+  { code: "EG", dial: "+20" },
+  { code: "SA", dial: "+966" },
+  { code: "AE", dial: "+971" },
+  { code: "KW", dial: "+965" },
+  { code: "QA", dial: "+974" },
+  { code: "BH", dial: "+973" },
+  { code: "OM", dial: "+968" },
+  { code: "JO", dial: "+962" },
+  { code: "LB", dial: "+961" },
+  { code: "LY", dial: "+218" },
+  { code: "SD", dial: "+249" },
+  { code: "GB", dial: "+44" },
+  { code: "US", dial: "+1" },
+  { code: "CA", dial: "+1" },
+  { code: "DE", dial: "+49" },
+  { code: "FR", dial: "+33" },
+  { code: "IT", dial: "+39" },
+];
+

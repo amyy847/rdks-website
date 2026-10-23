@@ -3,16 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Logo from "./Logo";
 import Odometer from "./Odometer";
-import { company, developments, hero } from "@/content/site";
+import { company, developments, hero, heroRdk } from "@/content/site";
 
 const SLIDE_MS = 6500;
 
-export default function Hero() {
+/**
+ * Home hero. Two versions to compare: "autovia" (the launch) and "rdk" (the company), picked by Home from ?hero=rdk.
+ */
+export default function Hero({ variant = "autovia" }: { variant?: "autovia" | "rdk" }) {
   const autovia = developments[0];
+  const rdk = variant === "rdk";
+  const slides = rdk ? heroRdk.slides : hero.slides;
+  const stats = rdk ? [] : autovia.stats;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
-  const count = hero.slides.length;
+  const count = slides.length;
 
   useEffect(() => {
     if (paused) return;
@@ -23,12 +30,12 @@ export default function Hero() {
   return (
     <section
       aria-roledescription="carousel"
-      aria-label="Autovia"
+      aria-label={rdk ? company.fullName : autovia.name}
       className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-green text-white"
     >
       {/* Photos: crossfade with a slow push-in on the active one */}
       <div className="absolute inset-0 -z-10">
-        {hero.slides.map((slide, i) => (
+        {slides.map((slide, i) => (
           <div
             key={slide.image}
             aria-hidden={i !== active}
@@ -53,10 +60,15 @@ export default function Hero() {
       <div className="container-site pt-32 md:pt-40">
         <p className="mb-5 flex items-center gap-3 type-eyebrow text-white/85">
           <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
-          {company.byline} · {autovia.status} · {autovia.location}
+          {rdk ? company.tagline : `${company.byline} · ${autovia.status} · ${autovia.location}`}
         </p>
         <h1>
-          {autovia.logo ? (
+          {rdk ? (
+            <>
+              <span className="sr-only">{company.fullName}</span>
+              <Logo className="w-[min(80vw,30rem)] text-cream" />
+            </>
+          ) : autovia.logo ? (
             <>
               <span className="sr-only">{hero.headline}</span>
               {/* eslint-disable-next-line @next/next/no-img-element -- plain img keeps the wordmark crisp at any width */}
@@ -67,13 +79,13 @@ export default function Hero() {
           )}
         </h1>
         <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <p className="type-lead max-w-[34ch] text-white/85">{hero.subline}</p>
+          <p className="type-lead max-w-[34ch] text-white/85">{rdk ? heroRdk.subline : hero.subline}</p>
           <div className="flex flex-wrap gap-3">
             <Link href="#enquire" className="btn btn-gold">
               Enquire now
             </Link>
-            <Link href={`/developments/${autovia.slug}`} className="btn btn-ghost-light">
-              Explore Autovia
+            <Link href={rdk ? "/developments" : `/developments/${autovia.slug}`} className="btn btn-ghost-light">
+              {rdk ? "Our developments" : "Explore Autovia"}
             </Link>
           </div>
         </div>
@@ -82,7 +94,7 @@ export default function Hero() {
       {/* Instrument strip: key numbers + slide controls */}
       <div className="container-site mt-12 md:mt-16">
         <div className="grid grid-cols-2 gap-x-6 gap-y-6 border-t border-white/20 py-7 md:grid-cols-[repeat(4,minmax(0,1fr))_auto] md:gap-x-10 md:py-9">
-          {autovia.stats.map((s, i) => (
+          {stats.map((s, i) => (
             <div key={s.label}>
               <Odometer
                 value={s.value}
@@ -96,7 +108,7 @@ export default function Hero() {
           ))}
 
           <div className="col-span-2 flex items-center gap-2 md:col-span-1 md:self-start">
-            {hero.slides.map((slide, i) => (
+            {slides.map((slide, i) => (
               <button
                 key={slide.image}
                 type="button"

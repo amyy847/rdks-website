@@ -35,6 +35,11 @@ Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mai
 - Buttons: `.btn` plus `.btn-gold`, `.btn-ghost-light` or `.btn-ghost-dark`. Layout container: `.container-site`.
 - Must work well on phones; most visitors come from Instagram and WhatsApp.
 
+## Options kept side by side for the client (24 October 2026 meeting)
+- Home hero: Autovia version at `/`, RD.K version at `/?hero=rdk` (`Hero.tsx` `variant`, slides in `site.ts` > `heroRdk`). Remove the loser after she picks.
+- After sending a form: Register interest and the Contact page's Enquire now thank the visitor in place (`InlineThanks.tsx`, copy in `site.ts` > `inlineThanks`); the other Enquire now forms go to `/thank-you`. Switch with `<EnquireSection confirmation="inline" />`.
+- Both forms share `PhoneField.tsx` (country code + number, codes in `site.ts` > `countryCodes`) and post one `phone` like "+20 10 1234 5678".
+
 ## Client docs (in Amy's Claude account)
 - Sitemap and client checklist: https://claude.ai/artifact/66eq2JZTF551U7H8GqtYqV
 - Quotation (EGP 6,300, including the 50% rush fee): https://claude.ai/artifact/Do7b1hKAJ23WqVf9hRq2u9
