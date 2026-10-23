@@ -383,3 +383,20 @@ export const registerInterest = {
     { code: "IT", dial: "+39" },
   ],
 };
+
+// Automated emails (sent through Resend; settings in .env.local and Vercel, see src/lib/email.ts)
+export const emails = {
+  autoReply: {
+    subject: "Thank you for contacting RD.K Developments",
+    // From the client, word for word. The greeting ("Dear Sara,") and the sign-off are added around it
+    paragraphs: [
+      "Thank you for reaching out to RD.K Developments.",
+      "We’ve received your inquiry. A member of our team will be in touch shortly to discuss your project in further detail.",
+      "We look forward to connecting with you.",
+    ],
+    signOff: "RD.K Developments",
+  },
+  leadAlert: {
+    subject: "New lead from the website", // the visitor's name and the form are added after it
+  },
+};
