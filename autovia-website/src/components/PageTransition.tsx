@@ -43,29 +43,37 @@ export default function PageTransition() {
     document.documentElement.removeAttribute(TRANSITION_ATTR);
     window.dispatchEvent(new Event(REVEAL_EVENT));
 
+    // The panels can be gone by now (e.g. the page crashed under them and the tree was replaced)
+    if (!root.current || !dark.current || !light.current || !logo.current) {
+      state.current = "idle";
+      return;
+    }
     const fill = "forwards" as const;
-    logo.current!.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill });
-    const l = light.current!.animate(sweep(1, 0), { duration: REVEAL.light, delay: 150, easing: EASE_IN_OUT, fill });
-    const d = dark.current!.animate(sweep(1, 0), { duration: REVEAL.dark, delay: 150 + REVEAL.stagger, easing: EASE_IN_OUT, fill });
-    await Promise.all([l.finished, d.finished]);
+    logo.current.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill });
+    const l = light.current.animate(sweep(1, 0), { duration: REVEAL.light, delay: 150, easing: EASE_IN_OUT, fill });
+    const d = dark.current.animate(sweep(1, 0), { duration: REVEAL.dark, delay: 150 + REVEAL.stagger, easing: EASE_IN_OUT, fill });
+    await Promise.all([l.finished, d.finished]).catch(() => {}); // cancelled if the panels were removed mid-way
 
-    root.current!.getAnimations({ subtree: true }).forEach((a) => a.cancel());
-    root.current!.style.visibility = "hidden";
-    root.current!.style.pointerEvents = "none";
+    if (root.current) {
+      root.current.getAnimations({ subtree: true }).forEach((a) => a.cancel());
+      root.current.style.visibility = "hidden";
+      root.current.style.pointerEvents = "none";
+    }
     state.current = "idle";
   }, []);
 
   const cover = useCallback(async () => {
+    if (!root.current || !dark.current || !light.current || !logo.current) return;
     state.current = "covering";
     document.documentElement.setAttribute(TRANSITION_ATTR, "");
-    root.current!.style.visibility = "visible";
-    root.current!.style.pointerEvents = "auto"; // swallow clicks until the new page is shown
+    root.current.style.visibility = "visible";
+    root.current.style.pointerEvents = "auto"; // swallow clicks until the new page is shown
 
     const fill = "forwards" as const;
-    const d = dark.current!.animate(sweep(0, 1), { duration: COVER.dark, easing: EASE_OUT, fill });
-    const l = light.current!.animate(sweep(0, 1), { duration: COVER.light, delay: COVER.stagger, easing: EASE_OUT, fill });
-    logo.current!.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: COVER.stagger + COVER.light - 150, fill });
-    await Promise.all([d.finished, l.finished]);
+    const d = dark.current.animate(sweep(0, 1), { duration: COVER.dark, easing: EASE_OUT, fill });
+    const l = light.current.animate(sweep(0, 1), { duration: COVER.light, delay: COVER.stagger, easing: EASE_OUT, fill });
+    logo.current.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: COVER.stagger + COVER.light - 150, fill });
+    await Promise.all([d.finished, l.finished]).catch(() => {});
     state.current = "covered";
   }, []);
 
@@ -99,6 +107,15 @@ export default function PageTransition() {
   useEffect(() => {
     reveal();
   }, [pathname, reveal]);
+
+  // If this unmounts mid-transition, don't leave the fallback timer or the "transitioning" flag behind
+  useEffect(
+    () => () => {
+      clearTimeout(fallback.current);
+      document.documentElement.removeAttribute(TRANSITION_ATTR);
+    },
+    [],
+  );
 
   return (
     <div ref={root} aria-hidden="true" className="pointer-events-none invisible fixed inset-0 z-[200]">
