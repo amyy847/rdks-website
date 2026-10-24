@@ -44,11 +44,6 @@ export default function Footer() {
             <h2 className="type-eyebrow text-white/55">Talk to us</h2>
             <ul className="mt-4 space-y-2.5">
               <li>
-                <a href={contact.phoneHref} className="hover:text-gold">
-                  {contact.phone}
-                </a>
-              </li>
-              <li>
                 <a href={`mailto:${contact.email}`} className="break-all hover:text-gold">
                   {contact.email}
                 </a>

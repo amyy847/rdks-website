@@ -28,14 +28,6 @@ export default function ContactPage() {
         <div className="container-site grid gap-12 md:grid-cols-12">
           <dl className="grid content-start gap-8 sm:grid-cols-2 md:col-span-5 md:grid-cols-1">
             <div>
-              <dt className="text-sm text-moss">Phone</dt>
-              <dd className="mt-1 text-xl font-semibold">
-                <a href={contact.phoneHref} className="hover:text-moss">
-                  {contact.phone}
-                </a>
-              </dd>
-            </div>
-            <div>
               <dt className="text-sm text-moss">Email</dt>
               <dd className="mt-1 break-all text-xl font-semibold">
                 <a href={`mailto:${contact.email}`} className="hover:text-moss">

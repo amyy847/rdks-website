@@ -7,7 +7,7 @@ import EnquireSection from "@/components/EnquireSection";
 import Gallery from "@/components/Gallery";
 import Odometer from "@/components/Odometer";
 import Partners from "@/components/Partners";
-import { company, contact, developments } from "@/content/site";
+import { company, developments } from "@/content/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -248,14 +248,6 @@ export default async function DevelopmentPage({ params }: Props) {
               <div>
                 <dt className="text-sm text-moss">Visiting hours</dt>
                 <dd className="mt-1 text-lg">{dev.site.hours}</dd>
-              </div>
-              <div>
-                <dt className="text-sm text-moss">Call us</dt>
-                <dd className="mt-1 text-lg">
-                  <a href={contact.phoneHref} className="font-semibold hover:text-moss">
-                    {contact.phone}
-                  </a>
-                </dd>
               </div>
             </dl>
             <a href={dev.site.mapUrl} target="_blank" rel="noopener noreferrer" className="btn btn-gold mt-10">

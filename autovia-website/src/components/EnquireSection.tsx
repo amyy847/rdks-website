@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { InlineThanks, useInlineThanks } from "./InlineThanks";
 import PhoneField, { phoneFromForm } from "./PhoneField";
-import { contact, developments, enquiry, inlineThanks } from "@/content/site";
+import { developments, enquiry, inlineThanks } from "@/content/site";
 import { FIELD_LIGHT_CLASS as field, submitEnquiry } from "@/lib/enquiry";
 
 type Status = "idle" | "sending" | "error";
@@ -59,14 +59,6 @@ export default function EnquireSection({ project = developments[0].name }: { pro
                   <h2 className="type-h2">{enquiry.heading}</h2>
                   <p className="mt-4 max-w-[48ch] text-green/80">{enquiry.text}</p>
                   <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-3 border-b border-laurel/60 pb-6 text-sm">
-                    <div>
-                      <dt className="text-green/65">Rather talk now?</dt>
-                      <dd className="mt-0.5 text-base font-semibold">
-                        <a href={contact.phoneHref} className="hover:text-moss">
-                          {contact.phone}
-                        </a>
-                      </dd>
-                    </div>
                     <div>
                       <dt className="text-green/65">{dev.name} visiting hours</dt>
                       <dd className="mt-0.5 text-base">{dev.site.hours}</dd>

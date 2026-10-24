@@ -21,8 +21,6 @@ export const company = {
 };
 
 export const contact = {
-  phone: "+20 100 000 0000", // PLACEHOLDER
-  phoneHref: "tel:+201000000000",
   email: "contact@rdkeg.com", // from the Autovia branding book
   address: "RD.K Building, North of Katameya Tunnel, Ring Road", // from the client (24 October 2026)
   mapUrl: "", // PLACEHOLDER: Google Maps link for the office. "Get directions" links stay hidden while empty
@@ -199,7 +197,7 @@ export const aboutPage = {
 
 export const contactPage = {
   heading: "Contact us",
-  intro: "Call, message or drop by the office. We reply to every enquiry within one working day.", // PLACEHOLDER
+  intro: "Email us, send an enquiry or drop by the office. We reply to every enquiry within one working day.", // PLACEHOLDER
 };
 
 export const hero = {
