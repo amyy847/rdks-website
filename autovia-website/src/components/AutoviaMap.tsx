@@ -1,24 +1,30 @@
 /**
  * Illustrated location map for Autovia, after Misr Italia's development maps, in RD.K colours.
- * Schematic, not to scale: Ring Road, the nearby landmarks named in the Autovia book, and Autovia's pin.
+ * Schematic, not to scale, but laid out like Google Maps: Autovia on the west side of the Ring Road
+ * next to Aian Business Park, with The Drive, 5A by Waterway and Park Street East across the road.
  * The important part sits in the middle so phones (which crop the sides) still show it.
  */
 const C = { green: "#0A3B25", moss: "#2A6151", laurel: "#B2B7AA", cream: "#FCF7F0", gold: "#D8C2A4" };
 
-// Ring Road runs top to bottom through the middle
-const RING = "M700 -40 C660 120 600 250 600 360 S640 560 700 720";
+// Ring Road runs top to bottom, leaning slightly right like the real road; service road alongside to the east
+const RING = "M600 -40 C612 160 628 420 650 680";
+const SERVICE = "M668 -40 C680 160 694 420 716 680";
 
-function Pin({ x, y, label, side = "right" }: { x: number; y: number; label: string | string[]; side?: "left" | "right" | "below" }) {
-  const right = side === "right";
+type Side = "left" | "right" | "above" | "below";
+
+function Pin({ x, y, label, side = "right" }: { x: number; y: number; label: string | string[]; side?: Side }) {
   const lines = Array.isArray(label) ? label : [label];
+  const centred = side === "above" || side === "below";
+  const tx = centred ? x : side === "right" ? x + 18 : x - 18;
+  const ty = side === "below" ? y + 40 : side === "above" ? y - 22 - (lines.length - 1) * 23 : y + 6 - ((lines.length - 1) * 23) / 2;
   return (
     <g>
       <circle cx={x} cy={y} r={14} fill={C.cream} opacity={0.18} />
       <circle cx={x} cy={y} r={6} fill={C.cream} />
       <text
-        x={side === "below" ? x : right ? x + 18 : x - 18}
-        y={side === "below" ? y + 40 : y + 6}
-        textAnchor={side === "below" ? "middle" : right ? "start" : "end"}
+        x={tx}
+        y={ty}
+        textAnchor={centred ? "middle" : side === "right" ? "start" : "end"}
         fill={C.cream}
         fontSize={19}
         fontWeight={600}
@@ -26,7 +32,7 @@ function Pin({ x, y, label, side = "right" }: { x: number; y: number; label: str
         style={{ textTransform: "uppercase" }}
       >
         {lines.map((line, i) => (
-          <tspan key={line} x={side === "below" ? x : right ? x + 18 : x - 18} dy={i === 0 ? 0 : 23}>
+          <tspan key={line} x={tx} dy={i === 0 ? 0 : 23}>
             {line}
           </tspan>
         ))}
@@ -39,58 +45,54 @@ export default function AutoviaMap() {
   return (
     <svg viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="autovia-map-title" className="size-full">
       <title id="autovia-map-title">
-        Map of Autovia on the Ring Road, near The Drive, 5A by The Waterway, Park Street and South 90th Street (not to scale)
+        Map of Autovia on the west side of the Ring Road, next to Aian Business Park, near The Drive, 5A by Waterway and Park
+        Street East (not to scale)
       </title>
       <rect width="1200" height="640" fill={C.green} />
 
       {/* City blocks */}
       <g fill={C.moss}>
-        <path d="M-20 60 L470 30 L520 230 L300 300 L-20 260Z" opacity={0.35} />
-        <path d="M-20 300 L520 290 L540 470 L230 560 L-20 520Z" opacity={0.22} />
-        <path d="M-20 560 L540 520 L600 660 L-20 660Z" opacity={0.3} />
-        <path d="M760 20 L1220 -10 L1220 170 L800 200Z" opacity={0.28} />
-        <path d="M740 250 L1220 220 L1220 440 L770 470Z" opacity={0.38} />
-        <path d="M770 540 L1220 500 L1220 660 L800 660Z" opacity={0.24} />
+        <path d="M-20 40 L440 20 L470 250 L250 290 L-20 280Z" opacity={0.3} />
+        <path d="M-20 330 L470 310 L500 660 L-20 660Z" opacity={0.22} />
+        <path d="M760 -20 L1220 -20 L1220 210 L780 230Z" opacity={0.3} />
+        <path d="M790 280 L1220 260 L1220 470 L810 490Z" opacity={0.38} />
+        <path d="M800 540 L1220 520 L1220 660 L820 660Z" opacity={0.24} />
       </g>
 
-      {/* Secondary roads */}
-      <g fill="none" stroke={C.laurel} strokeLinecap="round">
-        <path id="park-st" d="M632 230 C780 222 960 206 1230 196" strokeWidth={7} opacity={0.55} />
-        <path id="s90" d="M622 500 C800 488 980 492 1230 470" strokeWidth={9} opacity={0.6} />
-        <path d="M-30 384 C200 376 420 368 600 362" strokeWidth={5} opacity={0.35} />
-        <path d="M612 300 C660 300 700 340 740 340" strokeWidth={4} opacity={0.4} />
+      {/* Local roads: the road west of Autovia, and streets into The Drive, 5A and Park Street East */}
+      <g fill="none" stroke={C.laurel} strokeLinecap="round" opacity={0.45}>
+        <path d="M470 -40 C482 180 500 420 560 680" strokeWidth={9} />
+        <path d="M700 250 C800 246 900 240 1230 232" strokeWidth={6} />
+        <path d="M712 520 C820 515 940 509 1230 501" strokeWidth={6} />
+        <path d="M-30 300 C150 296 330 292 478 300" strokeWidth={5} />
       </g>
-      {/* Street names hide on phones, where the sides are cropped (the distances below name them) */}
-      <text fontSize={15} fontWeight={600} letterSpacing="0.18em" fill={C.laurel} opacity={0.85} className="max-sm:hidden">
-        <textPath href="#park-st" startOffset="22%">PARK STREET</textPath>
-      </text>
-      <text fontSize={15} fontWeight={600} letterSpacing="0.18em" fill={C.laurel} opacity={0.85} dy={-12} className="max-sm:hidden">
-        <textPath href="#s90" startOffset="12%">SOUTH 90TH STREET</textPath>
-      </text>
 
-      {/* Ring Road: wide band with a dashed centre line */}
-      <path d={RING} fill="none" stroke={C.laurel} strokeWidth={22} opacity={0.9} />
+      {/* Service road (thin) and Ring Road (wide band with a dashed centre line) */}
+      <path d={SERVICE} fill="none" stroke={C.laurel} strokeWidth={7} opacity={0.6} />
+      <path d={RING} fill="none" stroke={C.laurel} strokeWidth={26} opacity={0.9} />
       <path id="ring" d={RING} fill="none" stroke={C.green} strokeWidth={2} strokeDasharray="14 12" />
       <text fontSize={16} fontWeight={700} letterSpacing="0.3em" fill={C.green} dy={6}>
-        <textPath href="#ring" startOffset="66%">
+        <textPath href="#ring" startOffset="31%">
           RING ROAD
         </textPath>
       </text>
 
-      {/* Landmarks */}
-      <Pin x={700} y={190} label="The Drive" />
-      <Pin x={740} y={340} label={["5A by", "The Waterway"]} side="below" />
+      {/* Landmarks, placed as on Google Maps */}
+      <Pin x={495} y={170} label={["Aian", "Business Park"]} side="above" />
+      <Pin x={760} y={150} label="The Drive" />
+      <Pin x={850} y={330} label={["5A by", "Waterway"]} side="below" />
+      <Pin x={740} y={455} label={["Park Street", "East"]} side="right" />
 
-      {/* Autovia: gold pin, dashed line up to its label */}
-      <line x1={540} y1={196} x2={540} y2={352} stroke={C.gold} strokeWidth={2} strokeDasharray="5 6" />
-      <circle cx={540} cy={366} r={26} fill={C.gold} opacity={0.2} />
-      <circle cx={540} cy={366} r={11} fill={C.gold} />
-      <circle cx={540} cy={366} r={4} fill={C.green} />
-      <g transform="translate(400 76)">
-        <rect width={280} height={120} rx={14} fill={C.moss} />
-        <image href="/images/autovia-logo.png" x={30} y={26} width={220} height={35} />
-        <rect x={64} y={78} width={152} height={26} rx={4} fill="none" stroke={C.gold} strokeDasharray="4 4" />
-        <text x={140} y={96} textAnchor="middle" fontSize={13} fontWeight={600} letterSpacing="0.16em" fill={C.gold}>
+      {/* Autovia: gold pin between the Ring Road and the road to its west, with its label below */}
+      <circle cx={540} cy={320} r={28} fill={C.gold} opacity={0.2} />
+      <circle cx={540} cy={320} r={12} fill={C.gold} />
+      <circle cx={540} cy={320} r={4.5} fill={C.green} />
+      <line x1={540} y1={346} x2={540} y2={402} stroke={C.gold} strokeWidth={2} strokeDasharray="5 6" />
+      <g transform="translate(330 402)">
+        <rect width={250} height={96} rx={14} fill={C.moss} />
+        <image href="/images/autovia/autovia-wordmark.png" x={25} y={22} width={200} height={17} />
+        <rect x={49} y={56} width={152} height={26} rx={4} fill="none" stroke={C.gold} strokeDasharray="4 4" />
+        <text x={125} y={74} textAnchor="middle" fontSize={13} fontWeight={600} letterSpacing="0.16em" fill={C.gold}>
           RING ROAD
         </text>
       </g>

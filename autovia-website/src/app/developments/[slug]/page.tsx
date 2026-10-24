@@ -212,11 +212,11 @@ export default async function DevelopmentPage({ params }: Props) {
 
       {dev.slug === "autovia" && (
         <section aria-labelledby="map-heading" className="pb-20 md:pb-32">
-          <div className="container-site lg:max-w-6xl">
+          <div className="container-site lg:max-w-7xl">
             <h2 id="map-heading" className="type-h2 mb-10 md:mb-14">
               Location map
             </h2>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl sm:aspect-[3/2] lg:aspect-[15/8]">
+            <div className="relative aspect-square overflow-hidden rounded-2xl sm:aspect-[3/2] lg:aspect-[15/8]">
               <AutoviaMap />
             </div>
             {dev.distances && dev.distances.length > 0 && (

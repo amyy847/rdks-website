@@ -142,8 +142,10 @@ export const developments: Development[] = [
     ],
     distances: [
       // From the client (24 October 2026). Add Park Street, South 90th Street etc. when she sends their times
+      { place: "Aian Business Park", time: "2 mins" },
+      { place: "Park Street East", time: "4 mins" },
       { place: "The Drive", time: "5 mins" },
-      { place: "5A by The Waterway", time: "7 mins" },
+      { place: "5A by Waterway", time: "7 mins" },
     ],
     features: [
       // book: master plan, architecture and identity
