@@ -4,23 +4,13 @@ import Image from "next/image";
 import { useState } from "react";
 import { InlineThanks, useInlineThanks } from "./InlineThanks";
 import PhoneField, { phoneFromForm } from "./PhoneField";
-import { navigateWithTransition } from "./PageTransition";
 import { contact, developments, enquiry, inlineThanks } from "@/content/site";
 import { FIELD_LIGHT_CLASS as field, submitEnquiry } from "@/lib/enquiry";
 
 type Status = "idle" | "sending" | "error";
 
-/**
- * confirmation: "page" goes to /thank-you after sending; "inline" swaps the form for a thank-you message in place.
- * (Both kept for now so the client can compare.)
- */
-export default function EnquireSection({
-  project = developments[0].name,
-  confirmation = "page",
-}: {
-  project?: string;
-  confirmation?: "page" | "inline";
-}) {
+/** Enquiry card that overlaps the footer. After sending, the form fades out and a thank-you fades in. */
+export default function EnquireSection({ project = developments[0].name }: { project?: string }) {
   const dev = developments.find((d) => d.name === project) ?? developments[0];
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
@@ -41,8 +31,7 @@ export default function EnquireSection({
         updates: data.updates === "on",
         source: "Enquiry form",
       });
-      if (confirmation === "inline") thanks.show(String(data.name));
-      else navigateWithTransition("/thank-you");
+      thanks.show(String(data.name));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Your enquiry didn't go through. Try again.");
       setStatus("error");

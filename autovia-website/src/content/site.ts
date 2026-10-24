@@ -83,18 +83,18 @@ export const developments: Development[] = [
     location: "Ring Road, New Cairo", // book
     status: "Now launching", // PLACEHOLDER: confirm (open, launching, under construction?)
     summary: "A landmark automotive, retail and office destination on Cairo's Ring Road.", // book, shortened
-    cover: "/images/autovia-cover.jpg",
+    cover: "/images/autovia/b05-gb-2.jpg",
     cardImages: [
-      "/images/autovia-cover.jpg",
-      "/images/autovia-gallery-1.jpg",
-      "/images/hero-1.jpg",
-      "/images/hero-3.jpg",
+      "/images/autovia/b05-gb-2.jpg",
+      "/images/autovia/autovia-sign.jpg",
+      "/images/autovia/b01-1.jpg",
+      "/images/autovia/b04-eim-1.jpg",
     ],
     stats: [
       // From the client (23 October 2026)
       { value: 500, prefix: "EGP", suffix: " M", label: "Invested in Autovia" },
-      { value: 12000, suffix: " m²", label: "Development area" },
-      { value: 12, label: "Car brands under one roof" },
+      { value: 13000, suffix: " m²", label: "Development area" },
+      { value: 6, label: "Car brands under one roof" },
     ],
     site: {
       address: "Ring Road, New Cairo, near South 90th Street", // book. PLACEHOLDER: exact address
@@ -118,18 +118,30 @@ export const developments: Development[] = [
       { title: "Offices", text: "Modern administrative space for businesses that want a visible, accessible address." },
     ],
     masterplan: {
-      image: "/images/autovia-masterplan.jpg",
+      image: "/images/autovia/g-2.jpg",
       alt: "Aerial view of Autovia's buildings along the Ring Road",
       text: "An internal circulation road gives each standalone building prime frontage and independent access, turning them into individual landmarks within one destination. Directly connected to the Ring Road, the project ensures seamless access and maximum visibility.", // book
     },
     brands: [], // PLACEHOLDER: tenant brands once signed (names now, logos later). Empty hides the section
     gallery: [
-      { image: "/images/autovia-gallery-1.jpg", alt: "The Autovia sign on the building's dark façade" },
-      { image: "/images/autovia-gallery-2.jpg", alt: "A curved glass showroom on the corner of the site" },
-      { image: "/images/autovia-gallery-3.jpg", alt: "Cars on display behind full-height glazing" },
-      { image: "/images/autovia-gallery-4.jpg", alt: "A showroom carrying a tenant's red brand panel" },
-      { image: "/images/autovia-gallery-5.jpg", alt: "A showroom carrying a tenant's blue brand panels" },
-      { image: "/images/autovia-gallery-6.jpg", alt: "Autovia's buildings lined with palms along the road" },
+      // Renders from the client (October 2026). The first 5 show on the page; the rest open in the viewer
+      { image: "/images/autovia/b01-1.jpg", alt: "Autovia's curved glass corner showroom" },
+      { image: "/images/autovia/g-3.jpg", alt: "Autovia's showrooms lined with palms along the road" },
+      { image: "/images/autovia/autovia-sign.jpg", alt: "The Autovia sign on the building's dark façade" },
+      { image: "/images/autovia/b05-gb-2.jpg", alt: "A Deepal showroom behind a row of palms" },
+      { image: "/images/autovia/b02-gac-1.jpg", alt: "The GAC, Jameel Motors and AION showroom" },
+      { image: "/images/autovia/g-1.jpg", alt: "Aerial view of Autovia beside the Ring Road" },
+      { image: "/images/autovia/b01-2.jpg", alt: "Aerial view of the curved showroom and the road front" },
+      { image: "/images/autovia/b01-3.jpg", alt: "The full row of showrooms from the road" },
+      { image: "/images/autovia/b02-gac-2.jpg", alt: "The GAC showroom and its service entrance" },
+      { image: "/images/autovia/b03-1.jpg", alt: "A corner showroom with a blue brand fascia" },
+      { image: "/images/autovia/b03-2.jpg", alt: "A showroom with blue brand panels and parking" },
+      { image: "/images/autovia/b04-eim-1.jpg", alt: "A showroom with a red brand panel behind palms" },
+      { image: "/images/autovia/b04-eim-2.jpg", alt: "The service building with red brand panels" },
+      { image: "/images/autovia/b05-gb-1.jpg", alt: "The Deepal service centre and parking" },
+      { image: "/images/autovia/b05-gb-5.jpg", alt: "A standalone showroom and its car park" },
+      { image: "/images/autovia/g-2.jpg", alt: "Aerial view of Autovia's buildings and car parks" },
+      { image: "/images/autovia/g-8.jpg", alt: "Showroom frontages along the road" },
     ],
     distances: [
       // From the client (24 October 2026). Add Park Street, South 90th Street etc. when she sends their times
@@ -181,19 +193,8 @@ export const aboutPage = {
     building: { image: "/images/about-building.jpg", alt: "An RD.K building at golden hour" },
     masterplan: { image: "/images/about-masterplan.jpg", alt: "Reviewing a masterplan" },
   },
-  // PLACEHOLDER: optional numbers about the company. An empty list hides the row.
-  stats: [
-    { value: 15, suffix: "+", label: "Years of team experience" },
-    { value: 40, label: "People on the team" },
-    { value: 1, label: "Development open" },
-  ] as Stat[],
-  // PLACEHOLDER: optional founder or team message. Set to null to hide it.
-  founder: {
-    quote: "We'd rather build one place people love than ten they put up with.",
-    name: "Founder name",
-    role: "Founder and CEO",
-    image: "/images/about-founder.jpg",
-  } as { quote: string; name: string; role: string; image: string } | null,
+  // Optional numbers about the company (e.g. years of experience). An empty list hides the row
+  stats: [] as Stat[],
 };
 
 export const contactPage = {
@@ -202,18 +203,6 @@ export const contactPage = {
 };
 
 export const hero = {
-  slides: [
-    // Renders from the Autovia branding book
-    { image: "/images/hero-1.jpg", alt: "A curved glass showroom at Autovia" },
-    { image: "/images/hero-2.jpg", alt: "Cars on display in an Autovia showroom" },
-    { image: "/images/hero-3.jpg", alt: "Autovia's buildings and palms along the Ring Road" },
-  ],
-  headline: "Autovia",
-  subline: "Built to be seen. A landmark automotive, retail and office destination on Cairo's Ring Road.", // book
-};
-
-// Second Home hero, about RD.K rather than Autovia. Shown at /?hero=rdk so both can be compared
-export const heroRdk = {
   slides: [
     // Images from the RD.K brand guidelines
     { image: "/images/rdk-hero-1.jpg", alt: "Reviewing an RD.K masterplan" },
@@ -230,13 +219,6 @@ export const enquiry = {
   // PLACEHOLDER: confirm the units on offer, and whether they're for sale, rent or both
   updatesLabel: "Keep me updated on news and offers",
   interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Something else"],
-};
-
-export const thankYouPage = {
-  heading: "Thank you",
-  // Assumes the enquiry email is live: until it is, visitors won't receive the brochure
-  text: "Your enquiry is in. Autovia's brochure is on its way to your inbox, and our sales team will call you within one working day.",
-  followText: "For news and new launches from RD.K,",
 };
 
 export type PolicySection = { heading: string; paragraphs?: string[]; list?: string[]; after?: string[] };
@@ -376,7 +358,7 @@ export const partners = {
   ] as Partner[],
 };
 
-// The "Register interest" window, opened from the Home hero and each development's header
+// The "Register interest" window, opened from the header and the Developments "next launch" card
 export const registerInterest = {
   button: "Register interest",
   heading: "Register your interest",
@@ -400,16 +382,15 @@ export const emails = {
   },
 };
 
-// Thank-you shown in place of the form (Register interest, and the Enquire now set to "inline").
-// The other Enquire now forms go to the /thank-you page instead
+// Thank-you that fades in where the form was, after sending (Enquire now and Register interest)
 export const inlineThanks = {
   enquiry: {
     line: "Our team will be in touch shortly to discuss your enquiry in further detail.",
     note: "A confirmation is on its way to your inbox. We look forward to connecting with you.",
   },
   registerInterest: {
-    // Same tone as the client's auto-reply email
-    line: "We've received your details. We look forward to sharing our latest launches with you.",
+    line: "You're on our list. You'll be the first to hear about our new projects and launches.",
+    note: "Our newest is Autovia: a landmark destination for car showrooms, service centres, retail and offices on Cairo's Ring Road.",
   },
 };
 

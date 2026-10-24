@@ -4,19 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
-import Odometer from "./Odometer";
-import { company, developments, hero, heroRdk } from "@/content/site";
+import { company, hero } from "@/content/site";
 
 const SLIDE_MS = 6500;
 
-/**
- * Home hero. Two versions to compare: "autovia" (the launch) and "rdk" (the company), picked by Home from ?hero=rdk.
- */
-export default function Hero({ variant = "autovia" }: { variant?: "autovia" | "rdk" }) {
-  const autovia = developments[0];
-  const rdk = variant === "rdk";
-  const slides = rdk ? heroRdk.slides : hero.slides;
-  const stats = rdk ? [] : autovia.stats;
+/** Home hero: RD.K's photos crossfading behind the logo and slogan */
+export default function Hero() {
+  const { slides } = hero;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const count = slides.length;
@@ -30,7 +24,7 @@ export default function Hero({ variant = "autovia" }: { variant?: "autovia" | "r
   return (
     <section
       aria-roledescription="carousel"
-      aria-label={rdk ? company.fullName : autovia.name}
+      aria-label={company.fullName}
       className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-green text-white"
     >
       {/* Photos: crossfade with a slow push-in on the active one */}
@@ -60,54 +54,29 @@ export default function Hero({ variant = "autovia" }: { variant?: "autovia" | "r
       <div className="container-site pt-32 md:pt-40">
         <p className="mb-5 flex items-center gap-3 type-eyebrow text-white/85">
           <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
-          {rdk ? company.tagline : `${company.byline} · ${autovia.status} · ${autovia.location}`}
+          {company.tagline}
         </p>
         <h1>
-          {rdk ? (
-            <>
-              <span className="sr-only">{company.fullName}</span>
-              <Logo className="w-[min(80vw,30rem)] text-cream" />
-            </>
-          ) : autovia.logo ? (
-            <>
-              <span className="sr-only">{hero.headline}</span>
-              {/* eslint-disable-next-line @next/next/no-img-element -- plain img keeps the wordmark crisp at any width */}
-              <img src={autovia.logo} alt="" className="w-[min(88vw,52rem)]" />
-            </>
-          ) : (
-            <span className="type-display">{hero.headline}</span>
-          )}
+          <span className="sr-only">{company.fullName}</span>
+          <Logo className="w-[min(80vw,30rem)] text-cream" />
         </h1>
         <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <p className="type-lead max-w-[34ch] text-white/85">{rdk ? heroRdk.subline : hero.subline}</p>
+          <p className="type-lead max-w-[34ch] text-white/85">{hero.subline}</p>
           <div className="flex flex-wrap gap-3">
             <Link href="#enquire" className="btn btn-gold">
               Enquire now
             </Link>
-            <Link href={rdk ? "/developments" : `/developments/${autovia.slug}`} className="btn btn-ghost-light">
-              {rdk ? "Our developments" : "Explore Autovia"}
+            <Link href="/developments" className="btn btn-ghost-light">
+              Our developments
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Instrument strip: key numbers + slide controls */}
+      {/* Slide controls */}
       <div className="container-site mt-12 md:mt-16">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-6 border-t border-white/20 py-7 md:grid-cols-[repeat(4,minmax(0,1fr))_auto] md:gap-x-10 md:py-9">
-          {stats.map((s, i) => (
-            <div key={s.label}>
-              <Odometer
-                value={s.value}
-                prefix={s.prefix}
-                suffix={s.suffix}
-                delay={500 + i * 150}
-                className="text-[2.25rem] font-semibold md:text-[3rem]"
-              />
-              <p className="mt-2 text-sm text-white/70">{s.label}</p>
-            </div>
-          ))}
-
-          <div className="col-span-2 flex items-center gap-2 md:col-span-1 md:self-start">
+        <div className="border-t border-white/20 py-7 md:py-9">
+          <div className="flex items-center gap-2">
             {slides.map((slide, i) => (
               <button
                 key={slide.image}

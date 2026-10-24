@@ -108,7 +108,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <EnquireSection confirmation="inline" />
+      <EnquireSection />
     </>
   );
 }

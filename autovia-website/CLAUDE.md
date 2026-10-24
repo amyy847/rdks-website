@@ -11,7 +11,7 @@ Website for Amy's client, a startup developer called **RD.K** (RD.K Developments
 - [x] About us: story, vision and mission, optional numbers and founder message, RDK's developments
 - Enquire Now is a white card (photo + form) that overlaps the top of the footer, after Misr Italia's development pages; same on every page that has it.
 - [x] Contact us: form, phone, email, office address, map, hours, socials, plus a card per showroom
-- [x] Thank you: shown after an enquiry (greets by first name from sessionStorage; noindex)
+- [x] Thank you: replaced by an in-place message after sending (no separate page, client's choice)
 - [x] Privacy policy (standard text in site.ts, needs client approval; update it if analytics or new providers are added)
 - [ ] 404
 
@@ -21,7 +21,7 @@ The visitor enters name, email, phone and interest, then:
 2. the sales team gets a lead notification
 3. the lead is saved to a Google Sheet
 
-Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mail is Microsoft 365 bought through GoDaddy (MX: ppe-hosted.com), so the Gmail app-password plan doesn't apply. Emails are built: `src/lib/email.ts` sends the client's auto-reply (copy in `site.ts` > `emails`) and a sales lead alert through Resend, in the background after the form answers (`after()` in `src/app/api/enquire/route.ts`). Settings are env vars (RESEND_API_KEY, EMAIL_FROM, EMAIL_REPLY_TO, LEADS_TO, SITE_URL), documented at the top of `email.ts`. rdkeg.com is being verified in Resend (CNAME records added in GoDaddy by the client's IT); until then only Resend's test sender works. Still to do: leads to a Google Sheet through an Apps Script web app. After a successful submit the form goes to `/thank-you` (done, via `navigateWithTransition`). The header's **Register interest** button (desktop and mobile menu) and the Developments page's next-launch card open one site-wide window form (`RegisterInterest.tsx`, mounted in the layout, cream with moss accents: name, email, country code + phone). The "Keep me updated on news and offers" opt-in is on the Enquire now form only. The heroes keep **Enquire now** (scrolls to the enquiry section). Both forms send through `src/lib/enquiry.ts` with a `source` field so leads can be told apart.
+Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mail is Microsoft 365 bought through GoDaddy (MX: ppe-hosted.com), so the Gmail app-password plan doesn't apply. Emails are built: `src/lib/email.ts` sends the client's auto-reply (copy in `site.ts` > `emails`) and a sales lead alert through Resend, in the background after the form answers (`after()` in `src/app/api/enquire/route.ts`). Settings are env vars (RESEND_API_KEY, EMAIL_FROM, EMAIL_REPLY_TO, LEADS_TO, SITE_URL), documented at the top of `email.ts`. rdkeg.com is being verified in Resend (CNAME records added in GoDaddy by the client's IT); until then only Resend's test sender works. Still to do: leads to a Google Sheet through an Apps Script web app. After a successful submit the thank-you fades in where the form was. The header's **Register interest** button (desktop and mobile menu) and the Developments page's next-launch card open one site-wide window form (`RegisterInterest.tsx`, mounted in the layout, cream with moss accents: name, email, country code + phone). The "Keep me updated on news and offers" opt-in is on the Enquire now form only. The heroes keep **Enquire now** (scrolls to the enquiry section). Both forms send through `src/lib/enquiry.ts` with a `source` field so leads can be told apart.
 
 ## Stack and conventions
 - Next.js 15 (App Router) + Tailwind CSS 4 + TypeScript. Deploy on Vercel.
@@ -35,10 +35,13 @@ Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mai
 - Buttons: `.btn` plus `.btn-gold`, `.btn-ghost-light` or `.btn-ghost-dark`. Layout container: `.container-site`.
 - Must work well on phones; most visitors come from Instagram. RD.K has no WhatsApp, so don't add WhatsApp links or buttons; Instagram is the only social for now.
 
-## Options kept side by side for the client (24 October 2026 meeting)
-- Home hero: Autovia version at `/`, RD.K version at `/?hero=rdk` (`Hero.tsx` `variant`, slides in `site.ts` > `heroRdk`). Remove the loser after she picks.
-- After sending a form: Register interest and the Contact page's Enquire now thank the visitor in place (`InlineThanks.tsx`, copy in `site.ts` > `inlineThanks`); the other Enquire now forms go to `/thank-you`. Switch with `<EnquireSection confirmation="inline" />`.
-- Both forms share `PhoneField.tsx` (country code + number, codes in `site.ts` > `countryCodes`) and post one `phone` like "+20 10 1234 5678".
+## Decided with the client (24 October 2026)
+- Home hero is RD.K's (logo, slogan, brand-guide photos); Autovia's numbers live on the Autovia page only.
+- No /thank-you page: after sending, Enquire now and Register interest swap the form for a thank-you that fades in (`InlineThanks.tsx`, copy in `site.ts` > `inlineThanks`).
+- Partners strip is on the Autovia page (after "Why Autovia"), not Home. No founder section and no company numbers on About.
+- Autovia gallery: 17 renders from the client in `public/images/autovia/` (one version of each scene, with the real tenant brands; the client also has placeholder-logo versions). Only the first 5 show; the last tile opens the viewer.
+- Both forms share `PhoneField.tsx` (country code + number) and post one `phone` like "+20 10 1234 5678".
+- Leads: emailed to contact@rdkeg.com (`LEADS_TO`) and saved to a Google Sheet via Apps Script (`src/lib/sheet.ts`; setup in `docs/leads-google-sheet.md`; needs `SHEET_WEBHOOK_URL` + `SHEET_SECRET`).
 
 ## Client docs (in Amy's Claude account)
 - Sitemap and client checklist: https://claude.ai/artifact/66eq2JZTF551U7H8GqtYqV

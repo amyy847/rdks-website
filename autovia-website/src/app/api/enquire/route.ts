@@ -1,11 +1,11 @@
 import { after, NextResponse } from "next/server";
 import { sendLeadEmails, type Lead } from "@/lib/email";
+import { saveLeadToSheet } from "@/lib/sheet";
 
 /**
  * Enquiry endpoint, used by the enquiry form and the Register interest window.
- * Validates the lead, answers the visitor straight away, then sends the emails
- * (auto-reply + sales alert, src/lib/email.ts) in the background.
- * NEXT STEP: also append the lead to a Google Sheet.
+ * Validates the lead, answers the visitor straight away, then in the background sends the emails
+ * (auto-reply + sales alert, src/lib/email.ts) and saves the lead to the Google Sheet (src/lib/sheet.ts).
  */
 
 // Cap every field so a bot can't post a novel
@@ -39,7 +39,7 @@ export async function POST(req: Request) {
   }
 
   console.log("[enquiry]", lead);
-  after(() => sendLeadEmails(lead));
+  after(() => Promise.all([sendLeadEmails(lead), saveLeadToSheet(lead)]));
 
   return NextResponse.json({ ok: true });
 }

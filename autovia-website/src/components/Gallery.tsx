@@ -6,13 +6,16 @@ import type { Photo } from "@/content/site";
 
 /**
  * Photo grid that opens into a full-screen viewer.
- * Phones get a swipeable row; larger screens get one big photo with the rest around it.
+ * Only the first `preview` photos show on the page (one big, four small on larger screens; a swipeable row on phones).
+ * The last one shown says how many more there are and opens the viewer, which steps through all of them.
  */
-export default function Gallery({ photos }: { photos: Photo[] }) {
+export default function Gallery({ photos, preview = 5 }: { photos: Photo[]; preview?: number }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const touchX = useRef(0);
   const [index, setIndex] = useState<number | null>(null);
   const count = photos.length;
+  const shown = photos.slice(0, preview);
+  const hidden = count - shown.length;
 
   useEffect(() => {
     const d = dialog.current;
@@ -27,8 +30,8 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
 
   return (
     <>
-      <ul className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:auto-rows-[14rem] md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0 md:pb-0 lg:auto-rows-[18rem]">
-        {photos.map((photo, i) => (
+      <ul className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:auto-rows-[11rem] md:grid-cols-4 md:gap-4 md:overflow-visible md:px-0 md:pb-0 lg:auto-rows-[14rem]">
+        {shown.map((photo, i) => (
           <li
             key={photo.image}
             className={`aspect-[4/5] w-[78%] shrink-0 snap-start md:aspect-auto md:w-auto ${i === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
@@ -36,15 +39,24 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
             <button
               type="button"
               onClick={() => setIndex(i)}
+              aria-label={i === shown.length - 1 && hidden > 0 ? `View all ${count} photos` : undefined}
               className="group relative block size-full overflow-hidden rounded-sm bg-laurel"
             >
               <Image
                 src={photo.image}
                 alt={photo.alt}
                 fill
-                sizes={i === 0 ? "(min-width: 768px) 66vw, 80vw" : "(min-width: 768px) 33vw, 80vw"}
+                sizes={i === 0 ? "(min-width: 768px) 50vw, 80vw" : "(min-width: 768px) 25vw, 80vw"}
                 className="object-cover transition-transform duration-[1200ms] ease-out-quint group-hover:scale-[1.04]"
               />
+              {i === shown.length - 1 && hidden > 0 && (
+                <span className="absolute inset-0 grid place-items-center bg-green/60 text-cream transition-colors duration-500 group-hover:bg-green/70">
+                  <span className="text-center">
+                    <span className="block text-3xl font-semibold md:text-4xl">+{hidden}</span>
+                    <span className="type-eyebrow mt-1 block">View all photos</span>
+                  </span>
+                </span>
+              )}
             </button>
           </li>
         ))}

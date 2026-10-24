@@ -20,12 +20,6 @@ const MAX_WAIT = 8000; // reveal anyway if the next page never arrives
 
 /** Fired when the panels start lifting; Odometer waits for it so the numbers roll in view */
 export const REVEAL_EVENT = "rdk:page-reveal";
-const NAVIGATE_EVENT = "rdk:navigate";
-
-/** Go to another page from code (not a link click), with the same transition */
-export function navigateWithTransition(href: string) {
-  window.dispatchEvent(new CustomEvent(NAVIGATE_EVENT, { detail: href }));
-}
 const TRANSITION_ATTR = "data-page-transition";
 
 const sweep = (from: number, to: number) => [{ transform: `scaleY(${from})` }, { transform: `scaleY(${to})` }];
@@ -97,14 +91,8 @@ export default function PageTransition() {
       e.preventDefault(); // Next's <Link> skips its own navigation when the click is already handled
       go(url.pathname + url.search + url.hash);
     };
-    const onNavigate = (e: Event) => go((e as CustomEvent<string>).detail);
-
     window.addEventListener("click", onClick, true);
-    window.addEventListener(NAVIGATE_EVENT, onNavigate);
-    return () => {
-      window.removeEventListener("click", onClick, true);
-      window.removeEventListener(NAVIGATE_EVENT, onNavigate);
-    };
+    return () => window.removeEventListener("click", onClick, true);
   }, [router, cover, reveal]);
 
   // The new page has rendered under the panels

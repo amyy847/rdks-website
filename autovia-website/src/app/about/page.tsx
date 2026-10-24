@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const { founder, stats, images } = aboutPage;
+  const { stats, images } = aboutPage;
 
   return (
     <>
@@ -95,25 +95,6 @@ export default function AboutPage() {
           </ul>
         </div>
       </section>
-
-      {founder && (
-        <section aria-label={`A message from ${founder.name}`} className="pb-20 md:pb-32">
-          <div className="container-site grid items-center gap-12 md:grid-cols-12">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-sm md:col-span-4">
-              <Image src={founder.image} alt={founder.name} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
-            </div>
-            <figure className="md:col-span-7 md:col-start-6">
-              <blockquote className="max-w-[24ch] text-2xl font-light leading-snug md:text-4xl">
-                <p>&ldquo;{founder.quote}&rdquo;</p>
-              </blockquote>
-              <figcaption className="mt-8">
-                <span className="block font-semibold">{founder.name}</span>
-                <span className="text-moss">{founder.role}</span>
-              </figcaption>
-            </figure>
-          </div>
-        </section>
-      )}
 
       <section aria-labelledby="our-developments-heading" className="pb-20 md:pb-32">
         <div className="container-site">

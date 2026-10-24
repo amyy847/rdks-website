@@ -6,6 +6,7 @@ import AutoviaMap from "@/components/AutoviaMap";
 import EnquireSection from "@/components/EnquireSection";
 import Gallery from "@/components/Gallery";
 import Odometer from "@/components/Odometer";
+import Partners from "@/components/Partners";
 import { company, contact, developments } from "@/content/site";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -205,6 +206,8 @@ export default async function DevelopmentPage({ params }: Props) {
           </div>
         </section>
       )}
+
+      {dev.slug === "autovia" && <Partners />}
 
       {dev.slug === "autovia" && (
         <section aria-labelledby="map-heading" className="pb-20 md:pb-32">

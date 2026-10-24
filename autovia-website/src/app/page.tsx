@@ -3,15 +3,12 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import LaunchCard from "@/components/LaunchCard";
 import EnquireSection from "@/components/EnquireSection";
-import Partners from "@/components/Partners";
 import { aboutPage, company, developments } from "@/content/site";
 
-// Two hero versions to show the client: /?hero=rdk shows the RD.K one, anything else the Autovia one
-export default async function Home({ searchParams }: { searchParams: Promise<{ hero?: string }> }) {
-  const { hero } = await searchParams;
+export default function Home() {
   return (
     <>
-      <Hero variant={hero === "rdk" ? "rdk" : "autovia"} />
+      <Hero />
 
       <section aria-labelledby="launches-heading" className="py-20 md:py-32">
         <div className="container-site">
@@ -47,8 +44,6 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ h
           </div>
         </div>
       </section>
-
-      <Partners />
 
       <EnquireSection />
     </>
