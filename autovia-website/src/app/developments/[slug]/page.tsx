@@ -7,6 +7,7 @@ import EnquireSection from "@/components/EnquireSection";
 import Gallery from "@/components/Gallery";
 import Odometer from "@/components/Odometer";
 import Partners from "@/components/Partners";
+import PlanViewer from "@/components/PlanViewer";
 import { developments } from "@/content/site";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -98,7 +99,7 @@ export default async function DevelopmentPage({ params }: Props) {
         <div className="container-site mt-12 md:mt-16">
           <dl className="grid grid-cols-2 gap-x-6 gap-y-6 border-t border-white/20 py-7 md:grid-cols-4 md:gap-x-10 md:py-9">
             {dev.stats.map((s, i) => (
-              <div key={s.label} className="flex flex-col-reverse">
+              <div key={s.label} className="flex flex-col-reverse justify-end">
                 <dt className="mt-2 text-sm text-white/70">{s.label}</dt>
                 <dd>
                   <Odometer
@@ -152,18 +153,9 @@ export default async function DevelopmentPage({ params }: Props) {
               </h2>
               <p className="type-lead text-cream/85 md:col-span-6 md:col-start-7">{dev.masterplan.text}</p>
             </div>
-            {/* The whole plan, uncropped; on phones it keeps a readable width and scrolls sideways */}
-            <div className="mt-10 overflow-x-auto rounded-2xl bg-[#e6e6e6] md:mt-14">
-              <Image
-                src={dev.masterplan.image}
-                alt={dev.masterplan.alt}
-                width={2968}
-                height={877}
-                sizes="(min-width: 900px) 100vw, 900px"
-                className="h-auto w-full min-w-[56rem]"
-              />
+            <div className="mt-10 md:mt-14">
+              <PlanViewer src={dev.masterplan.image} alt={dev.masterplan.alt} width={2968} height={877} />
             </div>
-            <p className="mt-3 text-sm text-cream/60 md:hidden">Swipe to see the whole plan</p>
           </div>
         </section>
       )}

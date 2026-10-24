@@ -51,7 +51,7 @@ export default function AboutPage() {
           <div className="container-site mt-16 md:mt-24">
             <dl className="grid grid-cols-2 gap-x-6 gap-y-8 border-t border-laurel pt-8 md:grid-cols-4 md:gap-x-10 md:pt-10">
               {stats.map((s, i) => (
-                <div key={s.label} className="flex flex-col-reverse">
+                <div key={s.label} className="flex flex-col-reverse justify-end">
                   <dt className="mt-2 text-sm text-moss">{s.label}</dt>
                   <dd>
                     <Odometer value={s.value} prefix={s.prefix} suffix={s.suffix} delay={i * 150} className="text-[2.25rem] font-semibold md:text-[3rem]" />
