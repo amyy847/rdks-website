@@ -37,7 +37,7 @@ export default async function DevelopmentPage({ params }: Props) {
 
   return (
     <>
-      <section className="relative isolate flex min-h-[88svh] flex-col justify-end overflow-hidden bg-green text-white">
+      <section className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-green text-white">
         <div className="absolute inset-0 -z-10">
           <Image
             src={dev.cover}
