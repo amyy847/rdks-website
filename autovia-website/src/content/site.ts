@@ -162,7 +162,7 @@ export const developmentsPage = {
   intro: "Landmark destinations, built to last. Autovia, on Cairo's Ring Road, is our first launch.",
   // The tile beside the launches. Set to null to hide it.
   comingSoon: {
-    image: "/images/next-launch-towers.jpg", // Pexels (talhariaz), mood photo only: not an RD.K site
+    image: "/images/next-launch-crane.jpg", // Pexels (eartharchive), mood photo only: not an RD.K site
     title: "More on the way",
     text: "Leave your details and we'll tell you first when our next development launches.",
   } as { image: string; title: string; text: string } | null,
@@ -203,12 +203,8 @@ export const contactPage = {
 
 export const hero = {
   slides: [
-    // First two from the RD.K brand guidelines; the rest are Pexels/Unsplash mood photos (free to use)
+    // From the RD.K brand guidelines. Add more entries to turn it back into a slideshow
     { image: "/images/rdk-hero-1.jpg", alt: "Reviewing an RD.K masterplan" },
-    { image: "/images/rdk-hero-2.jpg", alt: "The RD.K Developments sign on a building" },
-    { image: "/images/rdk-hero-stairs.jpg", alt: "A sculpted timber spiral staircase under a skylight" },
-    { image: "/images/rdk-hero-slats.jpg", alt: "Close-up of folded timber slat panels" },
-    { image: "/images/rdk-hero-finishes.jpg", alt: "Choosing wood, stone and fabric finishes" },
   ],
   subline: "Exceptional places to live, work and invest, built to last.", // brand guide, shortened
 };
