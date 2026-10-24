@@ -34,7 +34,13 @@ export default function Home() {
             <h2 id="about-heading" className="type-h2">
               About {company.name}
             </h2>
-            <p className="type-lead mt-6 max-w-[40ch] text-green/85">{company.intro}</p>
+            <div className="mt-6 max-w-[44ch] space-y-4 text-green/85">
+              {company.about.map((para, i) => (
+                <p key={i} className={i === 0 ? "type-lead text-green" : undefined}>
+                  {para}
+                </p>
+              ))}
+            </div>
             <Link href="/about" className="btn btn-ghost-dark mt-10">
               Read our story
             </Link>

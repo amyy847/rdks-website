@@ -43,6 +43,11 @@ Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mai
 - Both forms share `PhoneField.tsx` (country code + number) and post one `phone` like "+20 10 1234 5678".
 - Leads: emailed to contact@rdkeg.com (`LEADS_TO`) and saved to a Google Sheet via Apps Script (`src/lib/sheet.ts`; setup in `docs/leads-google-sheet.md`; needs `SHEET_WEBHOOK_URL` + `SHEET_SECRET`).
 
+- Spam protection on both forms: hidden `website` field + form-open time (`SpamTrap.tsx`) and a per-address rate limit, checked in `src/app/api/enquire/route.ts`. Bots get a fake `ok`. Tests that POST straight to the API must send `"elapsed": 5000` or they're dropped.
+- Two auto-replies: Enquire now gets `emails.autoReply` (client's text), Register interest gets `emails.registerReply` (site.ts).
+- Link previews: `src/app/opengraph-image.jpg` (RD.K) and `src/app/developments/[slug]/opengraph-image.jpg` (Autovia), 1200x630, rendered from the brand font. `metadataBase` uses `SITE_URL`, else Vercel's production domain: set `SITE_URL=https://rdkeg.com` when the domain is connected.
+- Local `.env.local` has `SHEET_WEBHOOK_URL` commented out so local testing never writes to the client's live Sheet.
+
 ## Client docs (in Amy's Claude account)
 - Sitemap and client checklist: https://claude.ai/artifact/66eq2JZTF551U7H8GqtYqV
 - Quotation (EGP 6,300, including the 50% rush fee): https://claude.ai/artifact/Do7b1hKAJ23WqVf9hRq2u9

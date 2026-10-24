@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { InlineThanks, useInlineThanks } from "./InlineThanks";
 import PhoneField, { phoneFromForm } from "./PhoneField";
+import SpamTrap from "./SpamTrap";
 import { developments, enquiry, inlineThanks } from "@/content/site";
 import { FIELD_LIGHT_CLASS as field, submitEnquiry } from "@/lib/enquiry";
 
@@ -67,6 +68,7 @@ export default function EnquireSection({ project = developments[0].name }: { pro
 
                   <form onSubmit={onSubmit} className="mt-8 grid gap-5 sm:grid-cols-2">
                     <input type="hidden" name="project" value={project} />
+                    <SpamTrap />
                     <label className="sm:col-span-2">
                       <span className={label}>Full name</span>
                       <input name="name" required autoComplete="name" className={field} />

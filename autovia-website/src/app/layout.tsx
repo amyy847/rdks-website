@@ -6,12 +6,25 @@ import PageTransition from "@/components/PageTransition";
 import RegisterInterestDialog from "@/components/RegisterInterest";
 import { company } from "@/content/site";
 
+// Absolute links for link previews: SITE_URL if set (e.g. https://rdkeg.com), else Vercel's production address
+const siteUrl =
+  process.env.SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000");
+
+// Link previews (WhatsApp, Instagram, Facebook, X) use src/app/opengraph-image.jpg, and the development's own image on its page
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${company.fullName} | ${company.tagline}`,
     template: `%s | ${company.fullName}`,
   },
   description: company.intro,
+  openGraph: {
+    siteName: company.fullName,
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

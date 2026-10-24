@@ -48,9 +48,12 @@ function layout(inner: string, preheader: string) {
 </td></tr></table></body></html>`;
 }
 
+/** Register interest gets its own reply ("you're on our list"); everything else gets the enquiry reply */
+const replyCopy = (lead: Lead) => (lead.source?.startsWith("Register interest") ? emails.registerReply : emails.autoReply);
+
 export function autoReply(lead: Lead) {
   const first = lead.name.trim().split(/\s+/)[0];
-  const { paragraphs, signOff } = emails.autoReply;
+  const { paragraphs, signOff } = replyCopy(lead);
   const html = layout(
     `<p style="margin:0 0 16px;">Dear ${escape(first)},</p>` +
       paragraphs.map((p) => `<p style="margin:0 0 16px;">${escape(p)}</p>`).join("") +
@@ -103,7 +106,7 @@ export async function sendLeadEmails(lead: Lead) {
 
   const jobs: Promise<unknown>[] = [];
   const reply = autoReply(lead);
-  jobs.push(resend.emails.send({ from: FROM, to: lead.email, replyTo, subject: emails.autoReply.subject, ...reply }));
+  jobs.push(resend.emails.send({ from: FROM, to: lead.email, replyTo, subject: replyCopy(lead).subject, ...reply }));
   if (team.length) {
     const alert = leadAlert(lead);
     const subject = `${emails.leadAlert.subject}: ${lead.name}${lead.source ? ` (${lead.source})` : ""}`;

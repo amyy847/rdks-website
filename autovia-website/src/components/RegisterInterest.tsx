@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { InlineThanks, useInlineThanks } from "./InlineThanks";
 import PhoneField, { phoneFromForm } from "./PhoneField";
+import SpamTrap from "./SpamTrap";
 import { inlineThanks, registerInterest as copy } from "@/content/site";
 import { FIELD_LIGHT_CLASS as field, submitEnquiry } from "@/lib/enquiry";
 
@@ -82,6 +83,8 @@ export default function RegisterInterestDialog() {
         phone: phoneFromForm(data),
         project: origin?.project,
         source: `Register interest (${origin?.source})`,
+        website: data.website,
+        shownAt: data.shownAt,
       });
       form.reset();
       setStatus("idle");
@@ -134,6 +137,7 @@ export default function RegisterInterestDialog() {
               <span className="mx-auto mt-5 block h-0.5 w-12 bg-moss" aria-hidden="true" />
 
               <form onSubmit={onSubmit} className="mt-8 grid gap-5 sm:mt-10">
+                <SpamTrap />
                 <label>
                   <span className={label}>Full name{required}</span>
                   <input name="name" required autoComplete="name" className={field} />

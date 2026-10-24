@@ -8,7 +8,7 @@ import Gallery from "@/components/Gallery";
 import Odometer from "@/components/Odometer";
 import Partners from "@/components/Partners";
 import PlanViewer from "@/components/PlanViewer";
-import { developments } from "@/content/site";
+import { company, developments } from "@/content/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: dev.name,
     description: dev.summary,
-    openGraph: { images: [dev.cover] },
+    openGraph: { title: `${dev.name} | ${company.fullName}`, description: dev.summary }, // image: opengraph-image.jpg in this folder
   };
 }
 

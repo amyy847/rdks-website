@@ -17,16 +17,20 @@ export const company = {
   tagline: "An Expression of Excellence", // from the client (24 October 2026)
   intro:
     "RD.K Developments creates exceptional places to live, connect and thrive, transforming land, waterfronts and visionary concepts into enduring destinations.", // brand guide
-  byline: "An RD.K development", // shown above each development's name
+  // From RD.K's Instagram (October 2026). Shown in Home's "About RD.K" section
+  about: [
+    "A development company built on a commitment to excellence, quality and precision.",
+    "From residential communities to commercial and mixed-use developments, we bring together ambitious concepts, engineering expertise and thoughtful execution to create projects of lasting value.",
+    "With several projects set to launch soon, we're only getting started.",
+  ],
 };
 
 export const contact = {
   email: "contact@rdkeg.com", // from the Autovia branding book
   address: "RD.K Building, North of Katameya Tunnel, Ring Road", // from the client (24 October 2026)
-  mapUrl: "", // PLACEHOLDER: Google Maps link for the office. "Get directions" links stay hidden while empty
-  // PLACEHOLDER: in Google Maps, Share > Embed a map, and paste the src="..." link here
-  // PLACEHOLDER: approximate (Katameya Tunnel area). Replace with the building's exact pin and fill in mapUrl
-  mapEmbedUrl: "https://www.google.com/maps?q=Katameya+Tunnel,+Ring+Road,+Cairo&output=embed",
+  // Pin from the client: 29.993092, 31.408130
+  mapUrl: "https://www.google.com/maps/dir/?api=1&destination=29.993092,31.408130",
+  mapEmbedUrl: "https://www.google.com/maps?q=29.993092,31.408130&z=16&output=embed",
   hours: "Sunday to Thursday, 9 am to 5 pm", // PLACEHOLDER: office working hours
   socials: [
     { label: "Instagram", href: "https://www.instagram.com/rd.kdevelopments/" },
@@ -164,7 +168,7 @@ export const developmentsPage = {
   comingSoon: {
     image: "/images/next-launch-crane.jpg", // Pexels (eartharchive), mood photo only: not an RD.K site
     title: "More on the way",
-    text: "Leave your details and we'll tell you first when our next development launches.",
+    text: "With several projects set to launch soon, we're only getting started. Leave your details and we'll tell you first.",
   } as { image: string; title: string; text: string } | null,
 };
 
@@ -212,7 +216,7 @@ export const hero = {
 export const enquiry = {
   heading: "Enquire now",
   image: "/images/enquire-showroom.jpg", // Pexels (free to use, no credit required)
-  text: "Leave your details and we'll email you Autovia's brochure straight away. Our sales team will call you within one working day.",
+  text: "Leave your details and our sales team will get back to you within one working day.",
   // PLACEHOLDER: confirm the units on offer, and whether they're for sale, rent or both
   updatesLabel: "Keep me updated on news and offers",
   interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Something else"],
@@ -253,7 +257,7 @@ export const privacyPage = {
       heading: "Why we use it",
       paragraphs: ["We use your details only to deal with your enquiry. That means we use them to:"],
       list: [
-        "send you the brochure and details you asked for",
+        "send you the details you asked for",
         "have our sales team call or email you about your enquiry",
         "keep a record of enquiries so we can follow up properly",
       ],
@@ -371,6 +375,17 @@ export const emails = {
       "Thank you for reaching out to RD.K Developments.",
       "We’ve received your inquiry. A member of our team will be in touch shortly to discuss your project in further detail.",
       "We look forward to connecting with you.",
+    ],
+    signOff: "RD.K Developments",
+  },
+  // Sent instead of autoReply when someone registers their interest
+  registerReply: {
+    subject: "You're on the RD.K Developments list",
+    paragraphs: [
+      "Thank you for registering your interest with RD.K Developments.",
+      "You're now on our list, so you'll be the first to hear about our new projects, launches and updates.",
+      "Our newest development is Autovia: a landmark destination for car showrooms, service centres, retail and offices on Cairo's Ring Road.",
+      "We look forward to sharing what's next with you.",
     ],
     signOff: "RD.K Developments",
   },
