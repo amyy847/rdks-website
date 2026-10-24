@@ -115,8 +115,8 @@ export const developments: Development[] = [
       { title: "Offices", text: "Modern administrative space for businesses that want a visible, accessible address." },
     ],
     masterplan: {
-      image: "/images/autovia/g-2.jpg",
-      alt: "Aerial view of Autovia's buildings along the Ring Road",
+      image: "/images/autovia/masterplan.jpg", // slide 5 of the Autovia branding book
+      alt: "Master plan of Autovia: five buildings (B01 to B05) between the Ring Road and the service road, with entrances from both",
       text: "An internal circulation road gives each standalone building prime frontage and independent access, turning them into individual landmarks within one destination. Directly connected to the Ring Road, the project ensures seamless access and maximum visibility.", // book
     },
     brands: [], // PLACEHOLDER: tenant brands once signed (names now, logos later). Empty hides the section

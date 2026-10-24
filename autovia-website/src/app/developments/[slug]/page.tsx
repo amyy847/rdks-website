@@ -152,9 +152,18 @@ export default async function DevelopmentPage({ params }: Props) {
               </h2>
               <p className="type-lead text-cream/85 md:col-span-6 md:col-start-7">{dev.masterplan.text}</p>
             </div>
-            <div className="relative mt-10 aspect-[4/3] overflow-hidden rounded-sm sm:aspect-[2/1] md:mt-14 md:aspect-[42/10]">
-              <Image src={dev.masterplan.image} alt={dev.masterplan.alt} fill sizes="100vw" className="object-cover" />
+            {/* The whole plan, uncropped; on phones it keeps a readable width and scrolls sideways */}
+            <div className="mt-10 overflow-x-auto rounded-2xl bg-[#e6e6e6] md:mt-14">
+              <Image
+                src={dev.masterplan.image}
+                alt={dev.masterplan.alt}
+                width={2968}
+                height={877}
+                sizes="(min-width: 900px) 100vw, 900px"
+                className="h-auto w-full min-w-[56rem]"
+              />
             </div>
+            <p className="mt-3 text-sm text-cream/60 md:hidden">Swipe to see the whole plan</p>
           </div>
         </section>
       )}
