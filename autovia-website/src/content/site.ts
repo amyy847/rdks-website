@@ -340,8 +340,8 @@ export const partners = {
     // Descriptions from public company profiles; PLACEHOLDER: the client should approve the wording
     {
       name: "GAC",
-      logo: "/images/partners/gac.svg",
-      logoOnGreen: "/images/partners/gac-light.png",
+      logo: "/images/partners/gac-wordmark-dark.png", // current horizontal GAC logo (client, 24 Oct)
+      logoOnGreen: "/images/partners/gac-wordmark-light.png",
       description: "GAC Motor is the car brand of GAC Group, one of China's largest automakers, in Egypt since 2023.",
     },
     {
