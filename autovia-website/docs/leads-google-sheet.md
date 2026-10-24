@@ -13,7 +13,10 @@ small Google Apps Script attached to the sheet; the script checks a shared passw
 4. **Deploy > New deployment** > type **Web app**:
    - Execute as: **Me**
    - Who has access: **Anyone**
-   - Click **Deploy**, allow the permissions Google asks for, and copy the **Web app URL**.
+   - Click **Deploy**, then **Authorize access**. Google warns "Google hasn't verified this app": that's normal for
+     your own script. Click **Advanced** > **Go to (project name) (unsafe)** > **Allow**.
+     (`@OnlyCurrentDoc` at the top of the script limits it to this one sheet.)
+   - Copy the **Web app URL**.
 5. In Vercel (Project > Settings > Environment Variables) add `SHEET_WEBHOOK_URL` = that URL, for Production.
    Redeploy the site.
 
@@ -23,6 +26,7 @@ Edit > New version** so the URL stays the same.
 ## Script
 
 ```js
+/** @OnlyCurrentDoc */
 // RD.K website: adds each lead from the website as a row in this sheet.
 const COLUMNS = ["Received", "Name", "Email", "Phone", "Project", "Interested in", "Message", "Wants news", "Form"];
 
