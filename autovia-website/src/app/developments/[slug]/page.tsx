@@ -208,7 +208,7 @@ export default async function DevelopmentPage({ params }: Props) {
 
       {dev.slug === "autovia" && (
         <section aria-labelledby="map-heading" className="pb-20 md:pb-32">
-          <div className="container-site">
+          <div className="container-site lg:max-w-6xl">
             <h2 id="map-heading" className="type-h2 mb-10 md:mb-14">
               Location map
             </h2>

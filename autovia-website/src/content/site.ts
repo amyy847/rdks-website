@@ -133,11 +133,9 @@ export const developments: Development[] = [
       { image: "/images/autovia-gallery-6.jpg", alt: "Autovia's buildings lined with palms along the road" },
     ],
     distances: [
-      // PLACEHOLDER: real drive times from the client
-      { place: "The Drive", time: "2 mins" },
-      { place: "5A by The Waterway", time: "3 mins" },
-      { place: "Park Street", time: "5 mins" },
-      { place: "South 90th Street", time: "5 mins" },
+      // From the client (24 October 2026). Add Park Street, South 90th Street etc. when she sends their times
+      { place: "The Drive", time: "5 mins" },
+      { place: "5A by The Waterway", time: "7 mins" },
     ],
     features: [
       // book: master plan, architecture and identity

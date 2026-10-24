@@ -6,9 +6,10 @@ import { company, emails } from "@/content/site";
  * (.env.local on this computer, Project > Settings > Environment Variables in Vercel):
  *
  *   RESEND_API_KEY   required; without it no email is sent (the form still works)
- *   EMAIL_FROM       e.g. "RD.K Developments <contact@rdkeg.com>" once rdkeg.com is verified in Resend.
- *                    Until then Resend's test sender is used, which can only email the Resend account's own address
- *   EMAIL_REPLY_TO   where customers' replies to the auto-reply go (optional)
+ *   EMAIL_FROM       optional; defaults to "RD.K Developments <contact@rdkeg.com>", which only works once rdkeg.com
+ *                    is verified in Resend. For testing before that, set it to "RD.K Developments <onboarding@resend.dev>"
+ *                    (Resend's test sender, which can only email the Resend account's own address)
+ *   EMAIL_REPLY_TO   optional; customers' replies go to the From address (contact@rdkeg.com) unless this is set
  *   LEADS_TO         who gets the new-lead alert, comma separated (optional; no alert without it)
  *   SITE_URL         public address of the site, for the logo in emails (defaults to the Vercel address)
  */
@@ -26,7 +27,9 @@ export type Lead = {
 };
 
 const SITE_URL = (process.env.SITE_URL || "https://rdk-website.vercel.app").replace(/\/$/, "");
-const FROM = process.env.EMAIL_FROM || `${company.fullName} <onboarding@resend.dev>`;
+// contact@rdkeg.com sends the emails and receives customers' replies (client's choice, 24 October 2026).
+// Needs rdkeg.com verified in Resend; EMAIL_FROM can override it (e.g. Resend's test sender while testing)
+const FROM = process.env.EMAIL_FROM || `${company.fullName} <contact@rdkeg.com>`;
 const C = { green: "#0A3B25", moss: "#2A6151", cream: "#FCF7F0", laurel: "#B2B7AA" };
 
 const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
