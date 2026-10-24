@@ -45,7 +45,7 @@ Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mai
 
 - Spam protection on both forms: hidden `website` field + form-open time (`SpamTrap.tsx`) and a per-address rate limit, checked in `src/app/api/enquire/route.ts`. Bots get a fake `ok`. Tests that POST straight to the API must send `"elapsed": 5000` or they're dropped.
 - Two auto-replies: Enquire now gets `emails.autoReply` (client's text), Register interest gets `emails.registerReply` (site.ts).
-- Link previews: `src/app/opengraph-image.jpg` (RD.K) and `src/app/developments/[slug]/opengraph-image.jpg` (Autovia), 1200x630, rendered from the brand font. `metadataBase` uses `SITE_URL`, else Vercel's production domain: set `SITE_URL=https://rdkeg.com` when the domain is connected.
+- Link previews: `src/app/opengraph-image.jpg` (RD.K) and `src/app/developments/[slug]/opengraph-image.jpg` (Autovia), 1200x630, rendered from the brand font. `metadataBase` uses `SITE_URL`, else Vercel's production domain. rdkeg.com is already added to the Vercel project (so Vercel calls it the production domain), but its DNS still points at GoDaddy, so `SITE_URL` is set to https://rdk-website.vercel.app in Vercel. **Once rdkeg.com points to Vercel (A @ 216.198.79.1, CNAME www 58b0c8cb3b55e79b.vercel-dns-017.com), change `SITE_URL` to https://rdkeg.com and redeploy.**
 - Local `.env.local` has `SHEET_WEBHOOK_URL` commented out so local testing never writes to the client's live Sheet.
 
 ## Client docs (in Amy's Claude account)
