@@ -215,7 +215,7 @@ export const hero = {
 
 export const enquiry = {
   heading: "Enquire now",
-  image: "/images/enquire-showroom.jpg", // Pexels (free to use, no credit required)
+  image: "/images/enquire-lounge.jpg", // Pexels (sofia-morales), free to use, no credit required
   text: "Leave your details and our sales team will get back to you within one working day.",
   // PLACEHOLDER: confirm the units on offer, and whether they're for sale, rent or both
   updatesLabel: "Keep me updated on news and offers",
