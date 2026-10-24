@@ -7,7 +7,7 @@ import EnquireSection from "@/components/EnquireSection";
 import Gallery from "@/components/Gallery";
 import Odometer from "@/components/Odometer";
 import Partners from "@/components/Partners";
-import { company, developments } from "@/content/site";
+import { developments } from "@/content/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -79,7 +79,7 @@ export default async function DevelopmentPage({ params }: Props) {
             <div>
               <p className="flex items-center gap-3 type-eyebrow text-white/85">
                 <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
-                {company.byline} · {dev.status} · {dev.location}
+                {dev.status} · {dev.location}
               </p>
               <p className="type-h3 mt-5">{dev.tagline}</p>
               <p className="type-lead mt-2 max-w-[38ch] text-white/85">{dev.summary}</p>

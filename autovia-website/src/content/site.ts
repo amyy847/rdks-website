@@ -76,7 +76,7 @@ export const developments: Development[] = [
   {
     slug: "autovia",
     name: "Autovia",
-    logo: "/images/autovia-logo.png",
+    logo: "/images/autovia/autovia-wordmark.png", // "AUTOVIA" without "by RD.K" (client's choice for the header)
     tagline: "Built to be seen", // book
     location: "Ring Road, New Cairo", // book
     status: "Now launching", // PLACEHOLDER: confirm (open, launching, under construction?)
@@ -90,7 +90,6 @@ export const developments: Development[] = [
     ],
     stats: [
       // From the client (23 October 2026)
-      { value: 500, prefix: "EGP", suffix: " M", label: "Invested in Autovia" },
       { value: 13000, suffix: " m²", label: "Development area" },
       { value: 6, label: "Car brands under one roof" },
     ],
