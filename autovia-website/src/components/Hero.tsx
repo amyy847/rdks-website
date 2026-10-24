@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import HeroVideo from "./HeroVideo";
 import Logo from "./Logo";
 import { company, hero } from "@/content/site";
 
@@ -10,6 +11,10 @@ const SLIDE_MS = 6500;
 
 /** Home hero: RD.K's photos crossfading behind the logo and slogan */
 export default function Hero() {
+  return hero.video ? <HeroVideo video={hero.video} /> : <HeroPhotos />;
+}
+
+function HeroPhotos() {
   const { slides } = hero;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
