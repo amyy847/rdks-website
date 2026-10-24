@@ -36,14 +36,6 @@ export default function ContactPage() {
               </dd>
             </div>
             <div>
-              <dt className="text-sm text-moss">WhatsApp</dt>
-              <dd className="mt-1 text-xl font-semibold">
-                <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noopener noreferrer" className={linkStyle}>
-                  Chat with us
-                </a>
-              </dd>
-            </div>
-            <div>
               <dt className="text-sm text-moss">Email</dt>
               <dd className="mt-1 break-all text-xl font-semibold">
                 <a href={`mailto:${contact.email}`} className="hover:text-moss">

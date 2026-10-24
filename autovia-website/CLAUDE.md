@@ -10,7 +10,7 @@ Website for Amy's client, a startup developer called **RD.K** (RD.K Developments
 - [x] Development detail: `/developments/autovia`, covering the showroom description, what they sell (new/used), brands, gallery, location and hours, and an enquiry form. Optional extras the client may pick: featured cars, financing, trade-in, test drive booking, after-sales, warranty, offers, reviews, video
 - [x] About us: story, vision and mission, optional numbers and founder message, RDK's developments
 - Enquire Now is a white card (photo + form) that overlaps the top of the footer, after Misr Italia's development pages; same on every page that has it.
-- [x] Contact us: form, phone, WhatsApp, email, office address, map, hours, socials, plus a card per showroom
+- [x] Contact us: form, phone, email, office address, map, hours, socials, plus a card per showroom
 - [x] Thank you: shown after an enquiry (greets by first name from sessionStorage; noindex)
 - [x] Privacy policy (standard text in site.ts, needs client approval; update it if analytics or new providers are added)
 - [ ] 404
@@ -33,7 +33,7 @@ Email: RD.K's domain is rdkeg.com (contact@rdkeg.com). DNS is at GoDaddy and mai
 - Photography style per the guide: golden hour, architectural geometry, understated luxury. The About photos are renders taken from the brand guide; Autovia's photos are still placeholders.
 - Motion: the hero has a slow push-in crossfade, and the stats roll like an odometer (`Odometer.tsx`). That is the one signature animation, plus the page transition (`PageTransition.tsx`, copied from Misr Italia at Amy's request: a dark then a light panel sweep down from the top, then lift back up to reveal the new page; timings are constants at the top of the file). Keep everything else calm: avoid adding fade-ups to every section, and respect reduced motion.
 - Buttons: `.btn` plus `.btn-gold`, `.btn-ghost-light` or `.btn-ghost-dark`. Layout container: `.container-site`.
-- Must work well on phones; most visitors come from Instagram and WhatsApp.
+- Must work well on phones; most visitors come from Instagram. RD.K has no WhatsApp, so don't add WhatsApp links or buttons; Instagram is the only social for now.
 
 ## Options kept side by side for the client (24 October 2026 meeting)
 - Home hero: Autovia version at `/`, RD.K version at `/?hero=rdk` (`Hero.tsx` `variant`, slides in `site.ts` > `heroRdk`). Remove the loser after she picks.

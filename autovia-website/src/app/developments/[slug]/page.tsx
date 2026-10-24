@@ -247,18 +247,10 @@ export default async function DevelopmentPage({ params }: Props) {
                 <dd className="mt-1 text-lg">{dev.site.hours}</dd>
               </div>
               <div>
-                <dt className="text-sm text-moss">Call or message</dt>
-                <dd className="mt-1 flex flex-wrap gap-x-6 gap-y-1 text-lg">
+                <dt className="text-sm text-moss">Call us</dt>
+                <dd className="mt-1 text-lg">
                   <a href={contact.phoneHref} className="font-semibold hover:text-moss">
                     {contact.phone}
-                  </a>
-                  <a
-                    href={`https://wa.me/${contact.whatsapp}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline decoration-moss decoration-2 underline-offset-[6px] hover:text-moss"
-                  >
-                    WhatsApp
                   </a>
                 </dd>
               </div>

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 
 export default function ThankYouPage() {
   const autovia = developments[0];
+  const instagram = contact.socials.find((s) => s.label === "Instagram")?.href;
 
   return (
     <section className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-green pb-16 pt-32 text-white md:pb-24">
@@ -38,17 +39,19 @@ export default function ThankYouPage() {
           </Link>
         </div>
 
-        <p className="mt-12 border-t border-white/20 pt-6 text-white/75">
-          {thankYouPage.whatsappText}{" "}
-          <a
-            href={`https://wa.me/${contact.whatsapp}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-white underline decoration-gold decoration-2 underline-offset-[6px] hover:text-gold"
-          >
-            Open WhatsApp
-          </a>
-        </p>
+        {instagram && (
+          <p className="mt-12 border-t border-white/20 pt-6 text-white/75">
+            {thankYouPage.followText}{" "}
+            <a
+              href={instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white underline decoration-gold decoration-2 underline-offset-[6px] hover:text-gold"
+            >
+              follow us on Instagram
+            </a>
+          </p>
+        )}
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ Then open http://localhost:3000
 - `public/images/`: photos. Replace the placeholder files, keeping the same names (or update the paths in `site.ts`).
 - `src/app/globals.css`: RD.K brand colours and type styles (the `@theme` block at the top).
 - `src/components/Logo.tsx`: the RD.K logo (mark and full lockup), coloured with CSS.
-- `src/components/`: Header, Hero, Footer, LaunchCard, EnquireSection, Odometer (rolling numbers), WhatsAppButton, DevelopmentCard, Gallery (photo grid + full-screen viewer), Partners (logo strip on Home), RegisterInterest (site-wide window form + RegisterInterestButton).
+- `src/components/`: Header, Hero, Footer, LaunchCard, EnquireSection, Odometer (rolling numbers), DevelopmentCard, Gallery (photo grid + full-screen viewer), Partners (logo strip on Home), RegisterInterest (site-wide window form + RegisterInterestButton).
 - `src/app/api/enquire/route.ts`: the enquiry form endpoint. It validates and logs leads for now; the automatic email is the next step.
 
 ## Pages

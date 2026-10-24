@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import PageTransition from "@/components/PageTransition";
 import RegisterInterestDialog from "@/components/RegisterInterest";
 import { company } from "@/content/site";
@@ -30,7 +29,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Header />
         <main id="main">{children}</main>
         <Footer />
-        <WhatsAppButton />
         <RegisterInterestDialog />
         <PageTransition />
       </body>

@@ -23,7 +23,6 @@ export const company = {
 export const contact = {
   phone: "+20 100 000 0000", // PLACEHOLDER
   phoneHref: "tel:+201000000000",
-  whatsapp: "201000000000", // PLACEHOLDER: international format, digits only
   email: "contact@rdkeg.com", // from the Autovia branding book
   address: "RD.K Building, North of Katameya Tunnel, Ring Road", // from the client (24 October 2026)
   mapUrl: "", // PLACEHOLDER: Google Maps link for the office. "Get directions" links stay hidden while empty
@@ -237,7 +236,7 @@ export const thankYouPage = {
   heading: "Thank you",
   // Assumes the enquiry email is live: until it is, visitors won't receive the brochure
   text: "Your enquiry is in. Autovia's brochure is on its way to your inbox, and our sales team will call you within one working day.",
-  whatsappText: "Can't wait? Message us on WhatsApp.",
+  followText: "For news and new launches from RD.K,",
 };
 
 export type PolicySection = { heading: string; paragraphs?: string[]; list?: string[]; after?: string[] };
@@ -283,7 +282,7 @@ export const privacyPage = {
     {
       heading: "What we don't do",
       paragraphs: [
-        "We don't sell your information. We only send you news and offers if you ticked \"Keep me updated on news and offers\" when you sent an enquiry, and you can ask us to stop at any time.",
+        "We don't sell your information. We only send you news, offers and launch updates if you registered your interest, or ticked \"Keep me updated on news and offers\" when you sent an enquiry, and you can ask us to stop at any time.",
       ],
     },
     {
@@ -409,8 +408,8 @@ export const inlineThanks = {
     note: "A confirmation is on its way to your inbox. We look forward to connecting with you.",
   },
   registerInterest: {
-    line: "We've registered your interest. Our team will be in touch shortly.",
-    note: "Keep an eye on your inbox for a confirmation from RD.K Developments.",
+    line: "You're on our list. Updates, new launches and news from RD.K will come straight to your inbox.",
+    note: "We'll only email you about RD.K and its developments, and you can ask us to stop at any time.",
   },
 };
 
