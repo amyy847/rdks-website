@@ -50,6 +50,7 @@ export default function ThankYouPage() {
             >
               follow us on Instagram
             </a>
+            .
           </p>
         )}
       </div>
