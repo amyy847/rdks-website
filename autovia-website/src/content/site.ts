@@ -408,8 +408,8 @@ export const inlineThanks = {
     note: "A confirmation is on its way to your inbox. We look forward to connecting with you.",
   },
   registerInterest: {
-    line: "You're on our list. Updates, new launches and news from RD.K will come straight to your inbox.",
-    note: "We'll only email you about RD.K and its developments, and you can ask us to stop at any time.",
+    // Same tone as the client's auto-reply email
+    line: "We've received your details. We look forward to sharing our latest launches with you.",
   },
 };
 

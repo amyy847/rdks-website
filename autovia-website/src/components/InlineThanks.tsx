@@ -26,7 +26,7 @@ export function useInlineThanks() {
   return { box, phase, minHeight, name, show, reset, formClass: `transition-opacity duration-[450ms] ease-out-quint ${phase === "leaving" ? "opacity-0" : ""}` };
 }
 
-export function InlineThanks({ name, line, note, children }: { name: string; line: string; note: string; children?: React.ReactNode }) {
+export function InlineThanks({ name, line, note, children }: { name: string; line: string; note?: string; children?: React.ReactNode }) {
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => heading.current?.focus(), []); // screen readers and keyboards land on the message
 
@@ -38,9 +38,11 @@ export function InlineThanks({ name, line, note, children }: { name: string; lin
       <p className="fade-up mt-5 max-w-[30ch] text-2xl font-light leading-snug md:text-[1.75rem]" style={{ animationDelay: "120ms" }}>
         {line}
       </p>
-      <p className="fade-up mt-5 max-w-[46ch] text-green/70" style={{ animationDelay: "240ms" }}>
-        {note}
-      </p>
+      {note && (
+        <p className="fade-up mt-5 max-w-[46ch] text-green/70" style={{ animationDelay: "240ms" }}>
+          {note}
+        </p>
+      )}
       {children && (
         <div className="fade-up mt-8" style={{ animationDelay: "360ms" }}>
           {children}
