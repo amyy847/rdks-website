@@ -205,14 +205,7 @@ export const contactPage = {
   intro: "Email us, send an enquiry or drop by the office. We reply to every enquiry within one working day.", // PLACEHOLDER
 };
 
-// Home hero. With `video` set, the logo reveal film replaces the photo (set it to null to go back to the photo)
 export const hero = {
-  video: {
-    desktop: "/video/rdk-reveal-1080.mp4", // from "RD.k Logo Reveal Final.mp4", compressed for the web, no sound
-    mobile: "/video/rdk-reveal-540.mp4",
-    posterStart: "/images/rdk-reveal-start.jpg", // shown while the film loads
-    posterEnd: "/images/rdk-reveal-end.jpg", // final logo frame, shown instead of the film with reduced motion
-  } as { desktop: string; mobile: string; posterStart: string; posterEnd: string } | null,
   slides: [
     // From the RD.K brand guidelines. Add more entries to turn it back into a slideshow
     { image: "/images/rdk-hero-1.jpg", alt: "Reviewing an RD.K masterplan" },
