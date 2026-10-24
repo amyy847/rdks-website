@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import AutoviaMap from "@/components/AutoviaMap";
 import EnquireSection from "@/components/EnquireSection";
 import Gallery from "@/components/Gallery";
 import Odometer from "@/components/Odometer";
@@ -201,6 +202,30 @@ export default async function DevelopmentPage({ params }: Props) {
             <Link href="#enquire" className="btn btn-gold mt-12">
               Ask about space at {dev.name}
             </Link>
+          </div>
+        </section>
+      )}
+
+      {dev.slug === "autovia" && (
+        <section aria-labelledby="map-heading" className="pb-20 md:pb-32">
+          <div className="container-site">
+            <h2 id="map-heading" className="type-h2 mb-10 md:mb-14">
+              Location map
+            </h2>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl sm:aspect-[3/2] lg:aspect-[15/8]">
+              <AutoviaMap />
+            </div>
+            {dev.distances && dev.distances.length > 0 && (
+              <ul className="relative z-10 mx-4 -mt-9 grid grid-cols-2 gap-x-6 gap-y-5 rounded-2xl bg-white px-6 py-6 shadow-[0_20px_50px_-25px_rgb(10_59_37/0.5)] sm:mx-10 md:flex md:justify-around md:rounded-full md:px-12">
+                {dev.distances.map((d) => (
+                  <li key={d.place} className="text-center md:whitespace-nowrap md:text-left">
+                    <span className="block font-semibold md:inline">{d.time}</span>
+                    <span className="hidden text-green/70 md:inline"> · </span>
+                    <span className="block text-sm text-green/70 md:inline md:text-base">{d.place}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </section>
       )}

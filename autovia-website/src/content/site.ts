@@ -14,7 +14,7 @@ export const company = {
   name: "RD.K",
   fullName: "RD.K Developments",
   legalName: "RD.K Developments", // PLACEHOLDER: legal name, if different (used in footer + privacy policy)
-  tagline: "An expression of excellence and integrity", // brand guide
+  tagline: "An Expression of Excellence", // from the client (24 October 2026)
   intro:
     "RD.K Developments creates exceptional places to live, connect and thrive, transforming land, waterfronts and visionary concepts into enduring destinations.", // brand guide
   byline: "An RD.K development", // shown above each development's name
@@ -25,15 +25,15 @@ export const contact = {
   phoneHref: "tel:+201000000000",
   whatsapp: "201000000000", // PLACEHOLDER: international format, digits only
   email: "contact@rdkeg.com", // from the Autovia branding book
-  address: "Head office address, New Cairo, Egypt", // PLACEHOLDER: RD.K's office (not Autovia)
+  address: "RD.K Building, North of Katameya Tunnel, Ring Road", // from the client (24 October 2026)
   mapUrl: "", // PLACEHOLDER: Google Maps link for the office. "Get directions" links stay hidden while empty
   // PLACEHOLDER: in Google Maps, Share > Embed a map, and paste the src="..." link here
-  mapEmbedUrl: "https://www.google.com/maps?q=New+Cairo,+Egypt&output=embed",
+  // PLACEHOLDER: approximate (Katameya Tunnel area). Replace with the building's exact pin and fill in mapUrl
+  mapEmbedUrl: "https://www.google.com/maps?q=Katameya+Tunnel,+Ring+Road,+Cairo&output=embed",
   hours: "Sunday to Thursday, 9 am to 5 pm", // PLACEHOLDER: office working hours
   socials: [
-    { label: "Instagram", href: "https://instagram.com" }, // PLACEHOLDER
-    { label: "Facebook", href: "https://facebook.com" }, // PLACEHOLDER
-    { label: "TikTok", href: "https://tiktok.com" }, // PLACEHOLDER
+    { label: "Instagram", href: "https://www.instagram.com/rd.kdevelopments/" },
+    // Add others when the client sends them, e.g. { label: "Facebook", href: "https://facebook.com/..." }
   ],
 };
 
@@ -67,6 +67,8 @@ export type Development = {
   brands: string[]; // tenant brands; an empty list hides the section
   gallery: Photo[];
   features: { title: string; text: string }[]; // an empty list hides the section
+  // Drive times shown under the illustrated map (Autovia only for now). An empty list hides the strip
+  distances?: { place: string; time: string }[];
 };
 
 /*
@@ -129,6 +131,13 @@ export const developments: Development[] = [
       { image: "/images/autovia-gallery-4.jpg", alt: "A showroom carrying a tenant's red brand panel" },
       { image: "/images/autovia-gallery-5.jpg", alt: "A showroom carrying a tenant's blue brand panels" },
       { image: "/images/autovia-gallery-6.jpg", alt: "Autovia's buildings lined with palms along the road" },
+    ],
+    distances: [
+      // PLACEHOLDER: real drive times from the client
+      { place: "The Drive", time: "2 mins" },
+      { place: "5A by The Waterway", time: "3 mins" },
+      { place: "Park Street", time: "5 mins" },
+      { place: "South 90th Street", time: "5 mins" },
     ],
     features: [
       // book: master plan, architecture and identity
@@ -339,8 +348,8 @@ export const privacyPage = {
 
 export type Partner = {
   name: string;
-  logo: string; // one-colour green (#0A3B25) logo for the white tile, transparent PNG in /public/images/partners/
-  logoOnGreen: string; // the same logo in cream, for the green hover panel
+  logo: string; // the partner's original logo, for the white tile (transparent PNG or SVG in /public/images/partners/)
+  logoOnGreen: string; // one-colour cream version, for the green hover panel
   description: string; // one or two short lines, slides up on hover or tap
 };
 
@@ -351,19 +360,19 @@ export const partners = {
     // Descriptions from public company profiles; PLACEHOLDER: the client should approve the wording
     {
       name: "GAC",
-      logo: "/images/partners/gac-green.png",
+      logo: "/images/partners/gac.svg",
       logoOnGreen: "/images/partners/gac-light.png",
       description: "GAC Motor is the car brand of GAC Group, one of China's largest automakers, in Egypt since 2023.",
     },
     {
       name: "GB Corp (Ghabbour)",
-      logo: "/images/partners/gb-corp-green.png",
+      logo: "/images/partners/gb-corp.svg",
       logoOnGreen: "/images/partners/gb-corp-light.png",
       description: "GB Corp, the Ghabbour group, is one of Egypt's leading automotive companies, with brands including Hyundai, Chery and Haval.",
     },
     {
       name: "ElTarek",
-      logo: "/images/partners/el-tarek-green.png",
+      logo: "/images/partners/el-tarek.png",
       logoOnGreen: "/images/partners/el-tarek-light.png",
       description: "ElTarek Group, based in Alexandria, is one of Egypt's largest automotive distributors, representing more than 20 brands.",
     },
