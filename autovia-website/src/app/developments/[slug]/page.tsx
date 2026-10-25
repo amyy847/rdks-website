@@ -161,7 +161,7 @@ export default async function DevelopmentPage({ params }: Props) {
       )}
 
       {dev.brands.length > 0 && (
-        <section aria-labelledby="brands-heading" className="border-b border-laurel bg-white py-20 md:py-28">
+        <section aria-labelledby="brands-heading" className="bg-white py-20 md:py-28">
           <div className="container-site">
             <h2 id="brands-heading" className="type-h2 mb-10 md:mb-14">
               Brands at {dev.name}
