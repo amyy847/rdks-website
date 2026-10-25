@@ -9,7 +9,7 @@ import { partners } from "@/content/site";
  * Each tile is white with the logo in colour. On hover (or tap) a green panel sweeps up
  * from the bottom with a slanted edge that levels out; the logo changes colour as the edge
  * passes it, moves up, and the description slides in underneath.
- * Swipes sideways when the tiles don't fit; the arrows only show then.
+ * Phones get a 2-column grid instead, with every description shown and no hover effect.
  */
 
 // The panel is clipped below the tile, slanted (left side higher), and rises to cover it
@@ -56,15 +56,32 @@ export default function Partners() {
           {partners.heading}
         </h2>
 
+        {/* Phones: a 2-column grid, logo and description always visible (after Misr Italia's mobile partners) */}
+        <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-laurel/40 md:hidden">
+          {partners.list.map((partner) => (
+            <li key={partner.name} className="flex flex-col items-center bg-white px-4 py-10 text-center odd:last:col-span-2">
+              {partner.logo ? (
+                <span className="relative block h-16 w-full max-w-36">
+                  <Image src={partner.logo} alt={partner.name} fill sizes="9rem" className="object-contain" />
+                </span>
+              ) : (
+                <span className="text-base font-semibold uppercase leading-snug tracking-[0.12em] text-green">{partner.name}</span>
+              )}
+              <p className="mt-6 max-w-[30ch] text-sm leading-relaxed text-green/80">{partner.description}</p>
+            </li>
+          ))}
+        </ul>
+
+        {/* Larger screens: one strip; the green panel sweeps up on hover with the description */}
         <ul
           ref={strip}
-          className="flex snap-x snap-mandatory gap-px overflow-x-auto rounded-2xl bg-laurel/40 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="hidden snap-x snap-mandatory gap-px overflow-x-auto rounded-2xl bg-laurel/40 [scrollbar-width:none] md:flex [&::-webkit-scrollbar]:hidden"
         >
           {partners.list.map((partner) => (
             <li
               key={partner.name}
               tabIndex={0}
-              className="group relative h-72 w-[78%] shrink-0 snap-start overflow-hidden bg-white outline-offset-[-3px] sm:w-[45%] md:min-w-0 md:flex-1 md:basis-0"
+              className="group relative h-72 min-w-0 flex-1 basis-0 snap-start overflow-hidden bg-white outline-offset-[-3px]"
             >
               {partner.logo ? (
                 <span className={LOGO_BOX}>

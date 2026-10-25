@@ -168,8 +168,14 @@ export default async function DevelopmentPage({ params }: Props) {
             </h2>
             <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-laurel/40 sm:grid-cols-3 lg:grid-cols-6">
               {dev.brands.map((brand) => (
-                <li key={brand} className="grid h-24 place-items-center bg-white px-4 text-center text-sm font-semibold uppercase tracking-[0.14em] md:h-32">
-                  {brand}
+                <li key={brand.name} className="grid h-24 place-items-center bg-white px-6 text-center text-sm font-semibold uppercase tracking-[0.14em] md:h-32">
+                  {brand.logo ? (
+                    <span className="relative block h-9 w-full max-w-32 md:h-11">
+                      <Image src={brand.logo} alt={brand.name} fill sizes="8rem" className="object-contain" />
+                    </span>
+                  ) : (
+                    brand.name
+                  )}
                 </li>
               ))}
             </ul>

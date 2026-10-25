@@ -65,7 +65,7 @@ export type Development = {
   description: string[]; // one string per paragraph
   spaces: { title: string; text: string }[]; // what the development is made of
   masterplan: (Photo & { text: string }) | null;
-  brands: string[]; // tenant brands; an empty list hides the section
+  brands: { name: string; logo?: string }[]; // tenant brands (logo in /public/images/brands/, else the name shows); empty hides the section
   gallery: Photo[];
   features: { title: string; text: string }[]; // an empty list hides the section
   // Drive times shown under the illustrated map (Autovia only for now). An empty list hides the strip
@@ -123,7 +123,15 @@ export const developments: Development[] = [
       alt: "Master plan of Autovia: five buildings (B01 to B05) between the Ring Road and the service road, with entrances from both",
       text: "An internal circulation road gives each standalone building prime frontage and independent access, turning them into individual landmarks within one destination. Directly connected to the Ring Road, the project ensures seamless access and maximum visibility.", // book
     },
-    brands: ["EIM", "Chevrolet", "Opel", "BYD", "Li Auto", "Deepal"], // from the client (25 October 2026); names now, logos later. Empty hides the section
+    // From the client (25 October 2026)
+    brands: [
+      { name: "EIM", logo: "/images/brands/eim.svg" },
+      { name: "Chevrolet", logo: "/images/brands/chevrolet.svg" },
+      { name: "Opel", logo: "/images/brands/opel.svg" },
+      { name: "BYD", logo: "/images/brands/byd.svg" },
+      { name: "Li Auto", logo: "/images/brands/li-auto.png" },
+      { name: "Deepal", logo: "/images/brands/deepal.png" },
+    ],
     gallery: [
       // Renders from the client (October 2026). The first 5 show on the page; the rest open in the viewer
       { image: "/images/autovia/b01-1.jpg", alt: "Autovia's curved glass corner showroom" },
@@ -356,14 +364,18 @@ export const partners = {
       logoOnGreen: "/images/partners/el-tarek-light.png",
       description: "ElTarek Group, based in Alexandria, is one of Egypt's largest automotive distributors, representing more than 20 brands.",
     },
-    // From the client (25 October 2026). PLACEHOLDER: logos, and the client should approve the descriptions
+    // From the client (25 October 2026); descriptions from each company's own website
     {
       name: "Khalifa Architects",
-      description: "Architecture and design partner, shaping RD.K's developments from concept to detail.",
+      logo: "/images/partners/khalifa-architects.png",
+      logoOnGreen: "/images/partners/khalifa-architects-light.png",
+      description: "Khalifa Architects, \"Egypt's finest designers\", covers architecture, interior and landscape design, high-end execution and consultancy.",
     },
     {
-      name: "Al Khalifa Construction",
-      description: "Construction partner, delivering RD.K's developments on site.",
+      name: "Khalifa Construction",
+      logo: "/images/partners/khalifa-construction.png",
+      logoOnGreen: "/images/partners/khalifa-construction-light.png",
+      description: "Founded in 2014, Khalifa Construction delivers the construction and civil works of high-end residential, commercial and administrative projects.",
     },
   ] as Partner[],
 };
