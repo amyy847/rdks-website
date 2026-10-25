@@ -123,7 +123,7 @@ export const developments: Development[] = [
       alt: "Master plan of Autovia: five buildings (B01 to B05) between the Ring Road and the service road, with entrances from both",
       text: "An internal circulation road gives each standalone building prime frontage and independent access, turning them into individual landmarks within one destination. Directly connected to the Ring Road, the project ensures seamless access and maximum visibility.", // book
     },
-    brands: [], // PLACEHOLDER: tenant brands once signed (names now, logos later). Empty hides the section
+    brands: ["EIM", "Chevrolet", "Opel", "BYD", "Li Auto", "Deepal"], // from the client (25 October 2026); names now, logos later. Empty hides the section
     gallery: [
       // Renders from the client (October 2026). The first 5 show on the page; the rest open in the viewer
       { image: "/images/autovia/b01-1.jpg", alt: "Autovia's curved glass corner showroom" },
@@ -328,8 +328,8 @@ export const privacyPage = {
 
 export type Partner = {
   name: string;
-  logo: string; // the partner's original logo, for the white tile (transparent PNG or SVG in /public/images/partners/)
-  logoOnGreen: string; // one-colour cream version, for the green hover panel
+  logo?: string; // the partner's original logo, for the white tile (transparent PNG or SVG in /public/images/partners/). Without one, the name is shown
+  logoOnGreen?: string; // one-colour cream version, for the green hover panel
   description: string; // one or two short lines, slides up on hover or tap
 };
 
@@ -355,6 +355,15 @@ export const partners = {
       logo: "/images/partners/el-tarek.png",
       logoOnGreen: "/images/partners/el-tarek-light.png",
       description: "ElTarek Group, based in Alexandria, is one of Egypt's largest automotive distributors, representing more than 20 brands.",
+    },
+    // From the client (25 October 2026). PLACEHOLDER: logos, and the client should approve the descriptions
+    {
+      name: "Khalifa Architects",
+      description: "Architecture and design partner, shaping RD.K's developments from concept to detail.",
+    },
+    {
+      name: "Al Khalifa Construction",
+      description: "Construction partner, delivering RD.K's developments on site.",
     },
   ] as Partner[],
 };

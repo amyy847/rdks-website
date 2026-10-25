@@ -66,15 +66,27 @@ export default function Partners() {
               tabIndex={0}
               className="group relative h-72 w-[78%] shrink-0 snap-start overflow-hidden bg-white outline-offset-[-3px] sm:w-[45%] md:min-w-0 md:flex-1 md:basis-0"
             >
-              <span className={LOGO_BOX}>
-                <Image src={partner.logo} alt={partner.name} fill sizes="12rem" className="object-contain" />
-              </span>
+              {partner.logo ? (
+                <span className={LOGO_BOX}>
+                  <Image src={partner.logo} alt={partner.name} fill sizes="12rem" className="object-contain" />
+                </span>
+              ) : (
+                <span className={`${LOGO_BOX} grid place-items-center text-center text-lg font-semibold uppercase leading-snug tracking-[0.12em] text-green`}>
+                  {partner.name}
+                </span>
+              )}
 
               <div className={`absolute inset-0 bg-green transition-[clip-path] duration-500 ease-in-out-drive ${PANEL}`}>
-                <span className={LOGO_BOX}>
-                  {/* eager: the browser treats the clipped panel as hidden and would delay loading it */}
-                  <Image src={partner.logoOnGreen} alt="" fill sizes="12rem" loading="eager" className="object-contain" />
-                </span>
+                {partner.logoOnGreen ? (
+                  <span className={LOGO_BOX}>
+                    {/* eager: the browser treats the clipped panel as hidden and would delay loading it */}
+                    <Image src={partner.logoOnGreen} alt="" fill sizes="12rem" loading="eager" className="object-contain" />
+                  </span>
+                ) : (
+                  <span aria-hidden="true" className={`${LOGO_BOX} grid place-items-center text-center text-lg font-semibold uppercase leading-snug tracking-[0.12em] text-cream`}>
+                    {partner.name}
+                  </span>
+                )}
                 <p className="absolute inset-x-6 bottom-8 translate-y-full text-center text-sm leading-relaxed text-cream/80 opacity-0 transition-[transform,opacity] duration-500 ease-out-quint group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-150 group-focus:translate-y-0 group-focus:opacity-100 group-focus:delay-150 md:inset-x-8">
                   {partner.description}
                 </p>

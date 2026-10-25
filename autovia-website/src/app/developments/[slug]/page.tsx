@@ -166,7 +166,7 @@ export default async function DevelopmentPage({ params }: Props) {
             <h2 id="brands-heading" className="type-h2 mb-10 md:mb-14">
               Brands at {dev.name}
             </h2>
-            <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-laurel bg-laurel sm:grid-cols-3 lg:grid-cols-6">
+            <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-laurel/40 sm:grid-cols-3 lg:grid-cols-6">
               {dev.brands.map((brand) => (
                 <li key={brand} className="grid h-24 place-items-center bg-white px-4 text-center text-sm font-semibold uppercase tracking-[0.14em] md:h-32">
                   {brand}
