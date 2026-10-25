@@ -9,7 +9,7 @@ import { partners } from "@/content/site";
  * Each tile is white with the logo in colour. On hover (or tap) a green panel sweeps up
  * from the bottom with a slanted edge that levels out; the logo changes colour as the edge
  * passes it, moves up, and the description slides in underneath.
- * Phones get a 2-column grid instead, with every description shown and no hover effect.
+ * Below wide screens it's a 2-column grid instead, every description shown, no hover effect.
  */
 
 // The panel is clipped below the tile, slanted (left side higher), and rises to cover it
@@ -17,7 +17,7 @@ const PANEL =
   "[clip-path:polygon(0_105%,100%_125%,100%_125%,0_125%)] group-hover:[clip-path:polygon(0_0,100%_0,100%_100%,0_100%)] group-focus:[clip-path:polygon(0_0,100%_0,100%_100%,0_100%)]";
 // Same box and movement in both layers, so the two logos line up exactly
 const LOGO_BOX =
-  "absolute left-1/2 top-1/2 h-20 w-48 -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 ease-in-out-drive group-hover:-translate-y-[calc(50%+3rem)] group-focus:-translate-y-[calc(50%+3rem)]";
+  "absolute left-1/2 top-1/2 h-16 w-44 -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 ease-in-out-drive group-hover:-translate-y-[calc(50%+4.75rem)] group-focus:-translate-y-[calc(50%+4.75rem)]";
 
 export default function Partners() {
   const strip = useRef<HTMLUListElement>(null);
@@ -56,8 +56,8 @@ export default function Partners() {
           {partners.heading}
         </h2>
 
-        {/* Phones: a 2-column grid, logo and description always visible (after Misr Italia's mobile partners) */}
-        <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-laurel/40 md:hidden">
+        {/* Phones and tablets: a grid, logo and description always visible (after Misr Italia's mobile partners) */}
+        <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-laurel/40 xl:hidden">
           {partners.list.map((partner) => (
             <li key={partner.name} className="flex flex-col items-center bg-white px-4 py-10 text-center odd:last:col-span-2">
               {partner.logo ? (
@@ -72,16 +72,16 @@ export default function Partners() {
           ))}
         </ul>
 
-        {/* Larger screens: one strip; the green panel sweeps up on hover with the description */}
+        {/* Wide screens: one strip; the green panel sweeps up on hover with the description. Narrower tiles can't fit the text */}
         <ul
           ref={strip}
-          className="hidden snap-x snap-mandatory gap-px overflow-x-auto rounded-2xl bg-laurel/40 [scrollbar-width:none] md:flex [&::-webkit-scrollbar]:hidden"
+          className="hidden snap-x snap-mandatory gap-px overflow-x-auto rounded-2xl bg-laurel/40 [scrollbar-width:none] xl:flex [&::-webkit-scrollbar]:hidden"
         >
           {partners.list.map((partner) => (
             <li
               key={partner.name}
               tabIndex={0}
-              className="group relative h-72 min-w-0 flex-1 basis-0 snap-start overflow-hidden bg-white outline-offset-[-3px]"
+              className="group relative h-80 min-w-0 flex-1 basis-0 snap-start overflow-hidden bg-white outline-offset-[-3px]"
             >
               {partner.logo ? (
                 <span className={LOGO_BOX}>
@@ -104,7 +104,7 @@ export default function Partners() {
                     {partner.name}
                   </span>
                 )}
-                <p className="absolute inset-x-6 bottom-8 translate-y-full text-center text-sm leading-relaxed text-cream/80 opacity-0 transition-[transform,opacity] duration-500 ease-out-quint group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-150 group-focus:translate-y-0 group-focus:opacity-100 group-focus:delay-150 md:inset-x-8">
+                <p className="absolute inset-x-6 top-[8.25rem] translate-y-4 text-center text-sm leading-relaxed text-cream/80 opacity-0 transition-[transform,opacity] duration-500 ease-out-quint group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-150 group-focus:translate-y-0 group-focus:opacity-100 group-focus:delay-150">
                   {partner.description}
                 </p>
               </div>

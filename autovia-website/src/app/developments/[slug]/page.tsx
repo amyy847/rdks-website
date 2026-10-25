@@ -226,12 +226,12 @@ export default async function DevelopmentPage({ params }: Props) {
               <AutoviaMap />
             </div>
             {dev.distances && dev.distances.length > 0 && (
-              <ul className="relative z-10 mx-4 -mt-9 grid grid-cols-2 gap-x-6 gap-y-5 rounded-2xl bg-white px-6 py-6 shadow-[0_20px_50px_-25px_rgb(10_59_37/0.5)] sm:mx-10 md:flex md:justify-around md:rounded-full md:px-12">
+              <ul className="relative z-10 mx-4 -mt-9 grid grid-cols-2 gap-x-6 gap-y-5 rounded-2xl bg-white px-6 py-6 shadow-[0_20px_50px_-25px_rgb(10_59_37/0.5)] sm:mx-10 lg:flex lg:justify-around lg:rounded-full lg:px-12">
                 {dev.distances.map((d) => (
-                  <li key={d.place} className="text-center md:whitespace-nowrap md:text-left">
-                    <span className="block font-semibold md:inline">{d.time}</span>
-                    <span className="hidden text-green/70 md:inline"> · </span>
-                    <span className="block text-sm text-green/70 md:inline md:text-base">{d.place}</span>
+                  <li key={d.place} className="text-center lg:whitespace-nowrap lg:text-left">
+                    <span className="block font-semibold lg:inline">{d.time}</span>
+                    <span className="hidden text-green/70 lg:inline"> · </span>
+                    <span className="block text-sm text-green/70 lg:inline lg:text-base">{d.place}</span>
                   </li>
                 ))}
               </ul>
