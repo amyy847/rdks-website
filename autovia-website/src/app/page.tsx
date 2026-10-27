@@ -3,7 +3,6 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import LaunchCard from "@/components/LaunchCard";
 import LandPortfolio from "@/components/LandPortfolio";
-import LandMap from "@/components/LandMap";
 import EnquireSection from "@/components/EnquireSection";
 import { aboutPage, company, developments, landPortfolio } from "@/content/site";
 
@@ -36,10 +35,6 @@ export default function Home() {
             {landPortfolio.heading}
           </h2>
           <LandPortfolio />
-          {/* Option B for the client to compare: the same portfolio as an illustrated map */}
-          <div className="mt-10 md:mt-14">
-            <LandMap />
-          </div>
         </div>
       </section>
 

@@ -87,12 +87,13 @@ export const developments: Development[] = [
     location: "Ring Road, New Cairo", // book
     status: "Now launching", // PLACEHOLDER: confirm (open, launching, under construction?)
     summary: "A landmark automotive, retail and office destination on Cairo's Ring Road.", // book, shortened
-    cover: "/images/autovia/b05-gb-2.jpg",
+    // Photos from the client (27 October 2026)
+    cover: "/images/autovia/photo-street-dusk.jpg", // not the sign photo: the hero already shows the Autovia logo
     cardImages: [
-      "/images/autovia/b05-gb-2.jpg",
-      "/images/autovia/autovia-sign.jpg",
-      "/images/autovia/b01-1.jpg",
-      "/images/autovia/b04-eim-1.jpg",
+      "/images/autovia/photo-sign-sunset.jpg",
+      "/images/autovia/photo-opel-peugeot.jpg",
+      "/images/autovia/photo-gac-jameel.jpg",
+      "/images/autovia/photo-street-dusk.jpg",
     ],
     stats: [
       // From the client (23 October 2026)
@@ -135,24 +136,15 @@ export const developments: Development[] = [
       { name: "Deepal", logo: "/images/brands/deepal.png" },
     ],
     gallery: [
-      // Renders from the client (October 2026). The first 5 show on the page; the rest open in the viewer
-      { image: "/images/autovia/b01-1.jpg", alt: "Autovia's curved glass corner showroom" },
-      { image: "/images/autovia/g-3.jpg", alt: "Autovia's showrooms lined with palms along the road" },
-      { image: "/images/autovia/autovia-sign.jpg", alt: "The Autovia sign on the building's dark façade" },
-      { image: "/images/autovia/b05-gb-2.jpg", alt: "A Deepal showroom behind a row of palms" },
-      { image: "/images/autovia/b02-gac-1.jpg", alt: "The GAC, Jameel Motors and AION showroom" },
-      { image: "/images/autovia/g-1.jpg", alt: "Aerial view of Autovia beside the Ring Road" },
-      { image: "/images/autovia/b01-2.jpg", alt: "Aerial view of the curved showroom and the road front" },
-      { image: "/images/autovia/b01-3.jpg", alt: "The full row of showrooms from the road" },
-      { image: "/images/autovia/b02-gac-2.jpg", alt: "The GAC showroom and its service entrance" },
-      { image: "/images/autovia/b03-1.jpg", alt: "A corner showroom with a blue brand fascia" },
-      { image: "/images/autovia/b03-2.jpg", alt: "A showroom with blue brand panels and parking" },
-      { image: "/images/autovia/b04-eim-1.jpg", alt: "A showroom with a red brand panel behind palms" },
-      { image: "/images/autovia/b04-eim-2.jpg", alt: "The service building with red brand panels" },
-      { image: "/images/autovia/b05-gb-1.jpg", alt: "The Deepal service centre and parking" },
-      { image: "/images/autovia/b05-gb-5.jpg", alt: "A standalone showroom and its car park" },
-      { image: "/images/autovia/g-2.jpg", alt: "Aerial view of Autovia's buildings and car parks" },
-      { image: "/images/autovia/g-8.jpg", alt: "Showroom frontages along the road" },
+      // Photos from the client (27 October 2026). The first 5 show on the page; the rest open in the viewer
+      { image: "/images/autovia/photo-sign-sunset.jpg", alt: "The Autovia sign over the Ring Road at sunset" },
+      { image: "/images/autovia/photo-opel-peugeot-front.jpg", alt: "The Opel and Peugeot showroom by Mansour" },
+      { image: "/images/autovia/photo-gac-jameel.jpg", alt: "The GAC showroom by Jameel Motors" },
+      { image: "/images/autovia/photo-opel-peugeot.jpg", alt: "The Opel and Peugeot showroom from the corner" },
+      { image: "/images/autovia/photo-street-dusk.jpg", alt: "Autovia's buildings in the evening light" },
+      { image: "/images/autovia/photo-sign-road.jpg", alt: "Traffic passing the Autovia sign on the Ring Road" },
+      { image: "/images/autovia/photo-facade-detail.jpg", alt: "Detail of a white façade with deep vertical recesses" },
+      { image: "/images/autovia/photo-construction.jpg", alt: "Scaffolding and shadows on a building nearing completion" },
     ],
     distances: [
       // From the client (24 October 2026). Add Park Street, South 90th Street etc. when she sends their times
@@ -453,6 +445,7 @@ export type Plot = {
   name: string; // also an option in the Enquire now "interest" list
   nameAr: string; // shown small under the name
   area: string;
+  location: string; // area name only: exact locations are shared on request
   art: "blueprint" | "contour" | "aerial"; // drawing on the card until the client sends aerial photos
 };
 
@@ -469,19 +462,20 @@ export const landPortfolio = {
   eyebrow: "Our land portfolio",
   title: "More destinations in the making.",
   intro: "Beyond Autovia, RD.K holds a growing portfolio of commercial land for retail, showrooms and business destinations.",
-  // PLACEHOLDER: the total includes the two mock areas (Autovia 13,000 + 9,000 + 12,000 + 15,000)
+  // Autovia 13,000 + 9,000 + 9,700 + 6,000
   stats: [
     { value: "4", label: "Plots" },
-    { value: "49,000 m²", label: "Total land" },
+    { value: "37,700 m²", label: "Total land" },
   ],
   use: "Commercial · Retail & showrooms",
   status: "Upcoming",
   button: "Enquire for details",
   note: "Details on each plot are shared on request. Send us an enquiry and our team will be in touch.",
-  // PLACEHOLDER: only Plot 9000's area is real; the other two are mock until the client confirms
+  // Areas from the client (27 October 2026). Plot 9000 is at 29°59'57.2"N 31°23'35.3"E (Al Hay Al Asher, Nasr City): not shown, per the brief
+  // PLACEHOLDER: the Engineers Syndicate plot's area name
   plots: [
-    { name: "Plot 9000", nameAr: "أرض ٩٠٠٠", area: "9,000 m²", art: "blueprint" },
-    { name: "Engineers Syndicate plot", nameAr: "أرض نقابة المهندسين", area: "12,000 m²", art: "contour" },
-    { name: "Sadat plot", nameAr: "أرض السادات", area: "15,000 m²", art: "aerial" },
+    { name: "Plot 9000", nameAr: "أرض ٩٠٠٠", area: "9,000 m²", location: "Nasr City, Cairo", art: "blueprint" },
+    { name: "Engineers Syndicate plot", nameAr: "أرض نقابة المهندسين", area: "9,700 m²", location: "Shared on request", art: "contour" },
+    { name: "Sadat plot", nameAr: "أرض السادات", area: "6,000 m²", location: "Sadat City", art: "aerial" },
   ] as Plot[],
 };

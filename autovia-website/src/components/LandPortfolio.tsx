@@ -166,6 +166,10 @@ export default function LandPortfolio() {
                     <dt className="text-cream/60">Area</dt>
                     <dd className="text-right">{plot.area}</dd>
                   </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-cream/60">Location</dt>
+                    <dd className="text-right">{plot.location}</dd>
+                  </div>
                 </dl>
                 <button
                   type="button"

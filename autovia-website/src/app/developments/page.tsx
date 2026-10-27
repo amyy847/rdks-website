@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import DevelopmentCard from "@/components/DevelopmentCard";
 import LaunchCard from "@/components/LaunchCard";
 import LandPortfolio from "@/components/LandPortfolio";
-import LandMap from "@/components/LandMap";
 import EnquireSection from "@/components/EnquireSection";
 import { developments, developmentsPage, landPortfolio } from "@/content/site";
 
@@ -50,10 +49,6 @@ export default function DevelopmentsPage() {
             {landPortfolio.heading}
           </h2>
           <LandPortfolio />
-          {/* Option B for the client to compare: the same portfolio as an illustrated map */}
-          <div className="mt-10 md:mt-14">
-            <LandMap />
-          </div>
         </div>
       </section>
 
