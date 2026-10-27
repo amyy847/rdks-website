@@ -88,7 +88,7 @@ export const developments: Development[] = [
     status: "Now launching", // PLACEHOLDER: confirm (open, launching, under construction?)
     summary: "A landmark automotive, retail and office destination on Cairo's Ring Road.", // book, shortened
     // Photos from the client (27 October 2026)
-    cover: "/images/autovia/photo-street-dusk.jpg", // not the sign photo: the hero already shows the Autovia logo
+    cover: "/images/autovia/b05-gb-2.jpg", // render (the client preferred it to the photos for the hero)
     cardImages: [
       "/images/autovia/photo-sign-sunset.jpg",
       "/images/autovia/photo-opel-peugeot.jpg",
@@ -216,7 +216,7 @@ export const enquiry = {
   // PLACEHOLDER: confirm the units on offer, and whether they're for sale, rent or both
   updatesLabel: "Keep me updated on news and offers",
   // the plot names must match landPortfolio.plots (the plot cards preselect them)
-  interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Plot 9000", "Engineers Syndicate plot", "Sadat plot", "Something else"],
+  interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Hay Asher, Nasr City", "Engineers Syndicate", "Sadat", "Something else"],
 };
 
 export type PolicySection = { heading: string; paragraphs?: string[]; list?: string[]; after?: string[] };
@@ -445,7 +445,6 @@ export type Plot = {
   name: string; // also an option in the Enquire now "interest" list
   nameAr: string; // shown small under the name
   area: string;
-  location: string; // area name only: exact locations are shared on request
   art: "blueprint" | "contour" | "aerial"; // drawing on the card until the client sends aerial photos
 };
 
@@ -467,15 +466,13 @@ export const landPortfolio = {
     { value: "4", label: "Plots" },
     { value: "37,700 m²", label: "Total land" },
   ],
-  use: "Commercial · Retail & showrooms",
   status: "Upcoming",
   button: "Enquire for details",
   note: "Details on each plot are shared on request. Send us an enquiry and our team will be in touch.",
-  // Areas from the client (27 October 2026). Plot 9000 is at 29°59'57.2"N 31°23'35.3"E (Al Hay Al Asher, Nasr City): not shown, per the brief
-  // PLACEHOLDER: the Engineers Syndicate plot's area name
+  // Areas from the client (27 October 2026). The Hay Asher plot is at 29°59'57.2"N 31°23'35.3"E (Al Hay Al Asher, Nasr City): not shown, per the brief
   plots: [
-    { name: "Plot 9000", nameAr: "أرض ٩٠٠٠", area: "9,000 m²", location: "Nasr City, Cairo", art: "blueprint" },
-    { name: "Engineers Syndicate plot", nameAr: "أرض نقابة المهندسين", area: "9,700 m²", location: "Shared on request", art: "contour" },
-    { name: "Sadat plot", nameAr: "أرض السادات", area: "6,000 m²", location: "Sadat City", art: "aerial" },
+    { name: "Hay Asher, Nasr City", nameAr: "الحي العاشر، مدينة نصر", area: "9,000 m²", art: "blueprint" },
+    { name: "Engineers Syndicate", nameAr: "أرض نقابة المهندسين", area: "9,700 m²", art: "contour" },
+    { name: "Sadat", nameAr: "أرض السادات", area: "6,000 m²", art: "aerial" },
   ] as Plot[],
 };

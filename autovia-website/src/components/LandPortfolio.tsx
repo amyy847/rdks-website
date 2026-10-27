@@ -153,23 +153,17 @@ export default function LandPortfolio() {
                 </span>
               </div>
               <div className="flex flex-col p-6 md:p-7">
-                <h4 className="type-h3 lg:min-h-[2lh]">{plot.name}</h4>
-                <p lang="ar" dir="rtl" className="mt-1.5 self-start text-sm text-cream/60">
-                  {plot.nameAr}
-                </p>
-                <dl className="mt-6 grid gap-3 border-t border-cream/15 pt-5 text-sm">
-                  <div className="flex justify-between gap-4">
-                    <dt className="text-cream/60">Use</dt>
-                    <dd className="text-right">{copy.use}</dd>
-                  </div>
-                  <div className="flex justify-between gap-4">
-                    <dt className="text-cream/60">Area</dt>
-                    <dd className="text-right">{plot.area}</dd>
-                  </div>
-                  <div className="flex justify-between gap-4">
-                    <dt className="text-cream/60">Location</dt>
-                    <dd className="text-right">{plot.location}</dd>
-                  </div>
+                {/* Room for a two-line name, so the areas line up across the cards */}
+                <div className="flex flex-col lg:min-h-[5.25rem]">
+                  <h4 className="type-h3">{plot.name}</h4>
+                  <p lang="ar" dir="rtl" className="mt-1.5 self-start text-sm text-cream/60">
+                    {plot.nameAr}
+                  </p>
+                </div>
+                {/* The area, big: the land size is the selling point */}
+                <dl className="mt-6 flex flex-col-reverse border-t border-cream/15 pt-5">
+                  <dt className="type-eyebrow mt-2 text-cream/60">Land area</dt>
+                  <dd className="whitespace-nowrap text-4xl font-semibold tracking-tight text-gold sm:text-5xl lg:text-4xl xl:text-5xl">{plot.area}</dd>
                 </dl>
                 <button
                   type="button"
