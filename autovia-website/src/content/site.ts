@@ -216,7 +216,7 @@ export const enquiry = {
   // PLACEHOLDER: confirm the units on offer, and whether they're for sale, rent or both
   updatesLabel: "Keep me updated on news and offers",
   // the plot names must match landPortfolio.plots (the plot cards preselect them)
-  interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Hay Asher, Nasr City", "Engineers Syndicate", "Sadat", "Something else"],
+  interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Golf Tunnel, Ring Road", "Engineers Syndicate", "Sadat", "Something else"],
 };
 
 export type PolicySection = { heading: string; paragraphs?: string[]; list?: string[]; after?: string[] };
@@ -445,6 +445,7 @@ export type Plot = {
   name: string; // also an option in the Enquire now "interest" list
   nameAr: string; // shown small under the name
   area: string;
+  location?: { en: string; ar: string }; // detailed location, behind a "View detailed location" link on the card
   art: "blueprint" | "contour" | "aerial"; // drawing on the card until the client sends aerial photos
 };
 
@@ -469,9 +470,19 @@ export const landPortfolio = {
   status: "Upcoming",
   button: "Enquire for details",
   note: "Details on each plot are shared on request. Send us an enquiry and our team will be in touch.",
-  // Areas from the client (27 October 2026). The Hay Asher plot is at 29°59'57.2"N 31°23'35.3"E (Al Hay Al Asher, Nasr City): not shown, per the brief
+  // Areas from the client (27 October 2026). The Golf Tunnel plot (the client's "Plot 9000") is at 29°59'57.2"N 31°23'35.3"E (Al Hay Al Asher, Nasr City)
   plots: [
-    { name: "Hay Asher, Nasr City", nameAr: "الحي العاشر، مدينة نصر", area: "9,000 m²", art: "blueprint" },
+    {
+      name: "Golf Tunnel, Ring Road",
+      nameAr: "نفق الجولف، الطريق الدائري",
+      area: "9,000 m²",
+      // From the client (27 October 2026)
+      location: {
+        en: "South of the Golf Tunnel, between the main Ring Road and the service road towards Maadi, Cairo.",
+        ar: "الكائنة جنوب نفق الجولف بين الطريق الدائري الرئيسي والطريق الداعم إتجاه المعادي - بمحافظة القاهرة",
+      },
+      art: "blueprint",
+    },
     { name: "Engineers Syndicate", nameAr: "أرض نقابة المهندسين", area: "9,700 m²", art: "contour" },
     { name: "Sadat", nameAr: "أرض السادات", area: "6,000 m²", art: "aerial" },
   ] as Plot[],

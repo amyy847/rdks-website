@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import PlotArt from "./PlotArt";
 import { ENQUIRE_INTEREST_EVENT } from "./EnquireSection";
-import { landPortfolio as copy } from "@/content/site";
+import { landPortfolio as copy, type Plot } from "@/content/site";
 
 /**
  * "Future developments": RD.K's land portfolio, after the client's inspiration.
@@ -12,6 +12,34 @@ import { landPortfolio as copy } from "@/content/site";
  * Clicking it opens the card onto the plots: a dark panel spreads out from where you clicked
  * while the card grows to fit. Each plot leads to Enquire now, with the plot preselected.
  */
+
+// "View detailed location": a small link under the plot name that opens the client's description
+function LocationDetail({ location }: { location: NonNullable<Plot["location"]> }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="mt-5">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-gold/90 underline decoration-gold/40 underline-offset-4 hover:text-gold hover:decoration-gold"
+      >
+        {open ? "Hide detailed location" : "View detailed location"}
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" className={`size-3 transition-transform duration-300 ${open ? "rotate-180" : ""}`}>
+          <path d="M4 6l4 4 4-4z" />
+        </svg>
+      </button>
+      <div className={`grid transition-[grid-template-rows] duration-500 ease-out-quint motion-reduce:transition-none ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+        <div className="overflow-hidden" inert={!open}>
+          <p className="pt-3 text-sm leading-relaxed text-cream/80">{location.en}</p>
+          <p lang="ar" dir="rtl" className="pt-2 text-sm leading-relaxed text-cream/60">
+            {location.ar}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function LandPortfolio() {
   const wrap = useRef<HTMLDivElement>(null);
@@ -145,7 +173,7 @@ export default function LandPortfolio() {
 
         <ul className="mt-10 grid gap-5 lg:grid-cols-3 md:mt-12">
           {copy.plots.map((plot) => (
-            <li key={plot.name} className="grid overflow-hidden rounded-sm border border-cream/15 sm:grid-cols-2 lg:grid-cols-1">
+            <li key={plot.name} className="grid overflow-hidden rounded-sm border border-cream/15 sm:grid-cols-2 lg:grid-cols-1 lg:grid-rows-[auto_1fr]">
               <div className="relative aspect-[4/3] overflow-hidden bg-black/20 sm:aspect-auto sm:min-h-56 lg:aspect-[4/3] lg:min-h-0">
                 <PlotArt plot={plot} className="absolute inset-0 size-full" />
                 <span className="absolute left-4 top-4 rounded-full border border-gold/50 bg-green/80 px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-gold">
@@ -165,6 +193,8 @@ export default function LandPortfolio() {
                   <dt className="type-eyebrow mt-2 text-cream/60">Land area</dt>
                   <dd className="whitespace-nowrap text-4xl font-semibold tracking-tight text-gold sm:text-5xl lg:text-4xl xl:text-5xl">{plot.area}</dd>
                 </dl>
+                {/* under the area, so a two-line name with the link doesn't push this card's area out of line */}
+                {plot.location && <LocationDetail location={plot.location} />}
                 <button
                   type="button"
                   onClick={() => enquire(plot.name)}
