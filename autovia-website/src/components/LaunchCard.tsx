@@ -24,7 +24,15 @@ export default function LaunchCard({ dev, enquireHref = "#enquire" }: { dev: Dev
           <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
           {dev.status}
         </p>
-        <h3 className="type-h2 mt-5">{dev.name}</h3>
+        {dev.logoDark ? (
+          <h3 className="mt-6">
+            <span className="sr-only">{dev.name}</span>
+            {/* eslint-disable-next-line @next/next/no-img-element -- plain img keeps the wordmark crisp at any width */}
+            <img src={dev.logoDark} alt="" className="w-full max-w-[22rem]" />
+          </h3>
+        ) : (
+          <h3 className="type-h2 mt-5">{dev.name}</h3>
+        )}
         <p className="mt-2 font-medium text-moss">{dev.location}</p>
         <p className="mt-6 max-w-[42ch] text-green/85">{dev.summary}</p>
 

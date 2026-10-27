@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import DevelopmentCard from "@/components/DevelopmentCard";
-import { RegisterInterestButton } from "@/components/RegisterInterest";
+import LaunchCard from "@/components/LaunchCard";
+import LandPortfolio from "@/components/LandPortfolio";
+import LandMap from "@/components/LandMap";
 import EnquireSection from "@/components/EnquireSection";
-import { developments, developmentsPage } from "@/content/site";
+import { developments, developmentsPage, landPortfolio } from "@/content/site";
 
 export const metadata: Metadata = {
   title: developmentsPage.heading,
@@ -11,8 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default function DevelopmentsPage() {
-  const { comingSoon } = developmentsPage;
-
   return (
     <>
       <section className="pb-12 pt-32 md:pb-16 md:pt-44">
@@ -26,36 +25,35 @@ export default function DevelopmentsPage() {
         </div>
       </section>
 
-      <section aria-label="All developments" className="pb-20 md:pb-32">
-        <div className="container-site grid gap-6 md:grid-cols-2">
-          {developments.map((dev) => (
-            <DevelopmentCard key={dev.slug} dev={dev} />
-          ))}
+      <section aria-label="Current launches" className="pb-20 md:pb-32">
+        {/* One launch gets the wide card; with more, a two-column grid */}
+        {developments.length === 1 ? (
+          <div className="container-site">
+            <LaunchCard dev={developments[0]} />
+          </div>
+        ) : (
+          <div className="container-site grid gap-6 md:grid-cols-2">
+            {developments.map((dev) => (
+              <DevelopmentCard key={dev.slug} dev={dev} />
+            ))}
+          </div>
+        )}
+      </section>
 
-          {comingSoon && (
-            <div className="group relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-sm bg-green p-7 text-cream md:p-10">
-              <Image
-                src={comingSoon.image}
-                alt=""
-                fill
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="-z-10 object-cover transition-transform duration-[1200ms] ease-out-quint group-hover:scale-[1.04]"
-              />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-t from-green via-green/75 to-green/25" aria-hidden="true" />
-              <p className="flex items-center gap-2.5 type-eyebrow text-cream/85">
-                <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
-                Next launch
-              </p>
-              <h2 className="type-h2 mt-5">{comingSoon.title}</h2>
-              <p className="mt-4 max-w-[38ch] text-cream/85">{comingSoon.text}</p>
-              <RegisterInterestButton
-                label="Register your interest"
-                project="Next development"
-                source="next launch card"
-                className="btn btn-ghost-light mt-8 self-start"
-              />
-            </div>
-          )}
+      <section aria-labelledby="land-heading" className="pb-20 md:pb-32">
+        <div className="container-site">
+          <p className="mb-5 flex items-center gap-3 type-eyebrow text-moss">
+            <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
+            Upcoming
+          </p>
+          <h2 id="land-heading" className="type-h2 mb-10 md:mb-14">
+            {landPortfolio.heading}
+          </h2>
+          <LandPortfolio />
+          {/* Option B for the client to compare: the same portfolio as an illustrated map */}
+          <div className="mt-10 md:mt-14">
+            <LandMap />
+          </div>
         </div>
       </section>
 

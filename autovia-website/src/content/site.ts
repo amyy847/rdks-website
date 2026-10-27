@@ -53,6 +53,7 @@ export type Development = {
   slug: string;
   name: string;
   logo?: string; // the development's own logo, shown in its hero (white artwork, transparent background)
+  logoDark?: string; // the same logo for light backgrounds (the launch and development cards)
   tagline: string;
   location: string;
   status: string;
@@ -81,6 +82,7 @@ export const developments: Development[] = [
     slug: "autovia",
     name: "Autovia",
     logo: "/images/autovia/autovia-wordmark.png", // "AUTOVIA" without "by RD.K" (client's choice for the header)
+    logoDark: "/images/autovia/autovia-wordmark-dark.png", // same, white parts in brand green
     tagline: "Built to be seen", // book
     location: "Ring Road, New Cairo", // book
     status: "Now launching", // PLACEHOLDER: confirm (open, launching, under construction?)
@@ -172,12 +174,6 @@ export const developments: Development[] = [
 export const developmentsPage = {
   heading: "Developments",
   intro: "Landmark destinations, built to last. Autovia, on Cairo's Ring Road, is our first launch.",
-  // The tile beside the launches. Set to null to hide it.
-  comingSoon: {
-    image: "/images/next-launch-crane.jpg", // Pexels (eartharchive), mood photo only: not an RD.K site
-    title: "More on the way",
-    text: "With several projects set to launch soon, we're only getting started. Leave your details and we'll tell you first.",
-  } as { image: string; title: string; text: string } | null,
 };
 
 export const aboutPage = {
@@ -227,7 +223,8 @@ export const enquiry = {
   text: "Leave your details and our sales team will get back to you within one working day.",
   // PLACEHOLDER: confirm the units on offer, and whether they're for sale, rent or both
   updatesLabel: "Keep me updated on news and offers",
-  interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Something else"],
+  // the plot names must match landPortfolio.plots (the plot cards preselect them)
+  interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Plot 9000", "Engineers Syndicate plot", "Sadat plot", "Something else"],
 };
 
 export type PolicySection = { heading: string; paragraphs?: string[]; list?: string[]; after?: string[] };
@@ -448,3 +445,43 @@ export const countryCodes = [
   { code: "IT", dial: "+39" },
 ];
 
+
+// Land portfolio: the plots after Autovia (client brief, October 2026). Shown on Home (under Current launches)
+// and on Developments, as a "Coming soon" card that opens onto the plots.
+// Details stay private on purpose: no prices, layouts, exact locations or specs. Each card leads to Enquire now.
+export type Plot = {
+  name: string; // also an option in the Enquire now "interest" list
+  nameAr: string; // shown small under the name
+  area: string;
+  art: "blueprint" | "contour" | "aerial"; // drawing on the card until the client sends aerial photos
+};
+
+export const landPortfolio = {
+  heading: "Future developments",
+  // Teaser background: an ink street sketch drawn for the site (scratchpad generator, rough.js)
+  teaserImage: "/images/land-teaser-street.svg",
+  teaser: {
+    eyebrow: "Coming soon",
+    title: "Something big is coming.",
+    text: "Three new destinations in the making",
+    button: "See what's next",
+  },
+  eyebrow: "Our land portfolio",
+  title: "More destinations in the making.",
+  intro: "Beyond Autovia, RD.K holds a growing portfolio of commercial land for retail, showrooms and business destinations.",
+  // PLACEHOLDER: the total includes the two mock areas (Autovia 13,000 + 9,000 + 12,000 + 15,000)
+  stats: [
+    { value: "4", label: "Plots" },
+    { value: "49,000 m²", label: "Total land" },
+  ],
+  use: "Commercial · Retail & showrooms",
+  status: "Upcoming",
+  button: "Enquire for details",
+  note: "Details on each plot are shared on request. Send us an enquiry and our team will be in touch.",
+  // PLACEHOLDER: only Plot 9000's area is real; the other two are mock until the client confirms
+  plots: [
+    { name: "Plot 9000", nameAr: "أرض ٩٠٠٠", area: "9,000 m²", art: "blueprint" },
+    { name: "Engineers Syndicate plot", nameAr: "أرض نقابة المهندسين", area: "12,000 m²", art: "contour" },
+    { name: "Sadat plot", nameAr: "أرض السادات", area: "15,000 m²", art: "aerial" },
+  ] as Plot[],
+};

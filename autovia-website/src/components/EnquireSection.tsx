@@ -1,14 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { InlineThanks, useInlineThanks } from "./InlineThanks";
 import PhoneField, { phoneFromForm } from "./PhoneField";
 import SpamTrap from "./SpamTrap";
-import { developments, enquiry, inlineThanks } from "@/content/site";
+import { developments, enquiry, inlineThanks, landPortfolio } from "@/content/site";
 import { FIELD_LIGHT_CLASS as field, submitEnquiry } from "@/lib/enquiry";
 
 type Status = "idle" | "sending" | "error";
+
+// Sent by the land portfolio's "Enquire for details" with a plot name, to preselect it below
+export const ENQUIRE_INTEREST_EVENT = "rdk:enquire-interest";
+const plotNames = landPortfolio.plots.map((p) => p.name);
 
 /** Enquiry card that overlaps the footer. After sending, the form fades out and a thank-you fades in. */
 export default function EnquireSection({ project = developments[0].name }: { project?: string }) {
@@ -16,6 +20,15 @@ export default function EnquireSection({ project = developments[0].name }: { pro
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const thanks = useInlineThanks();
+  const interest = useRef<HTMLSelectElement>(null);
+
+  useEffect(() => {
+    const onPick = (e: Event) => {
+      if (interest.current) interest.current.value = (e as CustomEvent<string>).detail;
+    };
+    window.addEventListener(ENQUIRE_INTEREST_EVENT, onPick);
+    return () => window.removeEventListener(ENQUIRE_INTEREST_EVENT, onPick);
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,6 +41,8 @@ export default function EnquireSection({ project = developments[0].name }: { pro
       const fields = Object.fromEntries(Object.entries(data).filter(([k]) => k !== "country" && k !== "phoneNumber"));
       await submitEnquiry({
         ...fields,
+        // a plot enquiry is about that plot, not the page's development
+        ...(plotNames.includes(String(data.interest)) && { project: String(data.interest) }),
         phone: phoneFromForm(data),
         updates: data.updates === "on",
         source: "Enquiry form",
@@ -83,7 +98,7 @@ export default function EnquireSection({ project = developments[0].name }: { pro
                     <label className="sm:col-span-2">
                       <span className={label}>What are you interested in?</span>
                       <span className="relative block">
-                        <select name="interest" required defaultValue="" className={`${field} appearance-none pr-12`}>
+                        <select ref={interest} name="interest" required defaultValue="" className={`${field} appearance-none pr-12`}>
                           <option value="" disabled>
                             Choose one
                           </option>

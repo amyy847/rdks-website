@@ -2,8 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import LaunchCard from "@/components/LaunchCard";
+import LandPortfolio from "@/components/LandPortfolio";
+import LandMap from "@/components/LandMap";
 import EnquireSection from "@/components/EnquireSection";
-import { aboutPage, company, developments } from "@/content/site";
+import { aboutPage, company, developments, landPortfolio } from "@/content/site";
 
 export default function Home() {
   return (
@@ -24,6 +26,19 @@ export default function Home() {
             {developments.map((dev) => (
               <LaunchCard key={dev.slug} dev={dev} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="land-heading" className="pb-20 md:pb-32">
+        <div className="container-site">
+          <h2 id="land-heading" className="type-h2 mb-10 md:mb-14">
+            {landPortfolio.heading}
+          </h2>
+          <LandPortfolio />
+          {/* Option B for the client to compare: the same portfolio as an illustrated map */}
+          <div className="mt-10 md:mt-14">
+            <LandMap />
           </div>
         </div>
       </section>
