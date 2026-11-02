@@ -114,7 +114,7 @@ export default function Partners() {
 
         {edges.overflow && (
           <div className="mt-8 flex justify-end">
-            <div className="flex overflow-hidden rounded-full border border-green/30">
+            <div className="flex overflow-hidden rounded-sm border border-green/30">
               <button
                 type="button"
                 onClick={() => step(-1)}

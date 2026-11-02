@@ -93,7 +93,7 @@ export const developments: Development[] = [
       "/images/autovia/photo-sign-sunset.jpg",
       "/images/autovia/photo-opel-peugeot.jpg",
       "/images/autovia/photo-gac-jameel.jpg",
-      "/images/autovia/photo-street-dusk.jpg",
+      "/images/autovia/photo-opel-peugeot-front.jpg",
     ],
     stats: [
       // From the client (23 October 2026)
@@ -141,7 +141,6 @@ export const developments: Development[] = [
       { image: "/images/autovia/photo-opel-peugeot-front.jpg", alt: "The Opel and Peugeot showroom by Mansour" },
       { image: "/images/autovia/photo-gac-jameel.jpg", alt: "The GAC showroom by Jameel Motors" },
       { image: "/images/autovia/photo-opel-peugeot.jpg", alt: "The Opel and Peugeot showroom from the corner" },
-      { image: "/images/autovia/photo-street-dusk.jpg", alt: "Autovia's buildings in the evening light" },
       { image: "/images/autovia/photo-sign-road.jpg", alt: "Traffic passing the Autovia sign on the Ring Road" },
       { image: "/images/autovia/photo-facade-detail.jpg", alt: "Detail of a white façade with deep vertical recesses" },
       { image: "/images/autovia/photo-construction.jpg", alt: "Scaffolding and shadows on a building nearing completion" },
@@ -216,7 +215,7 @@ export const enquiry = {
   // PLACEHOLDER: confirm the units on offer, and whether they're for sale, rent or both
   updatesLabel: "Keep me updated on news and offers",
   // the plot names must match landPortfolio.plots (the plot cards preselect them)
-  interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Golf Tunnel, Ring Road", "Engineers Syndicate", "Sadat", "Something else"],
+  interests: ["A showroom", "A service centre", "A retail unit", "Office space", "Autovia 2", "Engineers Syndicate", "Sadat", "Something else"],
 };
 
 export type PolicySection = { heading: string; paragraphs?: string[]; list?: string[]; after?: string[] };
@@ -470,11 +469,11 @@ export const landPortfolio = {
   status: "Upcoming",
   button: "Enquire for details",
   note: "Details on each plot are shared on request. Send us an enquiry and our team will be in touch.",
-  // Areas from the client (27 October 2026). The Golf Tunnel plot (the client's "Plot 9000") is at 29°59'57.2"N 31°23'35.3"E (Al Hay Al Asher, Nasr City)
+  // Areas from the client (27 October 2026). Autovia 2 (the client's "Plot 9000") is at 29°59'57.2"N 31°23'35.3"E (Al Hay Al Asher, Nasr City)
   plots: [
     {
-      name: "Golf Tunnel, Ring Road",
-      nameAr: "نفق الجولف، الطريق الدائري",
+      name: "Autovia 2", // client, 28 October 2026
+      nameAr: "نفق الجولف، الطريق الدائري", // the location, in Arabic
       area: "9,000 m²",
       // From the client (27 October 2026)
       location: {
@@ -487,3 +486,106 @@ export const landPortfolio = {
     { name: "Sadat", nameAr: "أرض السادات", area: "6,000 m²", art: "aerial" },
   ] as Plot[],
 };
+
+// News & events: cards on Home, an index at /news, and a page per item at /news/[slug]. Newest first.
+export type NewsItem = {
+  slug: string;
+  kind: "News" | "Event";
+  title: string;
+  excerpt: string; // one or two lines for the cards
+  date: string; // ISO, e.g. "2026-10-27"
+  location?: string;
+  tags: string[];
+  cover: Photo;
+  body: string[]; // paragraphs; the first one is set larger
+  gallery: Photo[];
+};
+
+export const newsPage = {
+  heading: "News & Events",
+  intro: "Openings, launches and milestones from across RD.K's developments.",
+  latestHeading: "Latest news",
+  allLabel: "All news & events",
+};
+
+const gacPhoto = (n: number, alt: string): Photo => ({ image: `/images/events/gac-opening/${String(n).padStart(2, "0")}.jpg`, alt });
+
+export const news: NewsItem[] = [
+  {
+    slug: "gac-jameel-motors-grand-opening-autovia",
+    kind: "Event",
+    // PLACEHOLDER: copy written from the event photos (27 October 2026); the client should approve it
+    title: "GAC and Jameel Motors open their showroom at Autovia",
+    excerpt: "A grand opening night on the Ring Road, as GAC and Jameel Motors welcome guests to their new home at Autovia.",
+    date: "2026-10-27",
+    location: "Autovia, Ring Road, New Cairo",
+    tags: ["Event", "Autovia", "Grand opening"],
+    cover: gacPhoto(1, "Cutting the ribbon at the GAC and Jameel Motors grand opening at Autovia"),
+    body: [
+      "On 27 October, GAC and Jameel Motors celebrated the grand opening of their new showroom at Autovia, RD.K's automotive destination on Cairo's Ring Road. Under the line \"A new standard finds its address\", guests from across the automotive industry gathered for an evening of speeches, unveilings and celebration.",
+      "The night opened with words from the leadership of GAC International and Jameel Motors, followed by a ribbon cutting and a signing ceremony between the partners.",
+      "Guests then toured the new showroom, saw GAC's latest models up close and watched the first new-car deliveries handed over to their owners.",
+      "GAC joins the line-up of car brands at Autovia, with more openings to come.",
+    ],
+    gallery: [
+      gacPhoto(1, "Cutting the ribbon at the grand opening"),
+      gacPhoto(2, "\"A new standard finds its address\" on the main screen"),
+      gacPhoto(3, "Guests filling the event space"),
+      gacPhoto(4, "A speech from GAC International"),
+      gacPhoto(5, "A new GAC model on the big screen"),
+      gacPhoto(6, "The signing ceremony"),
+      gacPhoto(20, "The partners together after the signing"),
+      gacPhoto(7, "A new-car delivery in the showroom"),
+      gacPhoto(21, "Presenting GAC's new models to guests in the showroom"),
+      gacPhoto(8, "Guests touring the new showroom"),
+      gacPhoto(9, "Guests with a new GAC car in the showroom"),
+      gacPhoto(10, "A GAC SUV on display"),
+      gacPhoto(11, "The GAC pavilion lit in red"),
+      gacPhoto(12, "The stage with the GAC logo"),
+      gacPhoto(13, "A speech from Jameel Motors"),
+      gacPhoto(14, "The audience during the presentation"),
+      gacPhoto(15, "A GAC saloon in the showroom"),
+      gacPhoto(16, "The showroom entrance at night"),
+      gacPhoto(17, "Guests at the opening"),
+      gacPhoto(18, "Live music during the evening"),
+      gacPhoto(19, "An RD.K flag outside the showroom"),
+    ],
+  },
+  // FILLER: the two items below are samples to show how the cards scroll and switch tabs. Remove before launch.
+  {
+    slug: "autovia-opens-on-the-ring-road",
+    kind: "Event",
+    title: "Autovia opens its doors on the Ring Road",
+    excerpt: "The first showrooms open at Autovia, RD.K's automotive destination in New Cairo.",
+    date: "2026-10-20",
+    location: "Autovia, Ring Road, New Cairo",
+    tags: ["Event", "Autovia"],
+    cover: { image: "/images/autovia/photo-opel-peugeot-front.jpg", alt: "The Opel and Peugeot showroom at Autovia" },
+    body: [
+      "Sample text: Autovia welcomed its first visitors this week, as the first showrooms opened along Cairo's Ring Road.",
+      "Sample text: more brands will open over the coming months.",
+    ],
+    gallery: [
+      { image: "/images/autovia/photo-opel-peugeot-front.jpg", alt: "The Opel and Peugeot showroom" },
+      { image: "/images/autovia/photo-gac-jameel.jpg", alt: "The GAC showroom by Jameel Motors" },
+      { image: "/images/autovia/photo-opel-peugeot.jpg", alt: "The Opel and Peugeot showroom from the corner" },
+      { image: "/images/autovia/photo-facade-detail.jpg", alt: "Detail of a white facade" },
+      { image: "/images/autovia/photo-sign-road.jpg", alt: "The Autovia sign on the Ring Road" },
+    ],
+  },
+  {
+    slug: "rd-k-announces-autovia-2",
+    kind: "News",
+    title: "RD.K announces Autovia 2 by the Golf Tunnel",
+    excerpt: "A second automotive destination on the Ring Road, on a 9,000 m² plot south of the Golf Tunnel.",
+    date: "2026-10-12",
+    location: "Golf Tunnel, Ring Road",
+    tags: ["News", "Autovia 2", "Land portfolio"],
+    cover: { image: "/images/autovia/photo-sign-sunset.jpg", alt: "The Autovia sign over the Ring Road at sunset" },
+    body: [
+      "Sample text: RD.K has announced Autovia 2, a second automotive destination on Cairo's Ring Road.",
+      "Sample text: details will be shared closer to launch.",
+    ],
+    gallery: [],
+  },
+];

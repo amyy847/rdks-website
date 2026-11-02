@@ -4,6 +4,9 @@ import Hero from "@/components/Hero";
 import LaunchCard from "@/components/LaunchCard";
 import LandPortfolio from "@/components/LandPortfolio";
 import EnquireSection from "@/components/EnquireSection";
+import LatestNews from "@/components/LatestNews";
+import NewsSlider from "@/components/NewsSlider";
+import { sortedNews } from "@/lib/news";
 import { aboutPage, company, developments, landPortfolio } from "@/content/site";
 
 export default function Home() {
@@ -60,6 +63,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Two options for the client to compare: A after Misr Italia's "News & Events", B after Mountain View's "Latest News" */}
+      <NewsSlider items={sortedNews()} />
+      <LatestNews items={sortedNews()} />
 
       <EnquireSection />
     </>

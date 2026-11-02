@@ -146,7 +146,7 @@ export default function LandPortfolio() {
             type="button"
             onClick={close}
             aria-label="Close the land portfolio"
-            className="-mr-2 -mt-2 grid size-11 shrink-0 place-items-center rounded-full text-cream/80 transition-colors hover:bg-cream/10 hover:text-cream"
+            className="-mr-2 -mt-2 grid size-11 shrink-0 place-items-center rounded-sm text-cream/80 transition-colors hover:bg-cream/10 hover:text-cream"
           >
             <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
               <path d="M3 3l10 10M13 3L3 13" strokeLinecap="round" />
@@ -176,7 +176,7 @@ export default function LandPortfolio() {
             <li key={plot.name} className="grid overflow-hidden rounded-sm border border-cream/15 sm:grid-cols-2 lg:grid-cols-1 lg:grid-rows-[auto_1fr]">
               <div className="relative aspect-[4/3] overflow-hidden bg-black/20 sm:aspect-auto sm:min-h-56 lg:aspect-[4/3] lg:min-h-0">
                 <PlotArt plot={plot} className="absolute inset-0 size-full" />
-                <span className="absolute left-4 top-4 rounded-full border border-gold/50 bg-green/80 px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-gold">
+                <span className="absolute left-4 top-4 rounded-sm border border-gold/50 bg-green/80 px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-gold">
                   {copy.status}
                 </span>
               </div>

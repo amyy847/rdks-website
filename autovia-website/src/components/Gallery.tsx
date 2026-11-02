@@ -87,7 +87,7 @@ export default function Gallery({ photos, preview = 5 }: { photos: Photo[]; prev
                 type="button"
                 onClick={() => setIndex(null)}
                 aria-label="Close photo viewer"
-                className="grid size-11 place-items-center rounded-full hover:bg-white/10"
+                className="grid size-11 place-items-center rounded-sm hover:bg-white/10"
               >
                 <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
                   <path d="M3 3l10 10M13 3L3 13" strokeLinecap="round" />
@@ -101,7 +101,7 @@ export default function Gallery({ photos, preview = 5 }: { photos: Photo[]; prev
 
             <div className="container-site flex shrink-0 items-center justify-between gap-4 py-5">
               {count > 1 && (
-                <button type="button" onClick={() => step(-1)} aria-label="Previous photo" className="grid size-11 shrink-0 place-items-center rounded-full border border-white/25 hover:bg-white hover:text-green">
+                <button type="button" onClick={() => step(-1)} aria-label="Previous photo" className="grid size-11 shrink-0 place-items-center rounded-sm border border-white/25 hover:bg-white hover:text-green">
                   <svg viewBox="0 0 16 16" className="size-4" fill="currentColor" aria-hidden="true">
                     <path d="M10 3L5 8l5 5z" />
                   </svg>
@@ -109,7 +109,7 @@ export default function Gallery({ photos, preview = 5 }: { photos: Photo[]; prev
               )}
               <p className="text-center text-sm text-white/75">{current.alt}</p>
               {count > 1 && (
-                <button type="button" onClick={() => step(1)} aria-label="Next photo" className="grid size-11 shrink-0 place-items-center rounded-full border border-white/25 hover:bg-white hover:text-green">
+                <button type="button" onClick={() => step(1)} aria-label="Next photo" className="grid size-11 shrink-0 place-items-center rounded-sm border border-white/25 hover:bg-white hover:text-green">
                   <svg viewBox="0 0 16 16" className="size-4" fill="currentColor" aria-hidden="true">
                     <path d="M6 3l5 5-5 5z" />
                   </svg>

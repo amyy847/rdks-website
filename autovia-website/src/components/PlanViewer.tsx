@@ -28,7 +28,7 @@ export default function PlanViewer({ src, alt, width, height }: { src: string; a
         className="group relative block w-full overflow-hidden rounded-2xl bg-[#e6e6e6] text-left"
       >
         <Image src={src} alt={alt} width={width} height={height} sizes="(min-width: 1280px) 1200px, 100vw" className="h-auto w-full" />
-        <span className="absolute bottom-2 right-2 flex items-center gap-2 rounded-full bg-green/85 p-2 text-xs font-semibold uppercase tracking-[0.14em] text-cream transition-colors group-hover:bg-green sm:bottom-3 sm:right-3 sm:px-3.5 sm:py-2">
+        <span className="absolute bottom-2 right-2 flex items-center gap-2 rounded-sm bg-green/85 p-2 text-xs font-semibold uppercase tracking-[0.14em] text-cream transition-colors group-hover:bg-green sm:bottom-3 sm:right-3 sm:px-3.5 sm:py-2">
           <svg viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
             <path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
