@@ -498,6 +498,7 @@ export type NewsItem = {
   tags: string[];
   cover: Photo;
   body: string[]; // paragraphs; the first one is set larger
+  quote?: string; // pull quote, used by the editorial layout
   gallery: Photo[];
 };
 
@@ -521,6 +522,7 @@ export const news: NewsItem[] = [
     location: "Autovia, Ring Road, New Cairo",
     tags: ["Event", "Autovia", "Grand opening"],
     cover: gacPhoto(1, "Cutting the ribbon at the GAC and Jameel Motors grand opening at Autovia"),
+    quote: "A new standard finds its address.", // the line on the event's screens
     body: [
       "On 27 October, GAC and Jameel Motors celebrated the grand opening of their new showroom at Autovia, RD.K's automotive destination on Cairo's Ring Road. Under the line \"A new standard finds its address\", guests from across the automotive industry gathered for an evening of speeches, unveilings and celebration.",
       "The night opened with words from the leadership of GAC International and Jameel Motors, followed by a ribbon cutting and a signing ceremony between the partners.",
