@@ -49,7 +49,7 @@ export default function NewsSlider({ items }: { items: NewsItem[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section aria-labelledby="news-slider-heading" className="overflow-hidden bg-green py-20 text-cream md:py-32">
+    <section aria-labelledby="news-slider-heading" className="mb-10 overflow-hidden bg-green py-20 text-cream md:mb-16 md:py-32">
       <div className="container-site">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6 md:mb-14">
           <h2 id="news-slider-heading" className="type-h2">

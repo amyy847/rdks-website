@@ -62,7 +62,8 @@ export async function POST(req: Request) {
     console.warn("[enquiry] dropped as spam", { email: lead.email, website: !!body.website, elapsed: body.elapsed });
     return NextResponse.json({ ok: true });
   }
-  const ip = (req.headers.get("x-forwarded-for") ?? "").split(",")[0].trim() || "unknown";
+  // cf-connecting-ip on Cloudflare, x-forwarded-for elsewhere
+  const ip = req.headers.get("cf-connecting-ip") || (req.headers.get("x-forwarded-for") ?? "").split(",")[0].trim() || "unknown";
   if (tooMany(ip)) {
     return NextResponse.json({ error: "You've sent a few enquiries already. Please wait a few minutes and try again." }, { status: 429 });
   }

@@ -1,0 +1,4 @@
+# Cloudflare build output and local secrets; not needed on Vercel
+.open-next
+.wrangler
+.dev.vars*

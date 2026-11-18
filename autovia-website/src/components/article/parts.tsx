@@ -2,9 +2,9 @@ import Link from "next/link";
 import Gallery from "../Gallery";
 import NewsCard from "../NewsCard";
 import { newsPage, type NewsItem } from "@/content/site";
-import { ARTICLE_LAYOUTS, newsHref, sortedNews, type ArticleLayoutId } from "@/lib/news";
+import { sortedNews } from "@/lib/news";
 
-/** Pieces shared by the three article layouts */
+/** Pieces of the article page */
 
 export function Breadcrumb({ item, center = false }: { item: NewsItem; center?: boolean }) {
   return (
@@ -21,33 +21,6 @@ export function Breadcrumb({ item, center = false }: { item: NewsItem; center?: 
         </li>
       </ol>
     </nav>
-  );
-}
-
-// For the client to compare: which layout this is, and links to the other two
-export function LayoutSwitch({ item, current }: { item: NewsItem; current: ArticleLayoutId }) {
-  return (
-    <div className="border-b border-laurel/60 bg-gold/15 pt-[4.5rem] lg:pt-20">
-      <div className="container-site flex flex-wrap items-center gap-x-5 gap-y-2 py-3 text-sm">
-        <Link href={newsHref(item)} className="font-semibold underline decoration-moss decoration-2 underline-offset-4 hover:text-moss">
-          ← All layouts
-        </Link>
-        <span className="type-eyebrow text-green/70">Layout option</span>
-        <span className="flex overflow-hidden rounded-sm border border-green/25">
-          {ARTICLE_LAYOUTS.map((l) => (
-            <Link
-              key={l.id}
-              href={`${newsHref(item)}/${l.id}`}
-              aria-current={l.id === current ? "page" : undefined}
-              className={`grid h-9 min-w-9 place-items-center px-3 font-semibold transition-colors ${l.id === current ? "bg-green text-cream" : "hover:bg-green/10"}`}
-            >
-              {l.id}
-            </Link>
-          ))}
-        </span>
-        <span className="text-green/70">{ARTICLE_LAYOUTS.find((l) => l.id === current)?.name}</span>
-      </div>
-    </div>
   );
 }
 

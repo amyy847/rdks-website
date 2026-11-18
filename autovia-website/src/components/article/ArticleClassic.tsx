@@ -2,12 +2,12 @@ import type { NewsItem } from "@/content/site";
 import { longDate, readTime } from "@/lib/news";
 import { Breadcrumb, MoreNews, Photos, Tags } from "./parts";
 
-/** Option 1: title on top, details beside the text, photos at the end */
+/** The article page: title on top, details beside the text, photos at the end */
 export default function ArticleClassic({ item }: { item: NewsItem }) {
   const [lead, ...rest] = item.body;
   return (
     <>
-      <section className="pb-10 pt-12 md:pb-14 md:pt-16">
+      <section className="pb-10 pt-32 md:pb-14 md:pt-44">
         <div className="container-site">
           <Breadcrumb item={item} />
           <p className="mb-5 mt-6 flex items-center gap-3 type-eyebrow text-moss">

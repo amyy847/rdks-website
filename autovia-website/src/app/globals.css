@@ -219,6 +219,28 @@
   mix-blend-mode: multiply;
 }
 
+/* A link underline that draws in from the left on hover (or keyboard focus) of its .group, and leaves to the right.
+   Screens without hover always show it. */
+.draw-line {
+  transition: transform 0.5s var(--ease-out-quint);
+}
+@media (hover: hover) {
+  .draw-line {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+  .group:hover .draw-line,
+  .group:focus-visible .draw-line {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .draw-line {
+    transition: none;
+  }
+}
+
 /* Slide progress: fills like a lane marking while the slide is showing */
 @keyframes lane-fill {
   from {

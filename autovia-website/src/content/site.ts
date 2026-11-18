@@ -498,14 +498,12 @@ export type NewsItem = {
   tags: string[];
   cover: Photo;
   body: string[]; // paragraphs; the first one is set larger
-  quote?: string; // pull quote, used by the editorial layout
   gallery: Photo[];
 };
 
 export const newsPage = {
   heading: "News & Events",
   intro: "Openings, launches and milestones from across RD.K's developments.",
-  latestHeading: "Latest news",
   allLabel: "All news & events",
 };
 
@@ -516,16 +514,15 @@ export const news: NewsItem[] = [
     slug: "gac-jameel-motors-grand-opening-autovia",
     kind: "Event",
     // PLACEHOLDER: copy written from the event photos (27 October 2026); the client should approve it
-    title: "GAC and Jameel Motors open their showroom at Autovia",
-    excerpt: "A grand opening night on the Ring Road, as GAC and Jameel Motors welcome guests to their new home at Autovia.",
+    title: "Jameel Motors opens its GAC showroom at Autovia",
+    excerpt: "A grand opening night on the Ring Road, as Jameel Motors, GAC's official distributor in Egypt, welcomes guests to its new GAC showroom at Autovia.",
     date: "2026-10-27",
     location: "Autovia, Ring Road, New Cairo",
     tags: ["Event", "Autovia", "Grand opening"],
-    cover: gacPhoto(1, "Cutting the ribbon at the GAC and Jameel Motors grand opening at Autovia"),
-    quote: "A new standard finds its address.", // the line on the event's screens
+    cover: gacPhoto(1, "Cutting the ribbon at the grand opening of the GAC showroom at Autovia"),
     body: [
-      "On 27 October, GAC and Jameel Motors celebrated the grand opening of their new showroom at Autovia, RD.K's automotive destination on Cairo's Ring Road. Under the line \"A new standard finds its address\", guests from across the automotive industry gathered for an evening of speeches, unveilings and celebration.",
-      "The night opened with words from the leadership of GAC International and Jameel Motors, followed by a ribbon cutting and a signing ceremony between the partners.",
+      "On 27 October, Jameel Motors, the official distributor of GAC in Egypt, celebrated the grand opening of its new GAC showroom at Autovia, RD.K's automotive destination on Cairo's Ring Road. Under the line \"A new standard finds its address\", guests from across the automotive industry gathered for an evening of speeches, unveilings and celebration.",
+      "The night opened with words from the leadership of GAC International and Jameel Motors, followed by a ribbon cutting and a signing ceremony.",
       "Guests then toured the new showroom, saw GAC's latest models up close and watched the first new-car deliveries handed over to their owners.",
       "GAC joins the line-up of car brands at Autovia, with more openings to come.",
     ],
@@ -553,31 +550,10 @@ export const news: NewsItem[] = [
       gacPhoto(19, "An RD.K flag outside the showroom"),
     ],
   },
-  // FILLER: the two items below are samples to show how the cards scroll and switch tabs. Remove before launch.
-  {
-    slug: "autovia-opens-on-the-ring-road",
-    kind: "Event",
-    title: "Autovia opens its doors on the Ring Road",
-    excerpt: "The first showrooms open at Autovia, RD.K's automotive destination in New Cairo.",
-    date: "2026-10-20",
-    location: "Autovia, Ring Road, New Cairo",
-    tags: ["Event", "Autovia"],
-    cover: { image: "/images/autovia/photo-opel-peugeot-front.jpg", alt: "The Opel and Peugeot showroom at Autovia" },
-    body: [
-      "Sample text: Autovia welcomed its first visitors this week, as the first showrooms opened along Cairo's Ring Road.",
-      "Sample text: more brands will open over the coming months.",
-    ],
-    gallery: [
-      { image: "/images/autovia/photo-opel-peugeot-front.jpg", alt: "The Opel and Peugeot showroom" },
-      { image: "/images/autovia/photo-gac-jameel.jpg", alt: "The GAC showroom by Jameel Motors" },
-      { image: "/images/autovia/photo-opel-peugeot.jpg", alt: "The Opel and Peugeot showroom from the corner" },
-      { image: "/images/autovia/photo-facade-detail.jpg", alt: "Detail of a white facade" },
-      { image: "/images/autovia/photo-sign-road.jpg", alt: "The Autovia sign on the Ring Road" },
-    ],
-  },
   {
     slug: "rd-k-announces-autovia-2",
     kind: "News",
+    // PLACEHOLDER: copy and date are ours; the client should approve them
     title: "RD.K announces Autovia 2 by the Golf Tunnel",
     excerpt: "A second automotive destination on the Ring Road, on a 9,000 m² plot south of the Golf Tunnel.",
     date: "2026-10-12",
@@ -585,8 +561,9 @@ export const news: NewsItem[] = [
     tags: ["News", "Autovia 2", "Land portfolio"],
     cover: { image: "/images/autovia/photo-sign-sunset.jpg", alt: "The Autovia sign over the Ring Road at sunset" },
     body: [
-      "Sample text: RD.K has announced Autovia 2, a second automotive destination on Cairo's Ring Road.",
-      "Sample text: details will be shared closer to launch.",
+      "RD.K has announced Autovia 2, a second automotive destination on Cairo's Ring Road, on a 9,000 m² plot south of the Golf Tunnel.",
+      "Autovia 2 builds on Autovia in New Cairo, bringing space for automotive brands, showrooms and service centres to a new stretch of the Ring Road.",
+      "More details will be shared closer to launch. Businesses interested in space at Autovia 2 can enquire now.",
     ],
     gallery: [],
   },

@@ -1,0 +1,21 @@
+{
+	// Cloudflare Workers deployment, built with OpenNext (`npm run deploy`). See CLAUDE.md > Hosting.
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "rdk-website",
+	"compatibility_date": "2026-09-01",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"images": {
+		// next/image resizing through Cloudflare Images
+		"binding": "IMAGES"
+	},
+	"vars": {
+		// SITE_URL: the address link previews and emails point to; set once the site has its address
+		"LEADS_TO": "contact@rdkeg.com"
+	}
+	// Secrets (not in this file): RESEND_API_KEY, SHEET_WEBHOOK_URL, SHEET_SECRET, set with `npx wrangler secret put NAME`
+}

@@ -119,8 +119,11 @@ export default function LandPortfolio() {
             {copy.teaser.title}
           </span>
           <span className="type-eyebrow mt-6 text-green/70">{copy.teaser.text}</span>
-          <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-green underline decoration-gold-deep decoration-2 underline-offset-[7px] transition-colors group-hover:text-moss">
-            {copy.teaser.button}
+          <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-green transition-colors group-hover:text-moss">
+            <span className="relative">
+              {copy.teaser.button}
+              <span aria-hidden="true" className="draw-line absolute inset-x-0 -bottom-[7px] h-0.5 bg-gold-deep" />
+            </span>
             <span aria-hidden="true" className="transition-transform duration-500 ease-out-quint group-hover:translate-x-1">
               →
             </span>
